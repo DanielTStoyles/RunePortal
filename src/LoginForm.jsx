@@ -1,13 +1,9 @@
 import React from 'react';
-import { useForm } from 'react-hook-form'
-import Button from '@mui/material/Button'
+import { useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
-
-
-
-
-const RegisterForm = () => {
+const LoginForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = data => {
@@ -17,20 +13,6 @@ const RegisterForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
-
-        <TextField
-          label="Name"
-          variant="outlined"
-          type="text"
-          id="name"
-          {...register("name", { required: true })}
-          error={Boolean(errors.name)}
-          helperText={errors.name && "This field is required"}
-        />
-      </div>
-
-      <div>
-
         <TextField
           label="Email"
           variant="outlined"
@@ -55,10 +37,10 @@ const RegisterForm = () => {
       </div>
 
       <Button variant="contained" type="submit">
-        Register
+        Login
       </Button>
     </form>
   );
 };
-export default RegisterForm;
 
+export default LoginForm;
