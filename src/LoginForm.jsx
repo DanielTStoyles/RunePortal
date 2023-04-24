@@ -1,7 +1,14 @@
 import React from 'react';
+import ReactDOM from "react-dom/cleint";
 import { useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 
 const LoginForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -11,6 +18,8 @@ const LoginForm = () => {
   };
 
   return (
+    <Card variant="outlined">
+    <CardContent>
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <TextField
@@ -40,6 +49,8 @@ const LoginForm = () => {
         Login
       </Button>
     </form>
+    </CardContent>
+      </Card>
   );
 };
 
