@@ -4,12 +4,15 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import { useNavigate } from 'react-router-dom';
 
-const LoginForm = ({ handleToggleForm, showRegisterForm }) => {
+const LoginForm = () => {
+  const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = data => {
     console.log(data);
+    navigate('/register'); 
   };
 
   return (
@@ -43,17 +46,10 @@ const LoginForm = ({ handleToggleForm, showRegisterForm }) => {
           <Button variant="contained" type="submit">
             Login
           </Button>
-
-          {showRegisterForm ? (
-            <Button color="secondary" onClick={handleToggleForm}>
-              Go to Login
-            </Button>
-          ) : (
-            <Button color="secondary" onClick={handleToggleForm}>
-              Go to Register
-            </Button>
-          )}
         </form>
+        <Button onClick={() => navigate('/register')}>
+          Go to Register
+        </Button>
       </CardContent>
     </Card>
   );
