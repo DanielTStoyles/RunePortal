@@ -1,22 +1,27 @@
 import React from 'react';
-import ReactDOM from "react-dom";
 import CssBaseline from '@mui/material/CssBaseline';
 import RegisterForm from './register'
 import LoginForm from './LoginForm.jsx'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AuthContainer from './AuthContainer.jsx'
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <CssBaseline />
       <Routes>
-        <Route exact path="/" component={LoginForm} />
-        <Route path="/register" component={RegisterForm} />
+        {/* <Route exact path="/" element={<LoginForm />} />
+        <Route path="/register" element={<RegisterForm />} /> */}
+        <Route exact path="/" element={<AuthContainer/>} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 
 export default App;
-ReactDOM.render(<App />, document.getElementById('root'));
+
+
+
+
+
