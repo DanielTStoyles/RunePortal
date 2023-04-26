@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
-import LoginForm from './LoginForm';
-import RegisterForm from './register';
+import LoginForm from './LoginForm.jsx';
+import RegisterForm from './RegisterForm.jsx';
 
-function AuthContainer() {
-  const [isRegistering, setIsRegistering] = useState(false);
+const FormContainer = () => {
+  const [showRegisterForm, setShowRegisterForm] = useState(false);
 
   const handleToggleForm = () => {
-    setIsRegistering(!isRegistering);
+    setShowRegisterForm(prevState => !prevState);
   };
 
   return (
     <div>
-      {isRegistering ? (
-        <RegisterForm onToggleForm={handleToggleForm} />
+      {showRegisterForm ? (
+        <RegisterForm handleToggleForm={handleToggleForm} />
       ) : (
-        <LoginForm onToggleForm={handleToggleForm} />
+        <LoginForm handleToggleForm={handleToggleForm} />
       )}
+      <button onClick={handleToggleForm}>
+        {showRegisterForm ? 'Go to Login' : 'Go to Register'}
+      </button>
     </div>
   );
-}
+};
 
-export default AuthContainer;
+export default FormContainer;
