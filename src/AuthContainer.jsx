@@ -5,18 +5,14 @@ import RegisterForm from './register';
 const FormContainer = () => {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
 
-  const handleToggleForm = () => {
-    setShowRegisterForm(prevState => !prevState);
-  };
-
   return (
     <div>
       {showRegisterForm ? (
-        <RegisterForm handleToggleForm={handleToggleForm} />
+        <RegisterForm  />
       ) : (
-        <LoginForm handleToggleForm={handleToggleForm} />
+        <LoginForm  />
       )}
-      <button onClick={handleToggleForm}>
+      <button onClick={() => setShowRegisterForm (!showRegisterForm)}>
         {showRegisterForm ? 'Go to Login' : 'Go to Register'}
       </button>
     </div>
@@ -24,7 +20,4 @@ const FormContainer = () => {
 };
 
 export default FormContainer;
-
-
-
 

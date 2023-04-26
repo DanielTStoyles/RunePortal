@@ -5,11 +5,7 @@ import LoginForm from './LoginForm.jsx';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 function App() {
-  const [ setShowRegisterForm] = useState(false);
-
-  const handleToggleForm = () => {
-    setShowRegisterForm(prevState => !prevState);
-  };
+// const isLoggedIn=useContext(UserContext);
 
   return (
     <BrowserRouter>
@@ -18,12 +14,14 @@ function App() {
         <Route
           exact
           path="/"
-          element={<LoginForm handleToggleForm={handleToggleForm} />}
+          element={<LoginForm  />}
         />
         <Route
           path="/register"
-          element={<RegisterForm handleToggleForm={handleToggleForm} />}
+          element={<RegisterForm  />}
         />
+
+       
       </Routes>
     </BrowserRouter>
   );
@@ -31,3 +29,4 @@ function App() {
 
 export default App;
  
+
