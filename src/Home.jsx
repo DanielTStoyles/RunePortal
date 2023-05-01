@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -8,8 +8,30 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import LoginForm from "./LoginForm";
+import RegisterForm from "./register";
 
 const Home = () => {
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [registerModalOpen, setRegisterModalOpen] = useState(false);
+
+  const handleLoginModalOpen = () => {
+    setLoginModalOpen(true);
+  };
+
+  const handleLoginModalClose = () => {
+    setLoginModalOpen(false);
+  };
+
+  const handleRegisterModalOpen = () => {
+    setRegisterModalOpen(true);
+  };
+
+  const handleRegisterModalClose = () => {
+    setRegisterModalOpen(false);
+  };
+
   return (
     <>
       {/* Navigation bar */}
@@ -18,10 +40,10 @@ const Home = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             My App
           </Typography>
-          <Button color="inherit" component={Link} to="/login">
+          <Button color="inherit" onClick={handleLoginModalOpen}>
             Login
           </Button>
-          <Button color="inherit" component={Link} to="/register">
+          <Button color="inherit" onClick={handleRegisterModalOpen}>
             Register
           </Button>
         </Toolbar>
@@ -42,6 +64,34 @@ const Home = () => {
           consequat massa quis enim.{" "}
         </Typography>
       </Container>
+
+      {/* Login modal */}
+      <Modal open={loginModalOpen} onClose={handleLoginModalClose}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+          }}
+        >
+          <LoginForm />
+        </Box>
+      </Modal>
+
+      {/* Register modal */}
+      <Modal open={registerModalOpen} onClose={handleRegisterModalClose}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+          }}
+        >
+          <RegisterForm />
+        </Box>
+      </Modal>
     </>
   );
 };
