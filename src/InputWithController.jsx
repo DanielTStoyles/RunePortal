@@ -1,19 +1,21 @@
-import React from 'react';
-import { Controller } from 'react-hook-form';
-import TextField from '@mui/material/TextField';
+/** @format */
+
+import React from "react";
+import { Controller } from "react-hook-form";
+import TextField from "@mui/material/TextField";
 
 const InputWithController = ({
   name,
   label,
-  control, 
-  type = 'text', 
+  control,
+  type = "text",
   errors,
 }) => {
   return (
     <div>
       <Controller
         name={name}
-        control={control} 
+        control={control}
         defaultValue=""
         rules={{ required: true }}
         render={({ field }) => (
@@ -21,9 +23,9 @@ const InputWithController = ({
             {...field}
             label={label}
             id={name}
-            type={type} 
+            type={type}
             error={Boolean(errors[name])}
-            helperText={errors[name] && 'This field is required'}
+            helperText={errors[name] && "This field is required"}
           />
         )}
       />

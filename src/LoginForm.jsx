@@ -1,26 +1,41 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import { useNavigate } from 'react-router-dom';
+/** @format */
+
+import React from "react";
+import { useForm } from "react-hook-form";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     console.log(data);
-    navigate('/register'); 
+    navigate("/register");
   };
 
   return (
-    <Card variant="outlined">
-      <CardContent>
+    <Card
+      variant="outlined"
+      sx={{ width: "400px", height: "auto", borderRadius: "10px" }}
+    >
+      <CardContent
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
-
             <TextField
               label="Email"
               variant="outlined"
@@ -30,7 +45,6 @@ const LoginForm = () => {
               error={Boolean(errors.email)}
               helperText={errors.email && "This field is required"}
             />
-            
           </div>
 
           <div>
@@ -49,9 +63,7 @@ const LoginForm = () => {
             Login
           </Button>
         </form>
-        <Button onClick={() => navigate('/register')}>
-          Go to Register
-        </Button>
+        <Button onClick={() => navigate("/register")}>Go to Register</Button>
       </CardContent>
     </Card>
   );
