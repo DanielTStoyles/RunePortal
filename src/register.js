@@ -9,7 +9,7 @@ import InputWithController from './InputWithController.jsx';
 
 const RegisterForm = () => {
   const navigate = useNavigate();
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { control, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = data => {
     console.log(data);
@@ -21,7 +21,11 @@ const RegisterForm = () => {
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)}>
           
-        <InputWithController name="email" label="Email" register={register} errors={errors} />
+        <InputWithController name="email" label="Email" 
+        control={control} errors={errors} />
+
+<InputWithController name="password" label="Password" 
+        control={control} errors={errors} />
           
 
           <Button variant="contained" type="submit">
