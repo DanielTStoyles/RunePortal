@@ -39,15 +39,15 @@ const Home = () => {
     setDarkMode(!darkMode);
   };
 
+  const commonStyles = {
+    backgroundColor: darkMode ? theme.palette.primary.dark : "#fff",
+    color: darkMode ? "#fff" : theme.palette.text.primary,
+  };
+
   return (
     <>
       {/* Navigation bar */}
-      <AppBar
-        position="static"
-        sx={{
-          backgroundColor: darkMode ? theme.palette.primary.dark : "#fff",
-        }}
-      >
+      <AppBar position="static" sx={commonStyles}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             RunePortal
@@ -68,18 +68,22 @@ const Home = () => {
       <Container
         maxWidth="md"
         sx={{
+          ...commonStyles,
           mt: 4,
-          backgroundColor: darkMode ? theme.palette.primary.dark : "#fff",
-          color: darkMode ? "#fff" : theme.palette.text.primary,
+          borderRadius: "10px",
+          mb: 4,
         }}
       >
-        <Box sx={{ textAlign: "center", mb: 4 }}>
+        <Box sx={{ textAlign: "center", mb: 4, pb: "10px" }}>
           <Typography variant="h3">Welcome to RunePortal</Typography>
           <Typography variant="subtitle1">
             Your one stop HUB for everything Oldschool Runescape!
           </Typography>
         </Box>
-        <Typography variant="body1">
+        <Typography
+          variant="body1"
+          sx={{ textAlign: "center", mb: 4, pb: "30px" }}
+        >
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
           commodo ligula eget dolor. Aenean massa. Pum sociis natoque penatibus
           et magnis dis parturient montes, nascetur ridiculus mus. Donec quam
