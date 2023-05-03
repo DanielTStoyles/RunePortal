@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import LoginForm from "./LoginForm";
+import LoginForm from "./LoginForm.jsx";
 import RegisterForm from "./register";
 import { ThemeContext } from "./ThemeContext.jsx";
 import { useTheme } from "@mui/material/styles";

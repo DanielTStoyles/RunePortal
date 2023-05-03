@@ -6,7 +6,8 @@ import RegisterForm from "./register";
 import LoginForm from "./LoginForm.jsx";
 import Home from "./Home.jsx";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { ThemeContextProvider } from "./ThemeContext";
+import { ThemeContextProvider } from "./ThemeContext.jsx";
+import { UserProvider } from "./UserContext.jsx";
 
 function App() {
   // const isLoggedIn=useContext(UserContext);
@@ -24,9 +25,11 @@ function App() {
 
 function AppWrapper() {
   return (
-    <ThemeContextProvider>
-      <App />
-    </ThemeContextProvider>
+    <UserProvider>
+      <ThemeContextProvider>
+        <App />
+      </ThemeContextProvider>
+    </UserProvider>
   );
 }
 
