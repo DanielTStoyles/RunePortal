@@ -12,10 +12,17 @@ import LoginForm from "./LoginForm.jsx";
 import RegisterForm from "./register";
 import { ThemeContext } from "./ThemeContext.jsx";
 import { useTheme } from "@mui/material/styles";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import MenuIcon from "@mui/icons-material/Menu";
+import IconButton from "@mui/material/IconButton";
 
 const Home = () => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [registerModalOpen, setRegisterModalOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(true);
   const { darkMode, setDarkMode } = useContext(ThemeContext);
   const theme = useTheme();
 
@@ -39,6 +46,10 @@ const Home = () => {
     setDarkMode(!darkMode);
   };
 
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  };
+
   const commonStyles = {
     backgroundColor: darkMode ? theme.palette.primary.dark : "#fff",
     color: darkMode ? "#fff" : theme.palette.text.primary,
@@ -46,23 +57,44 @@ const Home = () => {
 
   return (
     <>
-      {/* Navigation bar */}
-      <AppBar position="static" sx={commonStyles}>
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            RunePortal
-          </Typography>
-          <Button color="inherit" onClick={handleLoginModalOpen}>
-            Login
-          </Button>
-          <Button color="inherit" onClick={handleRegisterModalOpen}>
-            Register
-          </Button>
-          <Button color="inherit" onClick={toggleDarkMode}>
-            {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}{" "}
-          </Button>
-        </Toolbar>
-      </AppBar>
+      <IconButton
+        color="inherit"
+        aria-label="open drawer"
+        edge="start"
+        onClick={toggleDrawer}
+        sx={{ ml: 2 }}
+      >
+        <MenuIcon />
+      </IconButton>
+      {/* Drawer */}
+      <Drawer
+        anchor="left"
+        open={drawerOpen}
+        onClose={toggleDrawer}
+        BackdropProps={{
+          sx: {
+            background: "none",
+          },
+        }}
+      >
+        <Box sx={{ width: 250 }} onClick={toggleDrawer}>
+          <List>
+            <ListItem onClick={handleLoginModalOpen}>
+              <ListItemText primary="Login" />
+            </ListItem>
+            <ListItem onClick={handleRegisterModalOpen}>
+              <ListItemText primary="Register" />
+            </ListItem>
+            <ListItem onClick={toggleDarkMode}>
+              <ListItemText
+                primary={
+                  darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"
+                }
+              />
+            </ListItem>
+          </List>
+        </Box>
+      </Drawer>
 
       {/* Main content */}
       <Container

@@ -17,7 +17,6 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/triumphs" element={<div />} />
-        {/* <Route path="/register" element={<div />} /> */}
       </Routes>
     </BrowserRouter>
   );
