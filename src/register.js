@@ -54,7 +54,6 @@ const RegisterForm = () => {
             Register
           </Button>
         </form>
-        <Button onClick={() => navigate("/")}>Go to Login</Button>
       </CardContent>
     </Card>
   );

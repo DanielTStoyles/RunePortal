@@ -58,12 +58,7 @@ const LoginForm = () => {
               helperText={errors.password && "This field is required"}
             />
           </div>
-
-          <Button variant="contained" type="submit">
-            Login
-          </Button>
         </form>
-        <Button onClick={() => navigate("/register")}>Go to Register</Button>
       </CardContent>
     </Card>
   );

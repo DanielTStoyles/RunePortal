@@ -38,7 +38,7 @@ const Home = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            My App
+            RunePortal
           </Typography>
           <Button color="inherit" onClick={handleLoginModalOpen}>
             Login
