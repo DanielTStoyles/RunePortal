@@ -2,25 +2,42 @@
 
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-// import { useNavigate } from "react-router-dom";
+import InputWithController from "./InputWithController.jsx";
 import { useTheme } from "@mui/material/styles";
 import { ThemeContext } from "./ThemeContext.jsx";
+import { UserContext } from "./UserContext.jsx";
 
-const LoginForm = () => {
-  // const navigate = useNavigate();
+const LoginForm = ({ handleClose }) => {
+  const { login } = useContext(UserContext);
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // navigate("/register");
+  const onSubmit = async (data) => {
+    try {
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const { email, password } = data;
+
+      const user = users.find(
+        (user) => user.email === email && user.password === password
+      );
+
+      if (user) {
+        const token = "myToken";
+        localStorage.setItem("authToken", token);
+        login(token);
+        handleClose();
+      } else {
+        alert("Invalid email or password");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const { darkMode } = useContext(ThemeContext);
@@ -46,29 +63,19 @@ const LoginForm = () => {
         }}
       >
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <TextField
-              label="Email"
-              variant="outlined"
-              type="email"
-              id="email"
-              {...register("email", { required: true })}
-              error={Boolean(errors.email)}
-              helperText={errors.email && "This field is required"}
-            />
-          </div>
+          <InputWithController
+            name="email"
+            label="Email"
+            control={control}
+            errors={errors}
+          />
 
-          <div>
-            <TextField
-              label="Password"
-              variant="outlined"
-              type="password"
-              id="password"
-              {...register("password", { required: true })}
-              error={Boolean(errors.password)}
-              helperText={errors.password && "This field is required"}
-            />
-          </div>
+          <InputWithController
+            name="password"
+            label="Password"
+            control={control}
+            errors={errors}
+          />
 
           <Button variant="contained" type="submit">
             Login

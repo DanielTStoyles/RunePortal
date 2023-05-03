@@ -98,7 +98,7 @@ const Home = () => {
             height: "100%",
           }}
         >
-          <LoginForm />
+          <LoginForm handleClose={handleLoginModalClose} />
         </Box>
       </Modal>
 
@@ -112,7 +112,7 @@ const Home = () => {
             height: "100%",
           }}
         >
-          <RegisterForm />
+          <RegisterForm handleClose={handleRegisterModalClose} />
         </Box>
       </Modal>
     </>

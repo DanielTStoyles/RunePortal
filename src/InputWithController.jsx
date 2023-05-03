@@ -12,24 +12,22 @@ const InputWithController = ({
   errors,
 }) => {
   return (
-    <div>
-      <Controller
-        name={name}
-        control={control}
-        defaultValue=""
-        rules={{ required: true }}
-        render={({ field }) => (
-          <TextField
-            {...field}
-            label={label}
-            id={name}
-            type={type}
-            error={Boolean(errors[name])}
-            helperText={errors[name] && "This field is required"}
-          />
-        )}
-      />
-    </div>
+    <Controller
+      name={name}
+      control={control}
+      defaultValue=""
+      rules={{ required: true }}
+      render={({ field }) => (
+        <TextField
+          {...field}
+          label={label}
+          id={name}
+          type={type}
+          error={Boolean(errors[name])}
+          helperText={errors[name] && "This field is required"}
+        />
+      )}
+    />
   );
 };
 

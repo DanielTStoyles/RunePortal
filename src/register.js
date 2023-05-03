@@ -2,17 +2,16 @@
 
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-// import TextField from '@mui/material/TextField';
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-// import { useNavigate } from "react-router-dom";
 import InputWithController from "./InputWithController.jsx";
 import { useTheme } from "@mui/material/styles";
 import { ThemeContext } from "./ThemeContext";
+import { UserContext } from "./UserContext.jsx";
 
-const RegisterForm = () => {
-  // const navigate = useNavigate();
+const RegisterForm = ({ handleClose }) => {
+  const { login } = useContext(UserContext);
   const {
     control,
     handleSubmit,
@@ -20,8 +19,32 @@ const RegisterForm = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-    // navigate("/register");
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const { email, password, rsn } = data;
+
+    const userExists = users.find((user) => user.email === email);
+
+    if (userExists) {
+      alert("User with this email already exists!");
+    } else {
+      const newUser = {
+        email,
+        password,
+        rsn,
+      };
+
+      console.log("newUser", newUser);
+
+      users.push(newUser);
+
+      localStorage.setItem("users", JSON.stringify(users));
+
+      const token = "myToken";
+      localStorage.setItem("authToken", token);
+
+      login(token);
+      handleClose();
+    }
   };
 
   const { darkMode } = useContext(ThemeContext);
@@ -57,6 +80,13 @@ const RegisterForm = () => {
           <InputWithController
             name="password"
             label="Password"
+            control={control}
+            errors={errors}
+          />
+
+          <InputWithController
+            name="rsn"
+            label="RSN"
             control={control}
             errors={errors}
           />

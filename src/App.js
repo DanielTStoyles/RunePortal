@@ -16,13 +16,12 @@ function App() {
       <CssBaseline />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/login" element={<LoginForm />} />
-        <Route path="/register" element={<RegisterForm />} />
+        <Route exact path="/triumphs" element={<div />} />
+        {/* <Route path="/register" element={<div />} /> */}
       </Routes>
     </BrowserRouter>
   );
 }
-
 function AppWrapper() {
   return (
     <UserProvider>
