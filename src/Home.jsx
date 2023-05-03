@@ -1,7 +1,6 @@
 /** @format */
 
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -64,6 +63,7 @@ const Home = () => {
           </Button>
         </Toolbar>
       </AppBar>
+
       {/* Main content */}
       <Container
         maxWidth="md"
