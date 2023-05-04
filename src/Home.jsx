@@ -18,6 +18,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
+import Avatar from "@mui/material/Avatar";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
 
 const Home = () => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -55,6 +57,19 @@ const Home = () => {
     color: darkMode ? "#fff" : theme.palette.text.primary,
   };
 
+  const buttonStyles = {
+    "&:hover": {
+      cursor: "pointer",
+      backgroundColor: "#0047B2",
+    },
+  };
+
+  const profilePicStyle = {
+    "&:hover": {
+      cursor: "pointer",
+    },
+  };
+
   return (
     <>
       <IconButton
@@ -70,22 +85,36 @@ const Home = () => {
       <Drawer
         anchor="left"
         open={drawerOpen}
-        onClose={toggleDrawer}
         BackdropProps={{
           sx: {
             background: "none",
           },
         }}
       >
-        <Box sx={{ width: 250 }} onClick={toggleDrawer}>
+        <Box sx={{ width: 375 }}>
           <List>
-            <ListItem onClick={handleLoginModalOpen}>
+            <ListItemAvatar sx={{ ...profilePicStyle, paddingLeft: "15px" }}>
+              <Avatar
+                src="./images/defaultUser.png"
+                sx={{ ...profilePicStyle }}
+              />
+              <Typography
+                sx={{ position: "realtive", top: "-20px", left: "10px" }}
+              >
+                Username Here
+              </Typography>
+            </ListItemAvatar>
+
+            <ListItem sx={{ ...buttonStyles }} onClick={handleLoginModalOpen}>
               <ListItemText primary="Login" />
             </ListItem>
-            <ListItem onClick={handleRegisterModalOpen}>
+            <ListItem
+              sx={{ ...buttonStyles }}
+              onClick={handleRegisterModalOpen}
+            >
               <ListItemText primary="Register" />
             </ListItem>
-            <ListItem onClick={toggleDarkMode}>
+            <ListItem sx={{ ...buttonStyles }} onClick={toggleDarkMode}>
               <ListItemText
                 primary={
                   darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"
