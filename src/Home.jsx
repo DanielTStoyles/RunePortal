@@ -20,6 +20,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
+import PlayerStatsCard from "./PlayerStatsCard.jsx";
 
 const Home = () => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -93,17 +94,18 @@ const Home = () => {
       >
         <Box sx={{ width: 375 }}>
           <List>
-            <ListItemAvatar sx={{ ...profilePicStyle, paddingLeft: "15px" }}>
-              <Avatar
-                src="./images/defaultUser.png"
-                sx={{ ...profilePicStyle }}
+            <ListItem>
+              <ListItemAvatar sx={{ paddingLeft: "15px" }}>
+                <Avatar
+                  src="./images/defaultUser.png"
+                  sx={{ ...profilePicStyle }}
+                />
+              </ListItemAvatar>
+              <ListItemText
+                primary="Username Here"
+                sx={{ paddingLeft: "10px" }}
               />
-              <Typography
-                sx={{ position: "realtive", top: "-20px", left: "10px" }}
-              >
-                Username Here
-              </Typography>
-            </ListItemAvatar>
+            </ListItem>
 
             <ListItem sx={{ ...buttonStyles }} onClick={handleLoginModalOpen}>
               <ListItemText primary="Login" />
@@ -122,6 +124,9 @@ const Home = () => {
               />
             </ListItem>
           </List>
+        </Box>
+        <Box sx={{ p: 2 }}>
+          <PlayerStatsCard />
         </Box>
       </Drawer>
 
