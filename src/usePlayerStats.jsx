@@ -8,7 +8,7 @@ const fetchPlayerStats = async (playerName) => {
   const playerUrl = `${baseUrl}?player=${encodeURIComponent(playerName)}`;
 
   try {
-    const response = await fetch(playerUrl);
+    const response = await fetch(`/api/playerStats/${playerName}`);
     const data = await response.text();
 
     if (!response.ok) {
