@@ -3,13 +3,10 @@
 import { useState, useEffect } from "react";
 
 const fetchPlayerStats = async (playerName) => {
-  const baseUrl =
-    "https://secure.runescape.com/m=hiscore_oldschool/index_lite.ws";
-  const playerUrl = `${baseUrl}?player=${encodeURIComponent(playerName)}`;
-
   try {
     const response = await fetch(`/api/playerStats/${playerName}`);
     const data = await response.text();
+    console.log("Raw data:", data);
 
     if (!response.ok) {
       throw new Error(`Error fetching player data: ${response.statusText}`);
@@ -42,15 +39,23 @@ const fetchPlayerStats = async (playerName) => {
       "Construction",
     ];
 
-    const playerStats = data.split("\n").map((line, index) => {
-      const [rank, level, experience] = line.split(",");
-      return {
-        skill: skills[index],
-        rank: parseInt(rank, 10),
-        level: parseInt(level, 10),
-        experience: parseInt(experience, 10),
-      };
-    });
+    const playerStats = data
+      .trim()
+      .split("\n")
+      .slice(0, skills.length)
+      .map((line, index) => {
+        const [rank, level, experience] = line
+          .split(",")
+          .map((value) => parseInt(value.toString().trim(), 10));
+
+        return {
+          skill: skills[index],
+          rank,
+          level,
+          experience,
+        };
+      });
+    console.log("Parsed playerStats:", playerStats);
 
     return playerStats;
   } catch (error) {

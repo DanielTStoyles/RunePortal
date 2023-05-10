@@ -1,38 +1,40 @@
 /** @format */
 
 import React, { useState } from "react";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
+import { Box, TextField, Typography } from "@mui/material";
 import PlayerStatsDisplay from "./PlayerStatsDisplay";
 
 const PlayerStatsCard = () => {
   const [playerName, setPlayerName] = useState("");
 
-  const handlePlayerNameChange = (event) => {
+  const handleInputChange = (event) => {
     setPlayerName(event.target.value);
   };
 
   return (
     <Box
       sx={{
-        backgroundColor: "background.paper",
-        borderRadius: "10px",
-        padding: "16px",
-        width: "100%",
-        textAlign: "center",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: 2,
+        border: "1px solid #ccc",
+        borderRadius: "5px",
       }}
     >
-      <Typography variant="h6" component="div">
+      <Typography
+        variant="h6"
+        component="div"
+        sx={{ textAlign: "center", marginBottom: 1 }}
+      >
         Player Stats
       </Typography>
       <TextField
-        label="Enter player name"
-        value={playerName}
-        onChange={handlePlayerNameChange}
+        label="Player Name"
         variant="outlined"
         size="small"
-        sx={{ marginTop: 1, marginBottom: 2 }}
+        value={playerName}
+        onChange={handleInputChange}
       />
       <PlayerStatsDisplay playerName={playerName} />
     </Box>

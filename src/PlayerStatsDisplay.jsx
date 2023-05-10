@@ -22,8 +22,8 @@ const PlayerStatsDisplay = ({ playerName }) => {
     <div>
       <h2>Player Stats for {playerName}</h2>
       <ul>
-        {playerStats.map((stat) => (
-          <li key={stat.skill}>
+        {playerStats.map((stat, index) => (
+          <li key={`${stat.skill}-${index}`}>
             {stat.skill}: Level {stat.level} (XP: {stat.experience}, Rank:{" "}
             {stat.rank})
           </li>
