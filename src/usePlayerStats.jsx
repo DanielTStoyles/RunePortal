@@ -1,5 +1,4 @@
 /** @format */
-
 import { useState, useEffect } from "react";
 
 const fetchPlayerStats = async (playerName) => {

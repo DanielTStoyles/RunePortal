@@ -1,0 +1,52 @@
+/** @format */
+
+.statsList {
+  list-style-type: none;
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  gap: 5px;
+}
+
+.skillCell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #000000;
+  padding: 2px;
+  background-color: #272323;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.skillImg {
+  margin-right: 5px;
+}
+
+.skillInfo {
+  display: none;
+}
+
+.skillCell:hover .skillInfo {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #272323;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+}
+
+.level {
+  margin-left: 4px;
+}
+
+.center {
+  text-align: center;
+}
