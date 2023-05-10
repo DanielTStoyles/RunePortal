@@ -1,16 +1,10 @@
 /** @format */
 
 import React, { useState, useContext } from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import LoginForm from "./LoginForm.jsx";
-import RegisterForm from "./register";
-import { ThemeContext } from "./ThemeContext.jsx";
+import { ThemeContext } from "../../context/ThemeContext.jsx";
 import { useTheme } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -20,7 +14,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
-import PlayerStatsCard from "./PlayerStatsCard.jsx";
+import PlayerStatsCard from "../player/PlayerStatsCard.jsx";
 
 const Home = () => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -157,34 +151,6 @@ const Home = () => {
           consequat massa quis enim.{" "}
         </Typography>
       </Container>
-
-      {/* Login modal */}
-      <Modal open={loginModalOpen} onClose={handleLoginModalClose}>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "100%",
-          }}
-        >
-          <LoginForm handleClose={handleLoginModalClose} />
-        </Box>
-      </Modal>
-
-      {/* Register modal */}
-      <Modal open={registerModalOpen} onClose={handleRegisterModalClose}>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "100%",
-          }}
-        >
-          <RegisterForm handleClose={handleRegisterModalClose} />
-        </Box>
-      </Modal>
     </>
   );
 };

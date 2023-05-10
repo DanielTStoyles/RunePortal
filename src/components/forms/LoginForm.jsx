@@ -5,10 +5,10 @@ import { useForm } from "react-hook-form";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import InputWithController from "./InputWithController.jsx";
+import InputWithController from "./inputs/InputWithController.jsx";
 import { useTheme } from "@mui/material/styles";
-import { ThemeContext } from "./ThemeContext.jsx";
-import { UserContext } from "./UserContext.jsx";
+import { ThemeContext } from "../../context/ThemeContext.jsx";
+import { UserContext } from "../../context/UserContext.jsx";
 
 const LoginForm = ({ handleClose }) => {
   const { login } = useContext(UserContext);
