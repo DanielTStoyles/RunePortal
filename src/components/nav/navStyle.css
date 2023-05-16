@@ -1,0 +1,23 @@
+/**
+ * NavBar.css
+ *
+ * @format
+ */
+
+.drawer-toggle {
+  transition: transform 0.2s ease;
+  transform: translateX(-350px);
+}
+
+.drawer-toggle.open {
+  transform: translateX(0px);
+}
+
+.nav-drawer {
+  transition: transform 0.3s ease;
+}
+
+.nav-drawer.open {
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+}
