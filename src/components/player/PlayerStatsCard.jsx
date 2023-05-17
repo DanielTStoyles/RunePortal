@@ -9,6 +9,7 @@ const PlayerStatsCard = () => {
   const { user } = useContext(UserContext);
 
   if (!user || !user.rsn) {
+    console.log("user not found");
     return (
       <Box
         sx={{

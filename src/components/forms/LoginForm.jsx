@@ -34,7 +34,6 @@ const LoginForm = ({ handleClose }) => {
         const userObject = {
           email: user.email,
           rsn: user.rsn,
-          authToken: token,
         };
         localStorage.setItem("user", JSON.stringify(userObject));
         handleClose();

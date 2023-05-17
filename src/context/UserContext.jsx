@@ -24,6 +24,7 @@ export const UserProvider = ({ children }) => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const storedUser = users.find((user) => user.authToken === token);
     setUser(storedUser);
+    console.log(storedUser, "has logged in");
   };
 
   const logout = () => {
