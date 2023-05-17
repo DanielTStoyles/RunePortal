@@ -10,7 +10,9 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     if (authToken) {
-      setUser({ id: 1, name: "John Doe" });
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const storedUser = users.find((user) => user.authToken === authToken);
+      setUser(storedUser);
     } else {
       setUser(null);
     }
@@ -19,11 +21,16 @@ export const UserProvider = ({ children }) => {
   const login = (token) => {
     setAuthToken(token);
     localStorage.setItem("authToken", token);
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const storedUser = users.find((user) => user.authToken === token);
+    setUser(storedUser);
   };
 
   const logout = () => {
     setAuthToken(null);
     localStorage.removeItem("authToken");
+    localStorage.removeItem("users");
+    setUser(null);
   };
 
   const value = {

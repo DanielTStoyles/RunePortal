@@ -31,6 +31,12 @@ const LoginForm = ({ handleClose }) => {
         const token = "myToken";
         localStorage.setItem("authToken", token);
         login(token);
+        const userObject = {
+          email: user.email,
+          rsn: user.rsn,
+          authToken: token,
+        };
+        localStorage.setItem("user", JSON.stringify(userObject));
         handleClose();
       } else {
         alert("Invalid email or password");
@@ -39,7 +45,6 @@ const LoginForm = ({ handleClose }) => {
       console.error(error);
     }
   };
-
   const { darkMode } = useContext(ThemeContext);
   const theme = useTheme();
 

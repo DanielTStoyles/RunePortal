@@ -1,15 +1,38 @@
 /** @format */
 
-import React, { useState } from "react";
-import { Box, TextField, Typography } from "@mui/material";
+import React, { useContext } from "react";
+import { Box, Typography } from "@mui/material";
 import PlayerStatsDisplay from "./PlayerStatsDisplay";
+import { UserContext } from "../../context/UserContext";
 
 const PlayerStatsCard = () => {
-  const [playerName, setPlayerName] = useState("");
+  const { user } = useContext(UserContext);
 
-  const handleInputChange = (event) => {
-    setPlayerName(event.target.value);
-  };
+  if (!user || !user.rsn) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          padding: 2,
+          border: "1px solid #ccc",
+          borderRadius: "5px",
+        }}
+      >
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{ textAlign: "center", marginBottom: 1 }}
+        >
+          Player Stats
+        </Typography>
+        <Typography>No player stats available.</Typography>
+      </Box>
+    );
+  }
+
+  const rsn = user.rsn;
 
   return (
     <Box
@@ -29,14 +52,7 @@ const PlayerStatsCard = () => {
       >
         Player Stats
       </Typography>
-      <TextField
-        label="Player Name"
-        variant="outlined"
-        size="small"
-        value={playerName}
-        onChange={handleInputChange}
-      />
-      <PlayerStatsDisplay playerName={playerName} />
+      <PlayerStatsDisplay rsn={rsn} />
     </Box>
   );
 };

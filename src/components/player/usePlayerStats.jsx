@@ -1,11 +1,12 @@
 /** @format */
-import { useState, useEffect } from "react";
+
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../context/UserContext.jsx";
 
 const fetchPlayerStats = async (playerName) => {
   try {
     const response = await fetch(`/api/playerStats/${playerName}`);
     const data = await response.text();
-    console.log("Raw data:", data);
 
     if (!response.ok) {
       throw new Error(`Error fetching player data: ${response.statusText}`);
@@ -54,6 +55,7 @@ const fetchPlayerStats = async (playerName) => {
           experience,
         };
       });
+
     console.log("Parsed playerStats:", playerStats);
 
     return playerStats;
@@ -63,24 +65,32 @@ const fetchPlayerStats = async (playerName) => {
   }
 };
 
-const usePlayerStats = (playerName) => {
+const usePlayerStats = () => {
+  const { user } = useContext(UserContext);
   const [playerStats, setPlayerStats] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    setLoading(true);
-    setError(null);
-    fetchPlayerStats(playerName)
-      .then((stats) => {
-        setPlayerStats(stats);
+    const fetchPlayerData = async () => {
+      if (user && user.rsn) {
+        setLoading(true);
+        setError(null);
+
+        const stats = await fetchPlayerStats(user.rsn);
+
+        if (stats) {
+          setPlayerStats(stats);
+        } else {
+          setError("Failed to fetch player stats.");
+        }
+
         setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, [playerName]);
+      }
+    };
+
+    fetchPlayerData();
+  }, [user]);
 
   return { playerStats, loading, error };
 };

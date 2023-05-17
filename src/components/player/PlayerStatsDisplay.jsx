@@ -1,8 +1,9 @@
 /** @format */
 
-import React from "react";
+import React, { useContext } from "react";
 import usePlayerStats from "./usePlayerStats";
 import styles from "./PlayerStatsDisplay.module.css";
+import { UserContext } from "../../context/UserContext.jsx";
 
 const skillImages = {
   Attack: "/images/attack.png",
@@ -30,24 +31,26 @@ const skillImages = {
   Construction: "/images/construction.png",
 };
 
-const PlayerStatsDisplay = ({ playerName }) => {
-  const { playerStats, loading, error } = usePlayerStats(playerName);
+const PlayerStatsDisplay = () => {
+  const { user } = useContext(UserContext);
+  const rsn = user.rsn;
+  const { playerStats, loading, error } = usePlayerStats(rsn);
+
+  if (!user || !rsn) {
+    return <div>No player stats available.</div>;
+  }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Loading player stats...</div>;
   }
 
   if (error) {
     return <div>Error: {error}</div>;
   }
 
-  if (!playerStats) {
-    return <div>No player stats available.</div>;
-  }
-
   return (
     <div>
-      <h2 className={styles.center}>{playerName}'s Stats</h2>
+      <h2 className={styles.center}>{rsn}'s Stats</h2>
       <ul className={styles.statsList}>
         {playerStats.map((stat, index) => (
           <li key={`${stat.skill}-${index}`} className={styles.skillCell}>
