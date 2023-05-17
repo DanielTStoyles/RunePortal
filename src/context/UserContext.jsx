@@ -11,26 +11,33 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     if (authToken) {
       const users = JSON.parse(localStorage.getItem("users")) || [];
-      const storedUser = users.find((user) => user.authToken === authToken);
+      console.log({users, authToken})
+      const storedUser = users.find((user) => user.id === authToken);
+      console.log({storedUser})
       setUser(storedUser);
     } else {
       setUser(null);
     }
   }, [authToken]);
 
-  const login = (token) => {
-    setAuthToken(token);
-    localStorage.setItem("authToken", token);
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const storedUser = users.find((user) => user.authToken === token);
-    setUser(storedUser);
-    console.log(storedUser, "has logged in");
+  const login = (data) => {
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const { email, password } = data;
+
+      const user = users.find(
+        (user) => user.email === email && user.password === password
+      );
+
+      if(user){
+        setAuthToken(user.id);
+        localStorage.setItem("authToken", user.id);
+        setUser(user);
+      }
   };
 
   const logout = () => {
     setAuthToken(null);
     localStorage.removeItem("authToken");
-    localStorage.removeItem("users");
     setUser(null);
   };
 

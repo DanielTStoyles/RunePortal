@@ -1,9 +1,9 @@
 /** @format */
 
-import React, { useContext } from "react";
-import usePlayerStats from "./usePlayerStats";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./PlayerStatsDisplay.module.css";
 import { UserContext } from "../../context/UserContext.jsx";
+import getRunescapeProfile from "../../repository/getRunescapeProfile";
 
 const skillImages = {
   Attack: "/images/attack.png",
@@ -32,9 +32,26 @@ const skillImages = {
 };
 
 const PlayerStatsDisplay = () => {
+  const [playerData, setPlayerData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const { user } = useContext(UserContext);
+  console.log({user})
   const rsn = user.rsn;
-  const { playerStats, loading, error } = usePlayerStats(rsn);
+  console.log({rsn})
+
+  useEffect(async () => {
+    const resp = await getRunescapeProfile(rsn);
+    console.log({resp})
+    if(resp){
+      setPlayerData(resp)
+      setLoading(false)
+    }
+    else{
+      setError(true);
+    }
+  }, [user])
+  
 
   if (!user || !rsn) {
     return <div>No player stats available.</div>;
@@ -52,7 +69,7 @@ const PlayerStatsDisplay = () => {
     <div>
       <h2 className={styles.center}>{rsn}'s Stats</h2>
       <ul className={styles.statsList}>
-        {playerStats.map((stat, index) => (
+        {playerData.map((stat, index) => (
           <li key={`${stat.skill}-${index}`} className={styles.skillCell}>
             {stat.skill === "Overall" ? (
               <>
