@@ -10,6 +10,9 @@ app.use(cors());
 const OSRS_BASE_URL =
   "https://secure.runescape.com/m=hiscore_oldschool/index_lite.ws";
 
+const OSRS_GE_BASE_URL =
+  "https://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=X";
+
 app.get("/api/playerStats/:playerName", async (req, res) => {
   try {
     const { playerName } = req.params;
@@ -20,6 +23,18 @@ app.get("/api/playerStats/:playerName", async (req, res) => {
     res.send(response.data);
   } catch (error) {
     res.status(500).send(`Error fetching player data: ${error.message}`);
+  }
+});
+
+app.get("/api/item/:itemId", async (req, res) => {
+  try {
+    const { itemId } = req.params;
+    const response = await axios.get(
+      `${OSRS_GE_BASE_URL}?item=${encodeURIComponent(itemId)}`
+    );
+    res.send(response.data);
+  } catch (error) {
+    res.status(500).send("Error fetching item data: ${error.message}");
   }
 });
 

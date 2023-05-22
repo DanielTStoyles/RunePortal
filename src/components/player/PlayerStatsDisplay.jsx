@@ -36,22 +36,23 @@ const PlayerStatsDisplay = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const { user } = useContext(UserContext);
-  console.log({user})
+  console.log({ user });
   const rsn = user.rsn;
-  console.log({rsn})
+  console.log({ rsn });
 
   useEffect(async () => {
-    const resp = await getRunescapeProfile(rsn);
-    console.log({resp})
-    if(resp){
-      setPlayerData(resp)
-      setLoading(false)
-    }
-    else{
-      setError(true);
-    }
-  }, [user])
-  
+    const GetPlayerData = async () => {
+      const resp = await getRunescapeProfile(rsn);
+      console.log({ resp });
+      if (resp) {
+        setPlayerData(resp);
+        setLoading(false);
+      } else {
+        setError(true);
+      }
+    };
+    GetPlayerData();
+  }, [user]);
 
   if (!user || !rsn) {
     return <div>No player stats available.</div>;
