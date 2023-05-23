@@ -9,12 +9,11 @@ const GeComponent = () => {
 
   useEffect(() => {
     const fetchItemData = async () => {
-      const data = await getItemData(115); // 115 to be replaced with id associated with item name entered by user
+      const data = await getItemData(itemData); // to be replaced with id associated with item name entered by user
       setItemData(data);
     };
-
     fetchItemData();
-  }, []);
+  }, [itemData]);
 
   return (
     <Card>
