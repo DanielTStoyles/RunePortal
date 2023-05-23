@@ -17,7 +17,7 @@ import RegisterForm from "../forms/RegisterForm.jsx";
 import LoginForm from "../forms/LoginForm.jsx";
 import Modal from "@mui/material/Modal";
 import "./navStyle.css";
-import useHistory from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -62,10 +62,10 @@ const NavBar = () => {
     },
   };
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const navigateToGeComponent = () => {
-    history.push("/GeComponent");
+    navigate("/GeComponent");
   };
 
   return (

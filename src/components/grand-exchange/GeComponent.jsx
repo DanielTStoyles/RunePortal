@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Card, CardContent, Typography } from "@mui/material";
-import getItemData from "./repository/getItemData";
+import getItemData from "./../../repository/getItemData";
 
 const GeComponent = () => {
   const [itemData, setItemData] = useState(null);
