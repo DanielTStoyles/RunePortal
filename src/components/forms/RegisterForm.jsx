@@ -28,6 +28,7 @@ const RegisterForm = ({ handleClose }) => {
       alert("User with this email already exists!");
     } else {
       const newUser = {
+        id: Date.now().toString(),
         email,
         password,
         rsn,

@@ -17,6 +17,7 @@ import RegisterForm from "../forms/RegisterForm.jsx";
 import LoginForm from "../forms/LoginForm.jsx";
 import Modal from "@mui/material/Modal";
 import "./navStyle.css";
+import useHistory from "react-router-dom";
 
 const NavBar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -59,6 +60,12 @@ const NavBar = () => {
     "&:hover": {
       cursor: "pointer",
     },
+  };
+
+  const history = useHistory();
+
+  const navigateToGeComponent = () => {
+    history.push("/GeComponent");
   };
 
   return (
@@ -111,6 +118,9 @@ const NavBar = () => {
                   darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"
                 }
               />
+            </ListItem>
+            <ListItem sx={{ ...buttonStyles }} onClick={navigateToGeComponent}>
+              <ListItemText primary="Ge Watcher" />
             </ListItem>
           </List>
         </Box>

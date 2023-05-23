@@ -20,25 +20,11 @@ const LoginForm = ({ handleClose }) => {
 
   const onSubmit = async (data) => {
     try {
-      const users = JSON.parse(localStorage.getItem("users")) || [];
-      const { email, password } = data;
-
-      const user = users.find(
-        (user) => user.email === email && user.password === password
-      );
-
-      if (user) {
-        const token = "myToken";
-        localStorage.setItem("authToken", token);
-        login(token);
-        const userObject = {
-          email: user.email,
-          rsn: user.rsn,
-        };
-        localStorage.setItem("user", JSON.stringify(userObject));
-        handleClose();
-      } else {
-        alert("Invalid email or password");
+      if (login(data)){
+        handleClose()
+      }
+      else{
+        throw new Error('Invalid email or password')
       }
     } catch (error) {
       console.error(error);
