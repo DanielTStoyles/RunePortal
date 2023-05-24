@@ -13,6 +13,7 @@ const GeComponent = () => {
       const fetchItemData = async (itemId) => {
         const data = await getItemData(itemId);
         setItemData(data);
+        console.log(data, "data log");
       };
 
       fetchItemData(itemId);
@@ -29,10 +30,12 @@ const GeComponent = () => {
             placeholder="Enter Item Id"
           />
           <Typography variant="h5" component="h2">
-            {itemData ? itemData.name : "Loading..."}
+            {itemData && itemData.item ? itemData.item.name : "Loading..."}
           </Typography>
           <Typography variant="body2" component="p">
-            {itemData ? `Current Price: ${itemData.price}` : "Loading..."}
+            {itemData && itemData.item
+              ? `Current Price: ${itemData.item.current.price}`
+              : "Loading..."}
           </Typography>
         </CardContent>
       </Card>
