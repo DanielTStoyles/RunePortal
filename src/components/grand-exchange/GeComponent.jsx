@@ -1,31 +1,42 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, Typography } from "@mui/material";
+import { Card, CardContent, Typography, TextField } from "@mui/material";
 import getItemData from "./../../repository/getItemData";
 
 const GeComponent = () => {
   const [itemData, setItemData] = useState(null);
+  const [itemId, setItemId] = useState("");
 
   useEffect(() => {
-    const fetchItemData = async () => {
-      const data = await getItemData(itemData); // to be replaced with id associated with item name entered by user
-      setItemData(data);
-    };
-    fetchItemData();
-  }, [itemData]);
+    if (itemId !== "") {
+      const fetchItemData = async (itemId) => {
+        const data = await getItemData(itemId);
+        setItemData(data);
+      };
+
+      fetchItemData(itemId);
+    }
+  }, [itemId]);
 
   return (
-    <Card>
-      <CardContent>
-        <Typography variant="h5" component="h2">
-          {itemData ? itemData.name : "Loading..."}
-        </Typography>
-        <Typography variant="body2" component="p">
-          {itemData ? `Current Price: ${itemData.price}` : "Loading..."}
-        </Typography>
-      </CardContent>
-    </Card>
+    <div>
+      <Card>
+        <CardContent>
+          <TextField
+            value={itemId}
+            onChange={(e) => setItemId(e.target.value)}
+            placeholder="Enter Item Id"
+          />
+          <Typography variant="h5" component="h2">
+            {itemData ? itemData.name : "Loading..."}
+          </Typography>
+          <Typography variant="body2" component="p">
+            {itemData ? `Current Price: ${itemData.price}` : "Loading..."}
+          </Typography>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 

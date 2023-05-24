@@ -2,7 +2,8 @@
 
 const getItemData = async (itemId) => {
   try {
-    const response = await fetch(`/api/item/${itemId}`); // {itemID} will be result of a function that id's the itemId of the item name user types in an input field
+    const response = await fetch(`/api/item/${itemId}`);
+    console.log(response);
     const data = await response.json();
 
     if (!response.ok) {

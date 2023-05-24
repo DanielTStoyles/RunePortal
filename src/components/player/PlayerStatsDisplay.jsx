@@ -40,7 +40,7 @@ const PlayerStatsDisplay = () => {
   const rsn = user.rsn;
   console.log({ rsn });
 
-  useEffect(async () => {
+  useEffect(() => {
     const GetPlayerData = async () => {
       const resp = await getRunescapeProfile(rsn);
       console.log({ resp });
