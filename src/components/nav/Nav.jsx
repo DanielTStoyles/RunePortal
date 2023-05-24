@@ -1,7 +1,6 @@
 /** @format */
 
 import React, { useState, useContext } from "react";
-import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { ThemeContext } from "../../context/ThemeContext.jsx";
 import Drawer from "@mui/material/Drawer";
@@ -19,8 +18,7 @@ import Modal from "@mui/material/Modal";
 import "./navStyle.css";
 import { useNavigate } from "react-router-dom";
 
-const NavBar = () => {
-  const [drawerOpen, setDrawerOpen] = useState(false);
+const NavBar = ({ drawerOpen, setDrawerOpen }) => {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [registerModalOpen, setRegisterModalOpen] = useState(false);
@@ -69,18 +67,7 @@ const NavBar = () => {
   };
 
   return (
-    <>
-      <Container className="icon-container">
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          edge="start"
-          onClick={toggleDrawer}
-          className={`drawer-toggle ${drawerOpen ? "open" : ""}`}
-        >
-          <MenuIcon />
-        </IconButton>
-      </Container>
+    <Box>
       {/* Drawer */}
 
       <Drawer
@@ -89,6 +76,14 @@ const NavBar = () => {
         variant="persistent"
       >
         <Box sx={{ width: 375 }}>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={toggleDrawer}
+            className={`drawer-toggle ${drawerOpen ? "open" : ""}`}
+          >
+            <MenuIcon />
+          </IconButton>
           <List>
             <ListItem>
               <ListItemAvatar sx={{ paddingLeft: "15px" }}>
@@ -181,7 +176,7 @@ const NavBar = () => {
           </Modal>
         </>
       )}
-    </>
+    </Box>
   );
 };
 
