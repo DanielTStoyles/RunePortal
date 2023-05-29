@@ -10,9 +10,7 @@ app.use(cors());
 const OSRS_BASE_URL =
   "https://secure.runescape.com/m=hiscore_oldschool/index_lite.ws";
 
-const OSRS_GE_BASE_URL =
-  "https://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json";
-
+const OSRS_GE_BASE_URL = "https://prices.runescape.wiki/api/v1/osrs/mapping";
 app.get("/api/playerStats/:playerName", async (req, res) => {
   try {
     const { playerName } = req.params;

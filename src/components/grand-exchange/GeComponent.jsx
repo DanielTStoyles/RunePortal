@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Card, CardContent, Typography, TextField } from "@mui/material";
 import getItemData from "./../../repository/getItemData";
 
-const GeComponent = ({ drawerOpen }) => {
+const GeComponent = ({}) => {
   const [itemData, setItemData] = useState(null);
   const [itemId, setItemId] = useState("");
 

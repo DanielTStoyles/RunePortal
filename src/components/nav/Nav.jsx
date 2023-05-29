@@ -67,9 +67,18 @@ const NavBar = ({ drawerOpen, setDrawerOpen }) => {
   };
 
   return (
-    <Box>
+    <Box sx={{ position: "absolute" }}>
       {/* Drawer */}
-
+      {!drawerOpen && (
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={toggleDrawer}
+          className={`drawer-toggle ${drawerOpen ? "open" : ""}`}
+        >
+          <MenuIcon />
+        </IconButton>
+      )}
       <Drawer
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
