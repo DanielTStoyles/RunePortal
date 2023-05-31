@@ -6,7 +6,8 @@ import getItemData from "./../../repository/getItemData";
 
 const GeComponent = ({}) => {
   const [itemData, setItemData] = useState(null);
-  const [itemId, setItemId] = useState("");
+  const [itemName, setItemName] = useState("");
+  const [error, setError] = useState("");
 
   const componentStyle = {
     display: "flex",
@@ -26,24 +27,24 @@ const GeComponent = ({}) => {
   };
 
   useEffect(() => {
-    if (itemId !== "") {
-      const fetchItemData = async (itemId) => {
-        const data = await getItemData(itemId);
+    if (itemName !== "") {
+      const fetchItemData = async (itemName) => {
+        const data = await getItemData(itemName);
         setItemData(data);
         console.log(data, "data log");
       };
 
-      fetchItemData(itemId);
+      fetchItemData(itemName);
     }
-  }, [itemId]);
+  }, [itemName]);
 
   return (
     <div style={parentDiv}>
       <Card style={componentStyle}>
         <CardContent>
           <TextField
-            value={itemId}
-            onChange={(e) => setItemId(e.target.value)}
+            value={itemName}
+            onChange={(e) => setItemName(e.target.value)}
             placeholder="Enter Item Id"
           />
 
