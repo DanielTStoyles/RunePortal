@@ -63,7 +63,12 @@ const GeComponent = ({}) => {
         <CardContent>
           <TextField
             value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
+            onChange={(e) => {
+              const newValue = e.target.value;
+              setInputValue(
+                newValue.charAt(0).toUpperCase() + newValue.slice(1)
+              );
+            }}
             placeholder="Enter Item Name"
           />
           <Button onClick={handleSubmit} variant="contained">
@@ -75,7 +80,7 @@ const GeComponent = ({}) => {
           </Typography>
           <Typography variant="body2" component="p">
             {itemData && itemData.data && itemData.data[itemId]
-              ? `High Price: ${itemData.data[itemId].high}, Low Price: ${itemData.data[itemId].low}`
+              ? `High Price: ${itemData.data[itemId].high} gp, Low Price: ${itemData.data[itemId].low} gp`
               : "Loading..."}
           </Typography>
         </CardContent>
