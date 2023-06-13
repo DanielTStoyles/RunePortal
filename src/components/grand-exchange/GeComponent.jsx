@@ -8,13 +8,13 @@ import {
   TextField,
   Button,
 } from "@mui/material";
-import getItemData, { getItemsData } from "./../../repository/getItemData";
+import { getItemByName } from "../../repository/getItemData";
+// import getItemData, { getItemsData } from "./../../repository/getItemData";
 
 const GeComponent = ({}) => {
   const [itemData, setItemData] = useState(null);
   const [itemName, setItemName] = useState("");
   const [inputValue, setInputValue] = useState("");
-  const [itemId, setItemId] = useState("");
 
   const handleSubmit = () => {
     setItemName(inputValue);
@@ -40,14 +40,10 @@ const GeComponent = ({}) => {
   useEffect(() => {
     if (itemName !== "") {
       const fetchItemData = async (itemName) => {
-        const items = await getItemsData();
-        const item = items.find((item) => item.name === itemName);
+        const item = await getItemByName(itemName);
         if (item) {
-          const data = await getItemData(item.id);
-          setItemId(item.id);
-
-          setItemData(data);
-          console.log(data, "data log");
+          setItemData(item);
+          console.log(item, "data log");
         } else {
           console.log("item not found");
         }
@@ -76,12 +72,12 @@ const GeComponent = ({}) => {
           </Button>
 
           <Typography variant="h5" component="h2">
-            {itemData ? itemName : "Loading..."}
+            {itemData ? itemName : " "}
           </Typography>
           <Typography variant="body2" component="p">
-            {itemData && itemData.data && itemData.data[itemId]
-              ? `High Price: ${itemData.data[itemId].high} gp, Low Price: ${itemData.data[itemId].low} gp`
-              : "Loading..."}
+            {itemData
+              ? `High Price: ${itemData.high} gp, Low Price: ${itemData.low} gp`
+              : " "}
           </Typography>
         </CardContent>
       </Card>
@@ -90,3 +86,5 @@ const GeComponent = ({}) => {
 };
 
 export default GeComponent;
+
+
