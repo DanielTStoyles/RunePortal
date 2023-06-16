@@ -29,7 +29,6 @@ const PriceChart = ({ high, low, title }) => {
     labels: ["High Price", "Low Price"],
     datasets: [
       {
-        title: "THIS IS THE TITLE",
         label: "Current High vs Low Price",
         data: [high, low],
         backgroundColor: ["#8bc34a", "#f44336"],
