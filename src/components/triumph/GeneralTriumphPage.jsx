@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import TriumphCard from "./TriumphCard";
 
 const TriumphGrid = () => {
@@ -12,10 +12,12 @@ const TriumphGrid = () => {
       spacing={10}
       justifyContent="center"
       alignItems="center"
-      marginTop="15px"
     >
       <Grid item>
-        <Grid container spacing={12}>
+        <Typography variant="h2" align="center" gutterBottom>
+          Triumphs of RunePortal
+        </Typography>
+        <Grid container spacing={12} justifyContent="center">
           <Grid item>
             <TriumphCard />
           </Grid>
