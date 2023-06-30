@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Box, Card, CardMedia, Typography } from "@mui/material";
 
-const TriumphCard = () => {
+const TriumphCard = ({ triumph }) => {
   return (
     <Card
       sx={{
@@ -24,12 +24,12 @@ const TriumphCard = () => {
           width: "160px",
           borderRadius: 0.9,
         }}
-        image="/images/AiTrophy.png"
-        alt="Triump Trophy Image"
+        image={triumph.icon}
+        alt={triumph.name}
       />
 
       <Typography variant="body1" align="center">
-        HUGE TRIUMPH ENERGY
+        {triumph.name}
       </Typography>
     </Card>
   );

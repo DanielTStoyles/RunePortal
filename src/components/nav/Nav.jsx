@@ -18,7 +18,6 @@ import Modal from "@mui/material/Modal";
 import "./navStyle.css";
 import { useNavigate } from "react-router-dom";
 import useUser from "../../hooks/userData.jsx";
-import TriumphGrid from "../triumph/GeneralTriumphPage.jsx";
 
 const NavBar = ({ drawerOpen, setDrawerOpen }) => {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
