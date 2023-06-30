@@ -8,6 +8,7 @@ import { ThemeContextProvider } from "./context/ThemeContext.jsx";
 import { UserProvider } from "./context/UserContext.jsx";
 import NavBar from "./components/nav/Nav.jsx";
 import GeComponent from "./components/grand-exchange/GeComponent.jsx";
+import TriumphGrid from "./components/triumph/GeneralTriumphPage.jsx";
 
 function App() {
   const [drawerOpen, setDrawerOpen] = useState(true);
@@ -28,12 +29,12 @@ function App() {
         <div style={contentStlye}>
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route exact path="/triumphs" element={<div />} />
             <Route
               exact
               path="/GeComponent"
               element={<GeComponent drawerOpen={drawerOpen} />}
             />
+            <Route exact path="/Triumphs" element={<TriumphGrid />} />
           </Routes>
         </div>
       </div>

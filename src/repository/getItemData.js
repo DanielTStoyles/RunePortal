@@ -37,17 +37,19 @@ export const getItemsData = async () => {
 export const getItemByName = async (itemName) => {
   try {
     const response = await fetch(`http://localhost:3001/api/item/${itemName}`);
-    const data = await response.json();
-    console.log(data);
+    const { highLow, timeSeries } = await response.json();
+
     console.log(response);
 
     if (!response.ok) {
       throw new Error(`Error 3: ${response.statusText}`);
     }
 
-    return data;
+    return { highLow, timeSeries };
   } catch (error) {
     console.error(`Error 4: ${error.message}`);
     return null;
   }
 };
+
+

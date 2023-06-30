@@ -11,9 +11,9 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     if (authToken) {
       const users = JSON.parse(localStorage.getItem("users")) || [];
-      console.log({users, authToken})
+      console.log({ users, authToken });
       const storedUser = users.find((user) => user.id === authToken);
-      console.log({storedUser})
+      console.log({ storedUser });
       setUser(storedUser);
     } else {
       setUser(null);
@@ -21,18 +21,18 @@ export const UserProvider = ({ children }) => {
   }, [authToken]);
 
   const login = (data) => {
-      const users = JSON.parse(localStorage.getItem("users")) || [];
-      const { email, password } = data;
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const { email, password } = data;
 
-      const user = users.find(
-        (user) => user.email === email && user.password === password
-      );
+    const user = users.find(
+      (user) => user.email === email && user.password === password
+    );
 
-      if(user){
-        setAuthToken(user.id);
-        localStorage.setItem("authToken", user.id);
-        setUser(user);
-      }
+    if (user) {
+      setAuthToken(user.id);
+      localStorage.setItem("authToken", user.id);
+      setUser(user);
+    }
   };
 
   const logout = () => {
@@ -49,5 +49,3 @@ export const UserProvider = ({ children }) => {
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
-
-export default UserProvider;

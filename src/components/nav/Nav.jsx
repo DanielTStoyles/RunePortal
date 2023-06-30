@@ -17,6 +17,8 @@ import LoginForm from "../forms/LoginForm.jsx";
 import Modal from "@mui/material/Modal";
 import "./navStyle.css";
 import { useNavigate } from "react-router-dom";
+import useUser from "../../hooks/userData.jsx";
+import TriumphGrid from "../triumph/GeneralTriumphPage.jsx";
 
 const NavBar = ({ drawerOpen, setDrawerOpen }) => {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
@@ -66,6 +68,12 @@ const NavBar = ({ drawerOpen, setDrawerOpen }) => {
     navigate("/GeComponent");
   };
 
+  const navigateToGeneralTriumph = () => {
+    navigate("/Triumphs");
+  };
+
+  const user = useUser();
+
   return (
     <Box sx={{ position: "absolute" }}>
       {/* Drawer */}
@@ -97,14 +105,11 @@ const NavBar = ({ drawerOpen, setDrawerOpen }) => {
             <ListItem>
               <ListItemAvatar sx={{ paddingLeft: "15px" }}>
                 <Avatar
-                  src="./images/defaultUser.png"
+                  src="./images/osrsironattempt2.jpeg"
                   sx={{ ...profilePicStyle }}
                 />
               </ListItemAvatar>
-              <ListItemText
-                primary="Username Here"
-                sx={{ paddingLeft: "10px" }}
-              />
+              <ListItemText primary={user.rsn} sx={{ paddingLeft: "10px" }} />
             </ListItem>
 
             <ListItem sx={{ ...buttonStyles }} onClick={handleLoginModalOpen}>
@@ -116,15 +121,16 @@ const NavBar = ({ drawerOpen, setDrawerOpen }) => {
             >
               <ListItemText primary="Register" />
             </ListItem>
-            <ListItem sx={{ ...buttonStyles }} onClick={toggleDarkMode}>
-              <ListItemText
-                primary={
-                  darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"
-                }
-              />
-            </ListItem>
+
             <ListItem sx={{ ...buttonStyles }} onClick={navigateToGeComponent}>
               <ListItemText primary="Ge Watcher" />
+            </ListItem>
+
+            <ListItem
+              sx={{ ...buttonStyles }}
+              onClick={navigateToGeneralTriumph}
+            >
+              <ListItemText primary="Triumphs" />
             </ListItem>
           </List>
         </Box>

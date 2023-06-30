@@ -9,3 +9,8 @@ const GeComponent = () => {
 };
 
 export default GeComponent;
+
+
+
+
+

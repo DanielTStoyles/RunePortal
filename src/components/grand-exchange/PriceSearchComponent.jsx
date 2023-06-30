@@ -15,9 +15,12 @@ const PriceSearchComp = () => {
   const [itemData, setItemData] = useState(null);
   const [itemName, setItemName] = useState("");
   const [inputValue, setInputValue] = useState("");
+  const [timeSeriesData, setTimeSeriesData] = useState([]);
 
   const handleSubmit = () => {
-    setItemName(inputValue);
+    const nameToUppercase =
+      inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
+    setItemName(nameToUppercase);
   };
 
   const componentStyle = {
@@ -52,10 +55,13 @@ const PriceSearchComp = () => {
   useEffect(() => {
     if (itemName !== "") {
       const fetchItemData = async (itemName) => {
-        const item = await getItemByName(itemName);
-        if (item) {
-          setItemData(item);
-          console.log(item, "data log");
+        const data = await getItemByName(itemName);
+        const { highLow, timeSeries } = data;
+        console.log(timeSeries);
+        if (highLow && timeSeries) {
+          setItemData(highLow);
+          setTimeSeriesData(timeSeries);
+          console.log(highLow, "data log");
         } else {
           console.log("item not found");
         }
@@ -73,9 +79,7 @@ const PriceSearchComp = () => {
             value={inputValue}
             onChange={(e) => {
               const newValue = e.target.value;
-              setInputValue(
-                newValue.charAt(0).toUpperCase() + newValue.slice(1)
-              );
+              setInputValue(newValue);
             }}
             placeholder="Enter Item Name"
           />
@@ -95,11 +99,12 @@ const PriceSearchComp = () => {
       </Card>
       <Card style={{ width: "65%", height: "65%" }}>
         <CardContent style={chartStyle}>
-          {itemData && itemName && (
+          {itemData && itemName && timeSeriesData && (
             <PriceChart
               high={itemData.high}
               low={itemData.low}
               title={itemName}
+              timeSeries={timeSeriesData}
             />
           )}
         </CardContent>
@@ -109,3 +114,6 @@ const PriceSearchComp = () => {
 };
 
 export default PriceSearchComp;
+
+
+
