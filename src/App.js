@@ -26,6 +26,7 @@ function App() {
       <CssBaseline />
       <div style={{ display: "flex", height: "100vh" }}>
         <NavBar drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
+
         <div style={contentStlye}>
           <Routes>
             <Route exact path="/" element={<Home />} />

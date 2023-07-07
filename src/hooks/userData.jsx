@@ -7,7 +7,7 @@ const useUser = () => {
   const { user } = useContext(UserContext);
 
   if (!user) {
-    return { rsn: "Loading..." };
+    return null;
   }
 
   return user;

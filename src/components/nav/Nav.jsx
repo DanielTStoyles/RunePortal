@@ -1,8 +1,7 @@
 /** @format */
 
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import { ThemeContext } from "../../context/ThemeContext.jsx";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -12,24 +11,33 @@ import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import PlayerStatsCard from "../player/PlayerStatsCard.jsx";
-import RegisterForm from "../forms/RegisterForm.jsx";
-import LoginForm from "../forms/LoginForm.jsx";
-import Modal from "@mui/material/Modal";
 import "./navStyle.css";
 import { useNavigate } from "react-router-dom";
 import useUser from "../../hooks/userData.jsx";
+import LoginModal from "../modals/LoginModal.jsx";
+import LogoutModal from "../modals/LogoutModal.jsx";
+import RegisterModal from "../modals/RegisterModal.jsx";
 
 const NavBar = ({ drawerOpen, setDrawerOpen }) => {
-  const { darkMode, setDarkMode } = useContext(ThemeContext);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [registerModalOpen, setRegisterModalOpen] = useState(false);
+  const [logoutModalOpen, setLogoutModalOpen] = useState(false);
 
   const handleLoginModalOpen = () => {
+    console.log("Hi mom, it worked!");
     setLoginModalOpen(true);
   };
 
   const handleLoginModalClose = () => {
     setLoginModalOpen(false);
+  };
+
+  const handleLogoutModalOpen = () => {
+    setLogoutModalOpen(true);
+  };
+
+  const handleLogoutModalClose = () => {
+    setLogoutModalOpen(false);
   };
 
   const handleRegisterModalOpen = () => {
@@ -38,10 +46,6 @@ const NavBar = ({ drawerOpen, setDrawerOpen }) => {
 
   const handleRegisterModalClose = () => {
     setRegisterModalOpen(false);
-  };
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
   };
 
   const toggleDrawer = () => {
@@ -71,11 +75,14 @@ const NavBar = ({ drawerOpen, setDrawerOpen }) => {
     navigate("/Triumphs");
   };
 
+  const navigateToHome = () => {
+    navigate("/ ");
+  };
+
   const user = useUser();
 
   return (
     <Box sx={{ position: "absolute" }}>
-      {/* Drawer */}
       {!drawerOpen && (
         <IconButton
           color="inherit"
@@ -101,25 +108,43 @@ const NavBar = ({ drawerOpen, setDrawerOpen }) => {
             <MenuIcon />
           </IconButton>
           <List>
-            <ListItem>
-              <ListItemAvatar sx={{ paddingLeft: "15px" }}>
-                <Avatar
-                  src="./images/osrsironattempt2.jpeg"
-                  sx={{ ...profilePicStyle }}
-                />
-              </ListItemAvatar>
-              <ListItemText primary={user.rsn} sx={{ paddingLeft: "10px" }} />
+            {user && (
+              <ListItem>
+                <ListItemAvatar sx={{ paddingLeft: "15px" }}>
+                  <Avatar
+                    src="./images/osrsironattempt2.jpeg"
+                    sx={{ ...profilePicStyle }}
+                  />
+                </ListItemAvatar>
+                {user ? (
+                  <ListItemText
+                    primary={user.rsn}
+                    sx={{ paddingLeft: "10px" }}
+                  />
+                ) : (
+                  <ListItemText primary={" "} sx={{ paddingLeft: "10px" }} />
+                )}
+              </ListItem>
+            )}
+
+            <ListItem sx={{ ...buttonStyles }}>
+              <ListItemText onClick={navigateToHome}>Home</ListItemText>
             </ListItem>
 
-            <ListItem sx={{ ...buttonStyles }} onClick={handleLoginModalOpen}>
-              <ListItemText primary="Login" />
-            </ListItem>
-            <ListItem
-              sx={{ ...buttonStyles }}
-              onClick={handleRegisterModalOpen}
-            >
-              <ListItemText primary="Register" />
-            </ListItem>
+            {!user && (
+              <ListItem sx={{ ...buttonStyles }} onClick={handleLoginModalOpen}>
+                <ListItemText primary="Login" />
+              </ListItem>
+            )}
+
+            {!user && (
+              <ListItem
+                sx={{ ...buttonStyles }}
+                onClick={handleRegisterModalOpen}
+              >
+                <ListItemText primary="Register" />
+              </ListItem>
+            )}
 
             <ListItem sx={{ ...buttonStyles }} onClick={navigateToGeComponent}>
               <ListItemText primary="Ge Watcher" />
@@ -131,6 +156,15 @@ const NavBar = ({ drawerOpen, setDrawerOpen }) => {
             >
               <ListItemText primary="Triumphs" />
             </ListItem>
+
+            {user && (
+              <ListItem
+                sx={{ ...buttonStyles }}
+                onClick={handleLogoutModalOpen}
+              >
+                <ListItemText primary="Logout" />
+              </ListItem>
+            )}
           </List>
         </Box>
         <Box sx={{ p: 2 }}>
@@ -140,54 +174,28 @@ const NavBar = ({ drawerOpen, setDrawerOpen }) => {
 
       {loginModalOpen && (
         <>
-          <Modal
-            open={loginModalOpen}
-            onClose={handleLoginModalClose}
-            BackdropProps={{
-              sx: {
-                background: darkMode
-                  ? "rgba(0, 0, 0, 0.6)"
-                  : "rgba(255, 255, 255, 0.6)",
-              },
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                height: "100vh",
-              }}
-            >
-              <LoginForm handleClose={handleLoginModalClose} />
-            </Box>
-          </Modal>
+          <LoginModal
+            loginModalOpen={loginModalOpen}
+            handleLoginModalClose={handleLoginModalClose}
+          />
         </>
       )}
+
+      {logoutModalOpen && (
+        <>
+          <LogoutModal
+            logoutModalOpen={logoutModalOpen}
+            handleLogoutModalClose={handleLogoutModalClose}
+          />
+        </>
+      )}
+
       {registerModalOpen && (
         <>
-          <Modal
-            open={registerModalOpen}
-            onClose={handleRegisterModalClose}
-            BackdropProps={{
-              sx: {
-                background: darkMode
-                  ? "rgba(0, 0, 0, 0.6)"
-                  : "rgba(255, 255, 255, 0.6)",
-              },
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                height: "100vh",
-              }}
-            >
-              <RegisterForm handleClose={handleRegisterModalClose} />
-            </Box>
-          </Modal>
+          <RegisterModal
+            registerModalOpen={registerModalOpen}
+            handleRegisterModalClose={handleRegisterModalClose}
+          />
         </>
       )}
     </Box>

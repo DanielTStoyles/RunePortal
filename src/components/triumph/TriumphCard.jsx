@@ -1,7 +1,7 @@
 /** @format */
 
-import React, { useState } from "react";
-import { Box, Card, CardMedia, Typography } from "@mui/material";
+import React from "react";
+import { Card, CardMedia, Typography } from "@mui/material";
 
 const TriumphCard = ({ triumph }) => {
   return (
@@ -24,7 +24,7 @@ const TriumphCard = ({ triumph }) => {
           width: "160px",
           borderRadius: 0.9,
         }}
-        image={triumph.icon}
+        image={"http://localhost:3001/images/olm.png"}
         alt={triumph.name}
       />
 

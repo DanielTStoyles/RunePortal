@@ -32,7 +32,9 @@ export const UserProvider = ({ children }) => {
       setAuthToken(user.id);
       localStorage.setItem("authToken", user.id);
       setUser(user);
+      return true;
     }
+    return false;
   };
 
   const logout = () => {

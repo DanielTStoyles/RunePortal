@@ -20,11 +20,13 @@ const LoginForm = ({ handleClose }) => {
 
   const onSubmit = async (data) => {
     try {
-      if (login(data)){
-        handleClose()
-      }
-      else{
-        throw new Error('Invalid email or password')
+      const loggedIn = await login(data);
+
+      if (loggedIn) {
+        console.log(handleClose, "handleClose log");
+        handleClose();
+      } else {
+        throw new Error("Invalid email or password");
       }
     } catch (error) {
       console.error(error);
@@ -63,6 +65,7 @@ const LoginForm = ({ handleClose }) => {
           <InputWithController
             name="password"
             label="Password"
+            type="password"
             control={control}
             errors={errors}
           />

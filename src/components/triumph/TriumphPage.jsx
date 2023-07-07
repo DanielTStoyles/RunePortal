@@ -19,13 +19,14 @@ const TriumphGrid = () => {
   const [triumphs, setTriumphs] = useState([]);
 
   useEffect(() => {
-    if (user && user.username) {
-      fetchUserTriumphs(user.username).then(setTriumphs);
-      console.log(user.username);
+    console.log(user);
+    if (user) {
+      fetchUserTriumphs(user.rsn).then(setTriumphs);
+      console.log(user.rsn);
     } else {
       console.log("nah bro, not founderino");
     }
-  }, [user.username]);
+  }, [user.rsn]);
 
   return (
     <Grid
@@ -57,13 +58,19 @@ const TriumphGrid = () => {
           ></TextField>
         </Grid>
 
-        <Grid container spacing={12} justifyContent="center">
-          {triumphs.map((triumph, index) => (
-            <Grid item key={index}>
-              <TriumphCard triumph={triumph} />
-            </Grid>
-          ))}
-        </Grid>
+        {!triumphs ? (
+          <Typography variant="h5" align="center" gutterBottom>
+            {user.rsn}'s Triumphs
+          </Typography>
+        ) : (
+          <Grid container spacing={12} justifyContent="center">
+            {triumphs.map((triumph, index) => (
+              <Grid item key={index}>
+                <TriumphCard triumph={triumph} />
+              </Grid>
+            ))}
+          </Grid>
+        )}
       </Grid>
     </Grid>
   );
