@@ -170,6 +170,18 @@ const NavBar = ({ drawerOpen, setDrawerOpen }) => {
         <Box sx={{ p: 2 }}>
           <PlayerStatsCard />
         </Box>
+
+        <Box>
+          <img
+            src="http://localhost:3001/images/RuneportalLogo.png"
+            alt="RunePortal Logo"
+            loading="loading"
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        </Box>
       </Drawer>
 
       {loginModalOpen && (

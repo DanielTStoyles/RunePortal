@@ -41,16 +41,11 @@ const PlayerStatsCard = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        padding: 2,
         border: "1px solid #ccc",
         borderRadius: "5px",
       }}
     >
-      <Typography
-        variant="h6"
-        component="div"
-        sx={{ textAlign: "center", marginBottom: 1 }}
-      >
+      <Typography variant="h6" component="div" sx={{ textAlign: "center" }}>
         Player Stats
       </Typography>
       <PlayerStatsDisplay rsn={rsn} />

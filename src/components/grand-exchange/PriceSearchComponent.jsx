@@ -97,15 +97,20 @@ const PriceSearchComp = () => {
           </Typography>
         </CardContent>
       </Card>
+
       <Card style={{ width: "65%", height: "65%" }}>
         <CardContent style={chartStyle}>
-          {itemData && itemName && timeSeriesData && (
+          {itemData && itemName && timeSeriesData ? (
             <PriceChart
               high={itemData.high}
               low={itemData.low}
               title={itemName}
               timeSeries={timeSeriesData}
             />
+          ) : (
+            <Typography variant="h5" component="h2">
+              No data available. Please enter an item name and press Search.
+            </Typography>
           )}
         </CardContent>
       </Card>
@@ -114,6 +119,3 @@ const PriceSearchComp = () => {
 };
 
 export default PriceSearchComp;
-
-
-
