@@ -28,7 +28,7 @@ const PlayerStatsCard = () => {
         >
           Player Stats
         </Typography>
-        <Typography>No player stats available.</Typography>
+        <Typography>Sign up to view your playerstats here!</Typography>
       </Box>
     );
   }

@@ -24,7 +24,6 @@ const NavBar = ({ drawerOpen, setDrawerOpen }) => {
   const [logoutModalOpen, setLogoutModalOpen] = useState(false);
 
   const handleLoginModalOpen = () => {
-    console.log("Hi mom, it worked!");
     setLoginModalOpen(true);
   };
 
@@ -184,32 +183,20 @@ const NavBar = ({ drawerOpen, setDrawerOpen }) => {
         </Box>
       </Drawer>
 
-      {loginModalOpen && (
-        <>
-          <LoginModal
-            loginModalOpen={loginModalOpen}
-            handleLoginModalClose={handleLoginModalClose}
-          />
-        </>
-      )}
+      <LoginModal
+        loginModalOpen={loginModalOpen}
+        handleLoginModalClose={handleLoginModalClose}
+      />
 
-      {logoutModalOpen && (
-        <>
-          <LogoutModal
-            logoutModalOpen={logoutModalOpen}
-            handleLogoutModalClose={handleLogoutModalClose}
-          />
-        </>
-      )}
+      <LogoutModal
+        logoutModalOpen={logoutModalOpen}
+        handleLogoutModalClose={handleLogoutModalClose}
+      />
 
-      {registerModalOpen && (
-        <>
-          <RegisterModal
-            registerModalOpen={registerModalOpen}
-            handleRegisterModalClose={handleRegisterModalClose}
-          />
-        </>
-      )}
+      <RegisterModal
+        registerModalOpen={registerModalOpen}
+        handleRegisterModalClose={handleRegisterModalClose}
+      />
     </Box>
   );
 };

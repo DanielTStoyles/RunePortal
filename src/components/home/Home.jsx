@@ -1,13 +1,12 @@
 /** @format */
 
 import React, { useContext } from "react";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
+import { Box, Container, Typography, Card, CardContent } from "@mui/material";
 import { ThemeContext } from "../../context/ThemeContext.jsx";
 import { useTheme } from "@mui/material/styles";
+import UsePageName from "./PageName.jsx";
 
-const Home = () => {
+const Home = ({ drawerOpen }) => {
   const { darkMode } = useContext(ThemeContext);
   const theme = useTheme();
 
@@ -16,9 +15,17 @@ const Home = () => {
     color: darkMode ? "#fff" : theme.palette.text.primary,
   };
 
+  const pageName = UsePageName();
+  const paddingLeft = drawerOpen ? "8px" : "48px";
+
   return (
     <>
-      {/* Main content */}
+      <Typography
+        variant="h4"
+        style={{ textAlign: "left", paddingLeft: paddingLeft }}
+      >
+        {pageName}
+      </Typography>
       <Container
         maxWidth="md"
         sx={{

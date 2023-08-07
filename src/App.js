@@ -29,13 +29,17 @@ function App() {
 
         <div style={contentStlye}>
           <Routes>
-            <Route exact path="/" element={<Home />} />
+            <Route exact path="/" element={<Home drawerOpen={drawerOpen} />} />
             <Route
               exact
               path="/GeComponent"
               element={<GeComponent drawerOpen={drawerOpen} />}
             />
-            <Route exact path="/Triumphs" element={<TriumphPage />} />
+            <Route
+              exact
+              path="/Triumphs"
+              element={<TriumphPage drawerOpen={drawerOpen} />}
+            />
           </Routes>
         </div>
       </div>

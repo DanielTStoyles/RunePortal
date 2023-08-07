@@ -5,7 +5,6 @@ import {
   Grid,
   Typography,
   TextField,
-  InputProps,
   IconButton,
   InputAdornment,
 } from "@mui/material";
@@ -13,8 +12,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import TriumphCard from "./TriumphCard";
 import { UserContext } from "../../context/UserContext";
 import { fetchUserTriumphs } from "./GetTriumphs";
+import UsePageName from "../home/PageName";
 
-const TriumphGrid = () => {
+const TriumphGrid = ({ drawerOpen }) => {
   const { user } = useContext(UserContext);
   const [triumphs, setTriumphs] = useState([]);
 
@@ -28,51 +28,63 @@ const TriumphGrid = () => {
     }
   }, [user.rsn]);
 
-  return (
-    <Grid
-      container
-      direction="column"
-      spacing={10}
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Grid item>
-        <Typography variant="h2" align="center" gutterBottom>
-          {user.rsn}'s Triumphs
-        </Typography>
-        <Grid item>
-          <TextField
-            variant="outlined"
-            fullWidth
-            placeholder="Search Triumphs..."
-            InputProps={{
-              endAdornment: (
-                <InputAdornment positon="end">
-                  <IconButton edge="end" color="primary">
-                    <SearchIcon />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            sx={{ paddingBottom: "10px" }}
-          ></TextField>
-        </Grid>
+  const pageName = UsePageName();
 
-        {!triumphs ? (
-          <Typography variant="h5" align="center" gutterBottom>
+  const paddingLeft = drawerOpen ? "8px" : "48px";
+
+  return (
+    <div>
+      <Typography
+        variant="h4"
+        style={{ textAlign: "left", paddingLeft: paddingLeft }}
+      >
+        {pageName}
+      </Typography>
+      <Grid
+        container
+        direction="column"
+        spacing={10}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid item>
+          <Typography variant="h2" align="center" gutterBottom>
             {user.rsn}'s Triumphs
           </Typography>
-        ) : (
-          <Grid container spacing={12} justifyContent="center">
-            {triumphs.map((triumph, index) => (
-              <Grid item key={index}>
-                <TriumphCard triumph={triumph} />
-              </Grid>
-            ))}
+          <Grid item>
+            <TextField
+              variant="outlined"
+              fullWidth
+              placeholder="Search Triumphs..."
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment positon="end">
+                    <IconButton edge="end" color="primary">
+                      <SearchIcon />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+              sx={{ paddingBottom: "10px" }}
+            ></TextField>
           </Grid>
-        )}
+
+          {!triumphs ? (
+            <Typography variant="h5" align="center" gutterBottom>
+              {user.rsn}'s Triumphs
+            </Typography>
+          ) : (
+            <Grid container spacing={12} justifyContent="center">
+              {triumphs.map((triumph, index) => (
+                <Grid item key={index}>
+                  <TriumphCard triumph={triumph} />
+                </Grid>
+              ))}
+            </Grid>
+          )}
+        </Grid>
       </Grid>
-    </Grid>
+    </div>
   );
 };
 

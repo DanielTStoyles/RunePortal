@@ -31,6 +31,10 @@ const TriumphCard = ({ triumph }) => {
       <Typography variant="body1" align="center">
         {triumph.name}
       </Typography>
+
+      <Typography variant="body2" align="center">
+        {triumph.description}
+      </Typography>
     </Card>
   );
 };

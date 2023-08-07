@@ -9,9 +9,10 @@ import {
   Button,
 } from "@mui/material";
 import { getItemByName } from "../../repository/getItemData";
-import PriceChart from "./PriceChart.jsx";
+import PriceChart from "../nav/PriceChart.jsx";
+import UsePageName from "../home/PageName";
 
-const PriceSearchComp = () => {
+const PriceSearchComp = ({ drawerOpen }) => {
   const [itemData, setItemData] = useState(null);
   const [itemName, setItemName] = useState("");
   const [inputValue, setInputValue] = useState("");
@@ -71,50 +72,62 @@ const PriceSearchComp = () => {
     }
   }, [itemName]);
 
+  const pageName = UsePageName();
+
+  const paddingLeft = drawerOpen ? "8px" : "48px";
+
   return (
-    <div style={parentDiv}>
-      <Card style={componentStyle}>
-        <CardContent>
-          <TextField
-            value={inputValue}
-            onChange={(e) => {
-              const newValue = e.target.value;
-              setInputValue(newValue);
-            }}
-            placeholder="Enter Item Name"
-          />
-          <Button onClick={handleSubmit} variant="contained">
-            Search
-          </Button>
-
-          <Typography variant="h5" component="h2">
-            {itemData ? itemName : " "}
-          </Typography>
-          <Typography variant="body2" component="p">
-            {itemData
-              ? `High Price: ${itemData.high} gp, Low Price: ${itemData.low} gp`
-              : " "}
-          </Typography>
-        </CardContent>
-      </Card>
-
-      <Card style={{ width: "65%", height: "65%" }}>
-        <CardContent style={chartStyle}>
-          {itemData && itemName && timeSeriesData ? (
-            <PriceChart
-              high={itemData.high}
-              low={itemData.low}
-              title={itemName}
-              timeSeries={timeSeriesData}
+    <>
+      <Typography
+        variant="h4"
+        style={{ textAlign: "left", paddingLeft: paddingLeft }}
+      >
+        {pageName}
+      </Typography>
+      <div style={parentDiv}>
+        <Card style={componentStyle}>
+          <CardContent>
+            <TextField
+              value={inputValue}
+              onChange={(e) => {
+                const newValue = e.target.value;
+                setInputValue(newValue);
+              }}
+              placeholder="Enter Item Name"
             />
-          ) : (
+            <Button onClick={handleSubmit} variant="contained">
+              Search
+            </Button>
+
             <Typography variant="h5" component="h2">
-              No data available. Please enter an item name and press Search.
+              {itemData ? itemName : " "}
             </Typography>
-          )}
-        </CardContent>
-      </Card>
-    </div>
+            <Typography variant="body2" component="p">
+              {itemData
+                ? `High Price: ${itemData.high} gp, Low Price: ${itemData.low} gp`
+                : " "}
+            </Typography>
+          </CardContent>
+        </Card>
+
+        <Card style={{ width: "65%", height: "65%" }}>
+          <CardContent style={chartStyle}>
+            {itemData && itemName && timeSeriesData ? (
+              <PriceChart
+                high={itemData.high}
+                low={itemData.low}
+                title={itemName}
+                timeSeries={timeSeriesData}
+              />
+            ) : (
+              <Typography variant="h5" component="h2">
+                No data available. Please enter an item name and press Search.
+              </Typography>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    </>
   );
 };
 

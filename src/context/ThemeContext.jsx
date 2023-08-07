@@ -12,10 +12,10 @@ const ThemeContextProvider = ({ children }) => {
     palette: {
       mode: darkMode ? "dark" : "light",
       primary: {
-        main: "#0066ff",
+        main: "#2d1075",
       },
       secondary: {
-        main: "#f50057",
+        main: "#dbd8e3",
       },
     },
   });
