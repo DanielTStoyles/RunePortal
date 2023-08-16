@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+RunePortal
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+RunePortal is a dedicated hub for OSRS (Old School RuneScape) players, offering a central space where they can showcase their in-game achievements, engage with dynamic tools like the Grand Exchange search, compare player statistics, and much more.
+Features
 
-## Available Scripts
+    Grand Exchange Search: Dive into an intuitive visual display of the Grand Exchange, allowing you to check the current price trends and data for various items.
+    Triumphs: Our very own achievements system! Much like Xbox achievements, but tailored specifically for OSRS. Showcase your in-game milestones and triumphs.
+    Player Stat Comparison: Stack your statistics against your friends or rivals, seeing where you shine or where you might need a little more grinding.
+    More To Come: We're continually working on bringing more features to enhance your OSRS experience.
 
-In the project directory, you can run:
+Getting Started
+Installation
 
-### `npm start`
+    Visit the RunePortal website.
+    Click on the 'Registration' button.
+    Create an account using your email address and RSN (Runescape Name). Note: For your security, please ensure you use a password different from your OSRS login.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Requirements
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    Internet access.
+    A valid email address.
+    A valid RSN (RuneScape Name).
 
-### `npm test`
+Acknowledgements
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+A special thank you to OsrsWiki for providing the public API. Through this API, RunePortal fetches data for high scores, the Grand Exchange, and item lists.
+Feedback and Contact
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Have questions or feedback? Reach out to DanielTStoyles on GitHub.
