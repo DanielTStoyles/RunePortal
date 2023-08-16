@@ -23,7 +23,9 @@ Requirements
 
 Acknowledgements
 
-A special thank you to OsrsWiki for providing the public API. Through this API, RunePortal fetches data for high scores, the Grand Exchange, and item lists.
+A special thank you to OsrsWiki for providing the public API. Through this API, RunePortal fetches data for high scores, the Grand Exchange, and item lists. Also to Patrick Costello for assistance in the development of this project.
+
+
 Feedback and Contact
 
 Have questions or feedback? Reach out to DanielTStoyles on GitHub.
