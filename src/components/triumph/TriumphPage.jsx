@@ -7,6 +7,7 @@ import {
   TextField,
   IconButton,
   InputAdornment,
+  useMediaQuery,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import TriumphCard from "./TriumphCard";
@@ -28,14 +29,15 @@ const TriumphGrid = ({ drawerOpen }) => {
     }
   }, [user.rsn]);
 
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
   const pageName = UsePageName();
 
-  const paddingLeft = drawerOpen ? "8px" : "48px";
-
+  const paddingLeft = isMobile ? "8px" : drawerOpen ? "8px" : "48px";
   return (
     <div>
       <Typography
-        variant="h4"
+        variant={isMobile ? "h5" : "h4"}
         style={{ textAlign: "left", paddingLeft: paddingLeft }}
       >
         {pageName}
@@ -48,7 +50,11 @@ const TriumphGrid = ({ drawerOpen }) => {
         alignItems="center"
       >
         <Grid item>
-          <Typography variant="h2" align="center" gutterBottom>
+          <Typography
+            variant={isMobile ? "h4" : "h2"}
+            align="center"
+            gutterBottom
+          >
             {user.rsn}'s Triumphs
           </Typography>
           <Grid item>

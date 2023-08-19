@@ -7,6 +7,7 @@ import {
   Typography,
   TextField,
   Button,
+  useMediaQuery,
 } from "@mui/material";
 import { getItemByName } from "../../repository/getItemData";
 import PriceChart from "../nav/PriceChart.jsx";
@@ -24,12 +25,14 @@ const PriceSearchComp = ({ drawerOpen }) => {
     setItemName(nameToUppercase);
   };
 
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
   const componentStyle = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     paddingLeft: "1 px",
-    width: "25%",
+    width: isMobile ? "95%" : "25%",
     height: "25%",
     transition: "width 0.3s",
     borderRadius: "0.6",
@@ -39,14 +42,14 @@ const PriceSearchComp = ({ drawerOpen }) => {
     justifyContent: "center",
     alignItems: "center",
     paddingLeft: "1 px",
-    width: "100%",
+    width: isMobile ? "95%" : "100%",
     height: "100%",
     transition: "width 0.3s",
   };
 
   const parentDiv = {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: isMobile ? "column" : "row",
     alignItems: "center",
     justifyContent: "space-around",
     width: "100%",

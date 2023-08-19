@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useContext } from "react";
-import { Box, Container, Typography, Card, CardContent } from "@mui/material";
+import { Box, Container, Typography, useMediaQuery } from "@mui/material";
 import { ThemeContext } from "../../context/ThemeContext.jsx";
 import { useTheme } from "@mui/material/styles";
 import UsePageName from "./PageName.jsx";
@@ -15,13 +15,14 @@ const Home = ({ drawerOpen }) => {
     color: darkMode ? "#fff" : theme.palette.text.primary,
   };
 
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const pageName = UsePageName();
-  const paddingLeft = drawerOpen ? "8px" : "48px";
-
+  const paddingLeft =
+    isMobile && !drawerOpen ? "36px" : drawerOpen ? "8px" : "48px";
   return (
     <>
       <Typography
-        variant="h4"
+        variant={isMobile ? "h5" : "h4"}
         style={{ textAlign: "left", paddingLeft: paddingLeft }}
       >
         {pageName}
@@ -36,15 +37,18 @@ const Home = ({ drawerOpen }) => {
           zIndex: 9,
         }}
       >
-        <Box sx={{ textAlign: "center", mb: 4, pb: "10px" }}>
-          <Typography variant="h3">Welcome to RunePortal</Typography>
+        <Box sx={{ textAlign: "center", mb: 4, pb: isMobile ? "5px" : "10px" }}>
+          {" "}
+          <Typography variant={isMobile ? "h4" : "h3"}>
+            Welcome to RunePortal
+          </Typography>
           <Typography variant="subtitle1">
             Your one stop HUB for everything Oldschool Runescape!
           </Typography>
         </Box>
         <Typography
           variant="body1"
-          sx={{ textAlign: "center", mb: 4, pb: "30px" }}
+          sx={{ textAlign: "center", mb: 4, pb: isMobile ? "15px" : "30px" }}
         >
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
           commodo ligula eget dolor. Aenean massa. Pum sociis natoque penatibus
