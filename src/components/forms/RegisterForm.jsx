@@ -83,6 +83,24 @@ const RegisterForm = ({ handleClose }) => {
             label="Password"
             control={control}
             errors={errors}
+            rules={{
+              validate: {
+                isValidLength: (value) =>
+                  value.length >= 8 ||
+                  "Password must be at least 8 characters long.",
+                hasUpperCase: (value) =>
+                  /[A-Z]/.test(value) ||
+                  "Password must contain an uppercase letter.",
+                hasLowerCase: (value) =>
+                  /[a-z]/.test(value) ||
+                  "Password must contain a lowercase letter.",
+                hasNumber: (value) =>
+                  /[0-9]/.test(value) || "Password must contain a number.",
+                hasSpecialChar: (value) =>
+                  /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(value) ||
+                  "Password must contain a special character.",
+              },
+            }}
           />
 
           <InputWithController
