@@ -6,11 +6,18 @@ import MySQLStore from "express-mysql-session";
 import express from "express";
 
 const url = process.env.MYSQL_URL;
+console.log("MYSQL_URL:", process.env.MYSQL_URL);
 const connection = mysql.createPool(url);
 const sessionStore = new MySQLStore({}, connection);
 
-const express = require("express");
 const app = express();
+
+const PORT = process.env.PORT || 5173;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+app.use(express.json());
 
 app.use(
   session({
