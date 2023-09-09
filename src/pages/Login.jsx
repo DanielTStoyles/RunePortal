@@ -1,6 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -63,6 +64,15 @@ const LoginPage = () => {
                 value={password}
                 onChange={handleChange}
               />
+            </div>
+            <div className="w-full text-center">
+              <Link
+                to="http://localhost:5173/register"
+                className="text-blue-500 hover:text-blue-700"
+              >
+                {" "}
+                Don't have an account? Click here to Register{" "}
+              </Link>
             </div>
           </div>
           <div>
