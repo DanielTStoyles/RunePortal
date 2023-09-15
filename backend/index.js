@@ -3,7 +3,7 @@
 import dotenv from "dotenv";
 import mysql from "mysql2/promise";
 import session from "express-session";
-import MySQLStore from "express-mysql-session";
+import makeMySQLSessionStore from "express-mysql-session";
 import express from "express";
 
 dotenv.config();
@@ -11,9 +11,9 @@ dotenv.config();
 const url = process.env.MYSQL_URL;
 console.log("MYSQL_URL:", process.env.MYSQL_URL);
 const connection = mysql.createPool(url);
+const MySQLStore = makeMySQLSessionStore(session);
 const sessionStore = new MySQLStore({}, connection);
 
-const cors = require("cors");
 const app = express();
 
 const PORT = process.env.PORT || 5174;
@@ -21,7 +21,6 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-app.use(cors());
 app.use(express.json());
 
 app.use(
