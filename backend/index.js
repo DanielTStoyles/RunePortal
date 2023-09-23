@@ -16,6 +16,13 @@ const sessionStore = new MySQLStore({}, connection);
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+
 const PORT = process.env.PORT || 5174;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
@@ -33,6 +40,7 @@ app.use(
 );
 
 app.post("/login", async (req, res) => {
+  console.log("POST recieved");
   const { email, password } = req.body;
 
   const [user] = await connection.query("SELECT * FROM users WHERE email = ?", [

@@ -8,12 +8,14 @@ const LoginPage = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
+    console.log("Initialized");
     const { email, password } = data;
-    await fetch("http://localhost:5173/login", {
+    await fetch("http://localhost:5174/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
+    console.log("fetch sent");
   };
 
   return (
