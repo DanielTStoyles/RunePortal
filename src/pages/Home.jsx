@@ -1,13 +1,16 @@
 /** @format */
 
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const logout = async () => {
     await fetch("http://localhost:5174/logout", {
       method: "POST",
     });
-    window.location.href = "/login";
+    console.log("logged out");
+    navigate("/login");
   };
   return (
     <div

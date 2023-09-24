@@ -5,6 +5,7 @@ import mysql from "mysql2/promise";
 import session from "express-session";
 import makeMySQLSessionStore from "express-mysql-session";
 import express from "express";
+// import bcrypt from 'bcrypt';
 
 dotenv.config();
 
@@ -13,6 +14,10 @@ console.log("MYSQL_URL:", process.env.MYSQL_URL);
 const connection = mysql.createPool(url);
 const MySQLStore = makeMySQLSessionStore(session);
 const sessionStore = new MySQLStore({}, connection);
+
+// Password Hashing
+
+// const saltRounds=10;
 
 const app = express();
 
