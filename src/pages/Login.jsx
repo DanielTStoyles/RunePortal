@@ -3,25 +3,29 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { useMutation } from "react-query";
 
 const LoginPage = () => {
   const { register, handleSubmit } = useForm();
 
   const navigate = useNavigate();
 
-  const onSubmit = async (data) => {
+  const loginMutation = useMutation(async (data) => {
     console.log("Initialized");
-    const { email, password } = data;
     const response = await fetch("http://localhost:5174/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify(data),
     });
     if (response.ok) {
       console.log("good login");
       navigate("/");
     }
     console.log("fetch sent");
+  });
+
+  const onSubmit = (data) => {
+    loginMutation.mutate(data);
   };
 
   return (
