@@ -2,19 +2,25 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const { register, handleSubmit } = useForm();
 
+  const navigate = useNavigate();
+
   const onSubmit = async (data) => {
     console.log("Initialized");
     const { email, password } = data;
-    await fetch("http://localhost:5174/login", {
+    const response = await fetch("http://localhost:5174/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
+    if (response.ok) {
+      console.log("good login");
+      navigate("/");
+    }
     console.log("fetch sent");
   };
 

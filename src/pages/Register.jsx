@@ -8,11 +8,11 @@ const RegisterPage = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
-    const { email, password, rsn } = data;
-    await fetch("http://localhost:5173/register", {
+    const { email, password, username } = data;
+    await fetch("http://localhost:5174/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, rsn }),
+      body: JSON.stringify({ username, email, password }),
     });
   };
 
@@ -65,18 +65,18 @@ const RegisterPage = () => {
             </div>
 
             <div className="mb-2">
-              <label htmlFor="RSN" className="sr-only">
-                RSN
+              <label htmlFor="Username" className="sr-only">
+                Username
               </label>
               <input
-                id="RSN"
-                name="rsn"
+                id="username"
+                name="username"
                 type="username"
-                {...register("rsn", { required: true })}
+                {...register("username", { required: true })}
                 className="appearance-none rounded-none relative block w-full px-3 py-2 
                 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md 
                 focus:outline-none focus:ring-lime-600 focus:border-lime-600 focus:z-10 sm:text-sm"
-                placeholder="RSN"
+                placeholder="Username"
               />
             </div>
             <div className="w-full text-center">

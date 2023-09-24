@@ -43,13 +43,16 @@ app.post("/login", async (req, res) => {
   console.log("POST recieved");
   const { email, password } = req.body;
 
-  const [user] = await connection.query("SELECT * FROM users WHERE email = ?", [
-    email,
-  ]);
+  const [results] = await connection.query(
+    "SELECT * FROM users WHERE email = ?",
+    [email]
+  );
 
-  if (!user) {
+  if (results.length === 0) {
     return res.status(400).json({ message: "User not found" });
   }
+
+  const user = results[0];
 
   if (user.password !== password) {
     return res.status(400).json({ message: "Incorrect password" });
@@ -61,22 +64,38 @@ app.post("/login", async (req, res) => {
 });
 
 app.post("/register", async (req, res) => {
-  const { name, email, password } = req.body;
+  console.log(req.body);
+  const { username, email, password } = req.body;
 
-  const [user] = await connection.query("SELECT * FROM users WHERE email = ?", [
-    email,
-  ]);
+  const [results] = await connection.query(
+    "SELECT * FROM users WHERE email = ?",
+    [email]
+  );
 
-  if (user) {
+  console.log(results);
+
+  if (results.length > 0) {
     return res.status(400).json({ message: "User already exists" });
   }
 
   await connection.query(
-    "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
-    [name, email, password]
+    "INSERT INTO users (username, password, email) VALUES (?, ?, ?)",
+    [username, password, email]
   );
+
+  const user = { username, email };
 
   req.session.user = user;
 
   res.json({ message: "Registered" });
+});
+
+app.post("/logout", async (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ message: "Internal error during logout" });
+    }
+    res.clearCookie("connect.sid");
+    res.json({ message: "Logged out" });
+  });
 });
