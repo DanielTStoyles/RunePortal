@@ -1,17 +1,8 @@
 /** @format */
 
 import React from "react";
-import { useNavigate } from "react-router-dom";
-
+import SideBar from "../components/SideBarComp";
 const HomePage = () => {
-  const navigate = useNavigate();
-  const logout = async () => {
-    await fetch("http://localhost:5174/logout", {
-      method: "POST",
-    });
-    console.log("logged out");
-    navigate("/login");
-  };
   return (
     <div
       className="min-h-screen bg-[url(C:\Users\Danie\Desktop\RunePortalv2\src\images\bg2.jpg)] 
@@ -19,14 +10,7 @@ const HomePage = () => {
           overflow-y-hidden px-012 flex items-center justify-center bg-black py-12 px-4 sm:px-6 lg:px-8"
     >
       <div>
-        <button
-          onClick={logout}
-          className="group relative w-full flex justify-center py-2 px-4 
-              border border-lime-400 text-md font-medium rounded-md text-white bg-stone-600 hover:bg-stone-700 
-              focus:outline-none focus:ring-2 focus:ring-lime-600"
-        >
-          Logout
-        </button>
+        <SideBar />
       </div>
     </div>
   );

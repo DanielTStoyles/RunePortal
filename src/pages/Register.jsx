@@ -11,7 +11,7 @@ const RegisterPage = () => {
   const navigate = useNavigate();
 
   const registerMutation = useMutation(async (data) => {
-    const response = await fetch("http://localhost:5174/register", {
+    const response = await fetch("/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

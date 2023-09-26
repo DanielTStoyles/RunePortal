@@ -12,7 +12,7 @@ const LoginPage = () => {
 
   const loginMutation = useMutation(async (data) => {
     console.log("Initialized");
-    const response = await fetch("http://localhost:5174/login", {
+    const response = await fetch("/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

@@ -104,3 +104,20 @@ app.post("/logout", async (req, res) => {
     res.json({ message: "Logged out" });
   });
 });
+
+app.get("/getUsername/:id", (req, res) => {
+  const userId = req.params.id;
+  const query = "SELECT username FROM users WHERE id =?";
+
+  connection.query(query, [userId], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: "Databse query error" });
+    }
+
+    if (results.length > 0) {
+      return res.json({ username: results[0].username });
+    } else {
+      return res.status(404).json({ error: "User not found" });
+    }
+  });
+});
