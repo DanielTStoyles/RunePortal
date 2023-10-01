@@ -19,7 +19,7 @@ const LoginPage = () => {
     });
     if (response.ok) {
       console.log("good login");
-      navigate("/");
+      navigate("/home");
     }
     console.log("fetch sent");
   });

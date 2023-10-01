@@ -2,15 +2,17 @@
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import CurrentUsername from "./LoggedUsername";
 
 const SideBar = () => {
   const navigate = useNavigate();
+
   const logout = async () => {
     await fetch("/api/logout", {
       method: "POST",
     });
     console.log("logged out");
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -50,7 +52,7 @@ const SideBar = () => {
                 href="#"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
-                <span class="ml-3">Username</span>
+                <CurrentUsername />
               </a>
             </li>
             <li>

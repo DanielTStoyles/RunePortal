@@ -15,18 +15,7 @@ const connection = mysql.createPool(url);
 const MySQLStore = makeMySQLSessionStore(session);
 const sessionStore = new MySQLStore({}, connection);
 
-// Password Hashing
-
-// const saltRounds=10;
-
 const app = express();
-
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
 
 const PORT = process.env.PORT || 5174;
 app.listen(PORT, () => {
@@ -43,6 +32,14 @@ app.use(
     saveUninitialized: false,
   })
 );
+
+// const ensureLoggedIn = (req, res, next) => {
+//   console.log("Session data:", req.session);
+//   if (!req.session.userId) {
+//     return res.status(401).json({ message: "User isn't logged in" });
+//   }
+//   next();
+// };
 
 app.post("/login", async (req, res) => {
   console.log("POST recieved");
@@ -105,19 +102,37 @@ app.post("/logout", async (req, res) => {
   });
 });
 
-app.get("/getUsername/:id", (req, res) => {
-  const userId = req.params.id;
-  const query = "SELECT username FROM users WHERE id =?";
+app.get("/getUsername", async (req, res) => {
+  console.log(req.session, "SESSION LOG BB");
+  const userId = req.session.user.id;
 
-  connection.query(query, [userId], (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: "Databse query error" });
-    }
-
-    if (results.length > 0) {
-      return res.json({ username: results[0].username });
+  try {
+    const [rows] = await connection.query(
+      "SELECT username FROM users WHERE id = ?",
+      [userId]
+    );
+    if (rows.length > 0) {
+      res.json({ username: rows[0].username });
     } else {
-      return res.status(404).json({ error: "User not found" });
+      res.status(404).json({ message: "User not found" });
     }
-  });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Database error" });
+  }
+});
+
+app.post("/todo", async (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  const { title, body } = req.body;
+
+  await connection.query(
+    "INSERT INTO todo (title, body, user_id) VALUES (?, ?, ?)",
+    [title, body, req.session.user.id]
+  );
+
+  res.json({ message: "Created todo" });
 });
