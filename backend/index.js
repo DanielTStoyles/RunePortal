@@ -33,13 +33,13 @@ app.use(
   })
 );
 
-// const ensureLoggedIn = (req, res, next) => {
-//   console.log("Session data:", req.session);
-//   if (!req.session.userId) {
-//     return res.status(401).json({ message: "User isn't logged in" });
-//   }
-//   next();
-// };
+const ensureLoggedIn = (req, res, next) => {
+  console.log("Session data:", req.session);
+  if (!req.session.user.id) {
+    return res.status(401).json({ message: "User isn't logged in" });
+  }
+  next();
+};
 
 app.post("/login", async (req, res) => {
   console.log("POST recieved");
@@ -102,8 +102,8 @@ app.post("/logout", async (req, res) => {
   });
 });
 
-app.get("/getUsername", async (req, res) => {
-  console.log(req.session, "SESSION LOG BB");
+app.get("/getUsername", ensureLoggedIn, async (req, res) => {
+  console.log(req.session);
   const userId = req.session.user.id;
 
   try {
@@ -135,4 +135,12 @@ app.post("/todo", async (req, res) => {
   );
 
   res.json({ message: "Created todo" });
+});
+
+app.get("/checkSession", (req, res) => {
+  if (req.session) {
+    res.json({ isLoggedIn: true });
+  } else {
+    res.json({ isLoggedIn: false });
+  }
 });
