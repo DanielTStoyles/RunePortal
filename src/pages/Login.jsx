@@ -1,11 +1,13 @@
 /** @format */
 
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
+import AuthContext from "../context/AuthContext";
 
 const LoginPage = () => {
+  const { checkSession } = useContext(AuthContext);
   const { register, handleSubmit } = useForm();
 
   const navigate = useNavigate();
@@ -17,9 +19,11 @@ const LoginPage = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
+
     if (response.ok) {
       console.log("good login");
       navigate("/home");
+      checkSession();
     }
     console.log("fetch sent");
   });

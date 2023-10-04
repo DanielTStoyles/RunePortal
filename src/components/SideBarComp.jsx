@@ -6,7 +6,7 @@ import CurrentUsername from "./LoggedUsername";
 import AuthContext from "../context/AuthContext";
 
 const SideBar = () => {
-  const { isLoggedIn } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const logout = async () => {
@@ -14,7 +14,19 @@ const SideBar = () => {
       method: "POST",
     });
     console.log("logged out");
-    navigate("/home");
+    window.location.reload();
+  };
+
+  const ge = () => {
+    navigate("/ge");
+  };
+
+  const profile = () => {
+    navigate("/profile");
+  };
+
+  const login = () => {
+    navigate("/login");
   };
 
   return (
@@ -49,7 +61,7 @@ const SideBar = () => {
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
           <ul className="space-y-2 font-medium">
-            {isLoggedIn ? (
+            {user ? (
               <li>
                 <a
                   href="#"
@@ -68,7 +80,7 @@ const SideBar = () => {
                 </a>
               </li>
             )}
-            <li>
+            <li onClick={profile}>
               <a
                 href="#"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
@@ -107,7 +119,7 @@ const SideBar = () => {
                 </span>
               </a>
             </li>
-            <li>
+            <li onClick={ge}>
               <a
                 href="#"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
@@ -164,7 +176,7 @@ const SideBar = () => {
                 <span className="flex-1 ml-3 whitespace-nowrap">Triumphs</span>
               </a>
             </li>
-            <li onClick={logout}>
+            <li onClick={user ? logout : login}>
               <a
                 href="#"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
@@ -184,12 +196,10 @@ const SideBar = () => {
                     d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
                   />
                 </svg>
-                {isLoggedIn ? (
+                {user ? (
                   <span className="flex-1 ml-3 whitespace-nowrap">Logout</span>
                 ) : (
-                  <span className="flex-1 ml-3 whitespace-nowrap">
-                    Sign Up!
-                  </span>
+                  <span className="flex-1 ml-3 whitespace-nowrap">Login</span>
                 )}
               </a>
             </li>

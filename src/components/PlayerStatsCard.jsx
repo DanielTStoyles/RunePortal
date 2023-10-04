@@ -1,20 +1,56 @@
 /** @format */
 
 import React, { useContext } from "react";
+import { Box, Typography } from "@mui/material";
+import PlayerStatsDisplay from "./PlayerStatsDisplay";
+import AuthContext from "../context/AuthContext";
 
 const PlayerStatsCard = () => {
+  const { user } = useContext(AuthContext);
+
+  if (!user || !user.rsn) {
+    console.log("user not found");
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          padding: 2,
+          border: "1px solid #ccc",
+          borderRadius: "5px",
+        }}
+      >
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{ textAlign: "center", marginBottom: 1 }}
+        >
+          Player Stats
+        </Typography>
+        <Typography>Sign up to view your playerstats here!</Typography>
+      </Box>
+    );
+  }
+
+  const rsn = user.rsn;
+
   return (
-    <div className="flex fel-col items-center p-4 border border-gray-300 rounded-md">
-      <h6 className="text-center mb-2 text-lg font-medium">Player Stats</h6>
-    </div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        border: "1px solid #ccc",
+        borderRadius: "5px",
+      }}
+    >
+      <Typography variant="h6" component="div" sx={{ textAlign: "center" }}>
+        Player Stats
+      </Typography>
+      <PlayerStatsDisplay rsn={rsn} />
+    </Box>
   );
 };
-
-return (
-  <div className="flex flex-col items-center border border-gray-300 rounded-md ">
-    <h6 className="text-center mb-2 text-lg font-medium">Player Stats</h6>
-    {/* <PlayerStatsDisplay rsn={rsn}/> */}
-  </div>
-);
 
 export default PlayerStatsCard;

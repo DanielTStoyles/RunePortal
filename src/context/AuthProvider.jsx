@@ -4,27 +4,27 @@ import React, { useState, useEffect } from "react";
 import AuthContext from "./AuthContext";
 
 const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState("false");
+  const [user, setUser] = useState(false);
+  const checkSession = async () => {
+    try {
+      const response = await fetch("/api/checkSession");
+      const data = await response.json();
+      if (data) {
+        setUser(data);
+      } else {
+        setUser();
+      }
+    } catch (error) {
+      console.error("failed to check session", error);
+    }
+  };
 
   useEffect(() => {
-    const checkSession = async () => {
-      try {
-        const response = await fetch("/api/checkSession");
-        const data = await response.json();
-        if (data.isLoggedIn) {
-          setIsLoggedIn(true);
-        } else {
-          setIsLoggedIn(false);
-        }
-      } catch (error) {
-        console.error("failed to check session", error);
-      }
-    };
     checkSession();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+    <AuthContext.Provider value={{ user, setUser, checkSession }}>
       {children}
     </AuthContext.Provider>
   );

@@ -33,6 +33,15 @@ app.use(
   })
 );
 
+
+const OSRS_BASE_URL =
+  "https://secure.runescape.com/m=hiscore_oldschool/index_lite.ws";
+
+const OSRS_GE_BASE_URL =
+   "https://prices.runescape.wiki/api/v1/osrs/mapping";
+
+
+
 const ensureLoggedIn = (req, res, next) => {
   console.log("Session data:", req.session);
   if (!req.session.user.id) {
@@ -40,6 +49,8 @@ const ensureLoggedIn = (req, res, next) => {
   }
   next();
 };
+
+
 
 app.post("/login", async (req, res) => {
   console.log("POST recieved");
@@ -138,9 +149,21 @@ app.post("/todo", async (req, res) => {
 });
 
 app.get("/checkSession", (req, res) => {
-  if (req.session) {
-    res.json({ isLoggedIn: true });
-  } else {
-    res.json({ isLoggedIn: false });
-  }
+  res.json(req.session.user || null);
 });
+
+// app.get("/api/playerStats/:playerName", async (req, res) => {
+//   try {
+//     const { playerName } = req.params;
+//     const response = await axios.get(
+//       `${OSRS_BASE_URL}?player=${encodeURIComponent(playerName)}`
+//     );
+
+//     res.send(response.data);
+//   } catch (error) {
+//     res.status(500).send(`Error fetching player data: ${error.message}`);
+//   }
+// });
+
+
+
