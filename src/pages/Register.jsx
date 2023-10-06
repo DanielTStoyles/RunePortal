@@ -91,7 +91,7 @@ const RegisterPage = () => {
             </div>
             <div className="w-full text-center">
               <Link
-                to="http://localhost:5173"
+                to="http://localhost:5173/login"
                 className="text-blue-500 hover:text-blue-700"
               >
                 {" "}
