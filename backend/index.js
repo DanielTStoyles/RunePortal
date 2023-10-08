@@ -5,7 +5,8 @@ import mysql from "mysql2/promise";
 import session from "express-session";
 import makeMySQLSessionStore from "express-mysql-session";
 import express from "express";
-// import bcrypt from 'bcrypt';
+import itemParse from "./data/itemParse.js";
+import insertItemsIntoDatabase from "./data/insertItems.js";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ const app = express();
 const PORT = process.env.PORT || 5174;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
+  // setupData();
 });
 
 app.use(express.json());
@@ -33,14 +35,10 @@ app.use(
   })
 );
 
-
 const OSRS_BASE_URL =
   "https://secure.runescape.com/m=hiscore_oldschool/index_lite.ws";
 
-const OSRS_GE_BASE_URL =
-   "https://prices.runescape.wiki/api/v1/osrs/mapping";
-
-
+const OSRS_GE_BASE_URL = "https://prices.runescape.wiki/api/v1/osrs/mapping";
 
 const ensureLoggedIn = (req, res, next) => {
   console.log("Session data:", req.session);
@@ -50,7 +48,21 @@ const ensureLoggedIn = (req, res, next) => {
   next();
 };
 
+const setupData = async () => {
+  try {
+    const itemsFilePath = "./items.json";
+    const items = await itemParse(itemsFilePath);
+    await insertItemsIntoDatabase(items, connection);
 
+    console.log("Data setup completed.");
+  } catch (error) {
+    console.error("Error setting up data:", error.message);
+  } finally {
+    if (connection) {
+      await connection.end();
+    }
+  }
+};
 
 app.post("/login", async (req, res) => {
   console.log("POST recieved");
@@ -151,19 +163,3 @@ app.post("/todo", async (req, res) => {
 app.get("/checkSession", (req, res) => {
   res.json(req.session.user || null);
 });
-
-// app.get("/api/playerStats/:playerName", async (req, res) => {
-//   try {
-//     const { playerName } = req.params;
-//     const response = await axios.get(
-//       `${OSRS_BASE_URL}?player=${encodeURIComponent(playerName)}`
-//     );
-
-//     res.send(response.data);
-//   } catch (error) {
-//     res.status(500).send(`Error fetching player data: ${error.message}`);
-//   }
-// });
-
-
-
