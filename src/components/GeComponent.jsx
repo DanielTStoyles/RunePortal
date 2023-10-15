@@ -1,62 +1,72 @@
 /** @format */
 
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import SideBar from "../components/SideBarComp";
 import AuthContext from "../context/AuthContext";
 import GeChart from "./GeChart";
 
 const GeComponent = () => {
   const { user } = useContext(AuthContext);
-  const [itemData, setItemData] = useState(null);
   const [itemName, setItemName] = useState("");
-  const [inputValue, setInputValue] = useState("");
-  const [timeSeriesData, setTimeSeriesData] = useState([]);
+  const [itemData, setItemData] = useState(null);
+  const [timeSeriesData, setTimeSeriesData] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const nameToUppercase =
-      inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
+      itemName.charAt(0).toUpperCase() + itemName.slice(1);
     setItemName(nameToUppercase);
+
+    try {
+      const repsonse = await fetch("/api/item", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ itemName: nameToUppercase }),
+      });
+      if (!repsonse.ok) {
+        console.log("error occured");
+      }
+      const data = await repsonse.json();
+      console.log(data);
+      setItemData(data.highLowData);
+      setTimeSeriesData(data.timeSeriesData.data);
+    } catch (error) {
+      console.error("error during fetch", error);
+    }
   };
 
-  useEffect(() => {
-    if (itemName !== "") {
-      const fetchItemData = async (itemName) => {
-        const data = await getItemByName(itemName);
-        const { highLow, timeSeries } = data;
-        console.log(timeSeries);
-        if (highLow && timeSeries) {
-          setItemData(highLow);
-          setTimeSeriesData(timeSeries);
-          console.log(highLow, "data log");
-        } else {
-          console.log("item not found");
-        }
-      };
+  let displayData = null;
 
-      fetchItemData(itemName);
-    }
-  }, [itemName]);
+  if (itemData) {
+    const firstKey = Object.keys(itemData.data)[0];
+
+    displayData = (
+      <div className="relative text-white">
+        <p>High Price: {itemData.data[firstKey].high}</p>
+        <p>Low Price: {itemData.data[firstKey].low}</p>
+      </div>
+    );
+  }
 
   return (
     <div
-      className="flex min-h-screen bg-center 
+      className="flex flex-col min-h-screen bg-center 
     bg-top bg-repeat-y px-4 py-8 sm:px-6 lg:px-8 bg-black overflow-y-hidden
-    bg-[url(C:\Users\Danie\Desktop\RunePortalv2\src\images\bg2.jpg)] justify-center items-center"
+    bg-[url(C:\Users\Danie\Desktop\RunePortalv2\src\images\bg2.jpg)] items-center"
     >
       <div className="mb-4">
-        <h1 className=" text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <h1 className=" text-2xl font-bold tracking-tight text-gray-900 dark:text-white ">
           Grand Exchange Tool
         </h1>
       </div>
 
-      <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
+      <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <h2 className="mb-4 text-white">Search Items</h2>
         <input
           type="text"
-          value={inputValue}
+          value={itemName}
           onChange={(e) => {
             const newValue = e.target.value;
-            setInputValue(newValue);
+            setItemName(newValue);
           }}
           placeholder="Type item name here..."
           className="px-2 py-1 mb-4 w-full rounded-md"
@@ -71,12 +81,12 @@ const GeComponent = () => {
           Search
         </button>
       </div>
-      <div className="relative">
-        <p>
-          {itemData
-            ? `High Price: ${itemData.high} gp, Low Price: ${itemData.low} gp`
-            : " "}
-        </p>
+
+      <div className="relative text-white">
+        {displayData ? displayData : <h5>Price Data to be displayed here</h5>}
+      </div>
+
+      <div className=" w-1/3 h-96">
         {itemData && itemName && timeSeriesData ? (
           <GeChart
             high={itemData.high}
@@ -86,10 +96,11 @@ const GeComponent = () => {
           />
         ) : (
           <p className="text-white">
-            No data available. Please enter an item name and press search.
+            No data available. Please enter an item name above and press search.
           </p>
         )}
       </div>
+
       <div>
         <SideBar user={user} />
       </div>

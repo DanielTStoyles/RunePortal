@@ -163,3 +163,48 @@ app.post("/todo", async (req, res) => {
 app.get("/checkSession", (req, res) => {
   res.json(req.session.user || null);
 });
+
+app.post("/item", async (req, res) => {
+  const { itemName } = req.body;
+  if (!itemName) {
+    return res.status(400).json({ message: "Item name is required" });
+  }
+
+  try {
+    const [results] = await connection.query(
+      "SELECT item_id FROM items WHERE item_name = ?",
+      [itemName]
+    );
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: "Item not found" });
+    }
+
+    const item = results[0];
+
+    const highLow = await fetch(
+      `https://prices.runescape.wiki/api/v1/osrs/latest?id=${item.item_id}`
+    );
+
+    const timeSeries = await fetch(
+      `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=24h&id=${item.item_id}`
+    );
+
+    if (!highLow.ok) {
+      console.error("API Response Not OK:", highLow);
+      return res.status(500).json({
+        message: "API request failed: " + highLow.statusText,
+      });
+    }
+
+    const highLowData = await highLow.json();
+    const timeSeriesData = await timeSeries.json();
+
+    const response = { highLowData, timeSeriesData };
+
+    res.json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Database error" });
+  }
+});

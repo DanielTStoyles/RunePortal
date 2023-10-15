@@ -1,9 +1,10 @@
 /** @format */
 
 import React from "react";
+import { Bar, Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 
-const GeChart = ({ title, timeSeries }) => {
+const PriceChart = ({ title, timeSeries }) => {
   const highTimeSeries = timeSeries.map((item) => item.avgHighPrice);
 
   const lowTimeSeries = timeSeries.map((item) => item.avgLowPrice);
@@ -61,4 +62,4 @@ const GeChart = ({ title, timeSeries }) => {
   return <Line data={data} options={options} />;
 };
 
-export default React.memo(GeChart);
+export default React.memo(PriceChart);
