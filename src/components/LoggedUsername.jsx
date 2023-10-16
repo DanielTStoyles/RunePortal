@@ -29,5 +29,3 @@ const CurrentUsername = () => {
 };
 
 export default CurrentUsername;
-
-

@@ -4,45 +4,46 @@ import React, { useContext, useState } from "react";
 import SideBar from "../components/SideBarComp";
 import AuthContext from "../context/AuthContext";
 import GeChart from "./GeChart";
+import { useQuery } from "react-query";
+
+const fetchItemData = async (itemName) => {
+  const repsonse = await fetch("/api/item", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ itemName }),
+  });
+  if (!repsonse.ok) {
+    console.log("error occured");
+  }
+  const data = await repsonse.json();
+  return data;
+};
 
 const GeComponent = () => {
   const { user } = useContext(AuthContext);
   const [itemName, setItemName] = useState("");
-  const [itemData, setItemData] = useState(null);
-  const [timeSeriesData, setTimeSeriesData] = useState("");
+
+  const {
+    data: itemData,
+    isError,
+    isLoading,
+  } = useQuery("item", () => fetchItemData(itemName), { enabled: !!itemName });
 
   const handleSubmit = async () => {
     const nameToUppercase =
       itemName.charAt(0).toUpperCase() + itemName.slice(1);
     setItemName(nameToUppercase);
-
-    try {
-      const repsonse = await fetch("/api/item", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ itemName: nameToUppercase }),
-      });
-      if (!repsonse.ok) {
-        console.log("error occured");
-      }
-      const data = await repsonse.json();
-      console.log(data);
-      setItemData(data.highLowData);
-      setTimeSeriesData(data.timeSeriesData.data);
-    } catch (error) {
-      console.error("error during fetch", error);
-    }
   };
 
   let displayData = null;
 
-  if (itemData) {
-    const firstKey = Object.keys(itemData.data)[0];
+  if (itemData?.highLowData) {
+    const firstKey = Object.keys(itemData.highLowData.data)[0];
 
     displayData = (
       <div className="relative text-white">
-        <p>High Price: {itemData.data[firstKey].high}</p>
-        <p>Low Price: {itemData.data[firstKey].low}</p>
+        <p>High Price: {itemData.highLowData.data[firstKey].high}</p>
+        <p>Low Price: {itemData.highLowData.data[firstKey].low}</p>
       </div>
     );
   }
@@ -87,15 +88,15 @@ const GeComponent = () => {
       </div>
 
       <div className=" w-1/3 h-96">
-        {itemData && itemName && timeSeriesData ? (
+        {itemData && itemName && itemData?.timeSeriesData?.data ? (
           <GeChart
             high={itemData.high}
             low={itemData.low}
             title={itemName}
-            timeSeries={timeSeriesData}
+            timeSeries={itemData.timeSeriesData.data}
           />
         ) : (
-          <p className="text-white">
+          <p className="flex text-white items-center justify-center">
             No data available. Please enter an item name above and press search.
           </p>
         )}

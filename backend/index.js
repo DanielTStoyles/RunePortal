@@ -190,8 +190,8 @@ app.post("/item", async (req, res) => {
       `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=24h&id=${item.item_id}`
     );
 
-    if (!highLow.ok) {
-      console.error("API Response Not OK:", highLow);
+    if (!highLow.ok || !timeSeries.ok) {
+      console.error("API Response Not OK:", highLow, timeSeries);
       return res.status(500).json({
         message: "API request failed: " + highLow.statusText,
       });
@@ -200,7 +200,7 @@ app.post("/item", async (req, res) => {
     const highLowData = await highLow.json();
     const timeSeriesData = await timeSeries.json();
 
-    const response = { highLowData, timeSeriesData };
+    const response = { highLowData, timeSeriesData }; //call them just highlow and timeseries (makes it more human readable) don't want alot of nesting in your json responses
 
     res.json(response);
   } catch (error) {

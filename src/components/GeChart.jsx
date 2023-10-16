@@ -37,6 +37,7 @@ const PriceChart = ({ title, timeSeries }) => {
       },
     },
   };
+
   const data = {
     labels: dateRange,
     datasets: [
