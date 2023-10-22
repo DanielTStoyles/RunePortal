@@ -1,74 +1,47 @@
 /** @format */
 
-import React, { useContext, useEffect, useState } from "react";
-import styles from "./PlayerStatsDisplay.module.css";
+import React, { useContext } from "react";
+import { useQuery } from "react-query";
 import AuthContext from "../context/AuthContext";
-import getRunescapeProfile from "../../repository/getRunescapeProfile";
+import getRunescapeProfile from "../hooks/getRunescapeProfile";
+import styles from "../style/PlayerStatsDisplayStyle.module.css";
 
-const skillImages = {
-  Attack: "/images/attack.png",
-  Defence: "/images/defence.png",
-  Strength: "/images/strength.png",
-  Hitpoints: "/images/hitpoints.png",
-  Ranged: "/images/ranged.png",
-  Prayer: "/images/prayer.png",
-  Magic: "/images/magic.png",
-  Cooking: "/images/cooking.png",
-  Woodcutting: "/images/woodcutting.png",
-  Fletching: "/images/fletching.png",
-  Fishing: "/images/fishing.png",
-  Firemaking: "/images/firemaking.png",
-  Crafting: "/images/crafting.png",
-  Smithing: "/images/smithing.png",
-  Mining: "/images/mining.png",
-  Herblore: "/images/herblore.png",
-  Agility: "/images/agility.png",
-  Thieving: "/images/thieving.png",
-  Slayer: "/images/slayer.png",
-  Farming: "/images/farming.png",
-  Runecraft: "/images/runecraft.png",
-  Hunter: "/images/hunter.png",
-  Construction: "/images/construction.png",
+const fetchPlayerData = async (rsn) => {
+  const response = await getRunescapeProfile(rsn);
+  if (!response) {
+    throw new Error("Failed to fetch player data");
+  }
+  return response;
 };
 
 const PlayerStatsDisplay = () => {
-  const [playerData, setPlayerData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
   const { user } = useContext(AuthContext);
-  console.log({ user });
-  const rsn = user.rsn;
-  console.log({ rsn });
+  console.log(user);
 
-  useEffect(() => {
-    const GetPlayerData = async () => {
-      const resp = await getRunescapeProfile(rsn);
-      console.log({ resp });
-      if (resp) {
-        setPlayerData(resp);
-        setLoading(false);
-      } else {
-        setError(true);
-      }
-    };
-    GetPlayerData();
-  }, [user]);
+  const {
+    data: playerData,
+    isLoading,
+    isError,
+    error,
+  } = useQuery(["playerData", user.rsn], () => fetchPlayerData(user.rsn), {
+    enabled: !!user.rsn,
+  });
 
-  if (!user || !rsn) {
+  if (!user || !user.rsn) {
     return <div>No player stats available.</div>;
   }
 
-  if (loading) {
+  if (isLoading) {
     return <div>Loading player stats...</div>;
   }
 
-  if (error) {
-    return <div>Error: {error}</div>;
+  if (isError) {
+    return <div>Error: {error.message}</div>;
   }
 
   return (
     <div>
-      <h2 className={styles.center}>{rsn}'s Stats</h2>
+      <h2 className={styles.center}>{user.rsn}'s Stats</h2>
       <ul className={styles.statsList}>
         {playerData.map((stat, index) => (
           <li key={`${stat.skill}-${index}`} className={styles.skillCell}>

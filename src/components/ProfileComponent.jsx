@@ -5,6 +5,8 @@ import SideBar from "../components/SideBarComp";
 import AuthContext from "../context/AuthContext";
 import CurrentUsername from "./LoggedUsername";
 import RsnRegisterForm from "./forms/RsnRegisterForm";
+import UserAccList from "../hooks/RegisteredAccFetch";
+import PlayerStatsDisplay from "./PlayerStatsDisplay";
 
 const ProfileComponent = () => {
   const { user } = useContext(AuthContext);
@@ -31,6 +33,7 @@ const ProfileComponent = () => {
       </div>
       <div className="relative items-center ">
         <h2 className=" p-3 text-slate-50 text-xl">Registered Accounts</h2>
+        <UserAccList />
       </div>
       <div className="flex flex-col justify-center items-center">
         <h3 className="text-white">
@@ -46,6 +49,9 @@ const ProfileComponent = () => {
           {showForm ? "Hide" : "Show"}
         </button>
         {showForm && <RsnRegisterForm />}
+      </div>
+      <div>
+        <PlayerStatsDisplay />
       </div>
     </div>
   );

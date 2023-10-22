@@ -2,12 +2,24 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
 
 const RsnRegisterForm = () => {
   const { register, handleSubmit } = useForm();
 
+  const registerMutation = useMutation(async (data) => {
+    const response = await fetch("/api/acctype", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (response.ok) {
+      console.log("good register");
+    }
+  });
+
   const onSubmit = (data) => {
-    console.log(data);
+    registerMutation.mutate(data);
   };
 
   return (
@@ -30,13 +42,13 @@ const RsnRegisterForm = () => {
           />
         </div>
         <div className="mb-2">
-          <label htmlFor="account-type" className="sr-only">
+          <label htmlFor="account_type" className="sr-only">
             Account Type
           </label>
           <select
-            id="account-type"
-            name="accountType"
-            {...register("accountType", { required: true })}
+            id="account_type"
+            name="account_type"
+            {...register("account_type", { required: true })}
             className="appearance-none rounded-none relative block w-full px-3 py-2 
             border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md 
             focus:outline-none focus:ring-lime-600 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -47,6 +59,13 @@ const RsnRegisterForm = () => {
             <option value="Ultimate Ironman">Ultimate Ironman</option>
             <option value="Group Ironman">Group Ironman</option>
           </select>
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+            <img
+              src="./images/dropdown-icon.png"
+              alt="dropdown"
+              className="h-4 w-4"
+            />
+          </div>
         </div>
       </div>
       <div>
@@ -64,3 +83,11 @@ const RsnRegisterForm = () => {
 };
 
 export default RsnRegisterForm;
+
+{
+  /* <img
+src="./images/dropdown-icon.png"
+alt="dropdown icon"
+className="h-4 w-4"
+/> */
+}

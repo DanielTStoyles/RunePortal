@@ -69,7 +69,7 @@ app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   const [results] = await connection.query(
-    "SELECT * FROM users WHERE email = ?",
+    "SELECT users.*, players.rsn FROM users LEFT JOIN players ON users.id = players.user_id WHERE users.email = ?",
     [email]
   );
 
@@ -206,5 +206,65 @@ app.post("/item", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Database error" });
+  }
+});
+
+app.post("/acctype", ensureLoggedIn, async (req, res) => {
+  console.log(req.body);
+
+  const user_id = req.session.user.id;
+  const { rsn, account_type } = req.body;
+
+  const [results] = await connection.query(
+    "SELECT * FROM players WHERE rsn = ?",
+    [rsn]
+  );
+
+  console.log(results);
+
+  if (results.length > 0) {
+    return res.status(400).json({ message: "rsn already registered" });
+  }
+
+  await connection.query(
+    "INSERT INTO players (rsn, account_type, user_id) VALUES (?, ?, ?)",
+    [rsn, account_type, user_id]
+  );
+
+  res.json({ message: "Account Registered" });
+});
+
+app.get("/getUserAccList", ensureLoggedIn, async (req, res) => {
+  const user_id = req.session.user.id;
+  try {
+    const [rows] = await connection.query(
+      "SELECT rsn, account_type FROM players WHERE user_id = ?",
+      [user_id]
+    );
+    res.json(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "database error" });
+  }
+});
+
+app.get("/playerStats/:playerName", async (req, res) => {
+  try {
+    const { playerName } = req.params;
+    console.log(playerName);
+    const response = await fetch(
+      `${OSRS_BASE_URL}?player=${encodeURIComponent(playerName)}`
+    );
+    if (!response.ok) {
+      throw new Error(
+        `server response ${response.status}: ${response.statustText}`
+      );
+    }
+
+    const data = await response.json();
+
+    res.send(data);
+  } catch (error) {
+    res.status(500).send(`Error fetching player data: ${error.message}`);
   }
 });
