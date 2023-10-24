@@ -260,8 +260,8 @@ app.get("/playerStats/:playerName", async (req, res) => {
         `server response ${response.status}: ${response.statustText}`
       );
     }
-
-    const data = await response.json();
+    // console.log(await response.text());
+    const data = await response.text();
 
     res.send(data);
   } catch (error) {

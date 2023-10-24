@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import AuthContext from "../context/AuthContext";
 import getRunescapeProfile from "../hooks/getRunescapeProfile";
 import styles from "../style/PlayerStatsDisplayStyle.module.css";
+import skillImages from "../images/skillImages";
 
 const fetchPlayerData = async (rsn) => {
   const response = await getRunescapeProfile(rsn);
@@ -16,8 +17,6 @@ const fetchPlayerData = async (rsn) => {
 
 const PlayerStatsDisplay = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
-
   const {
     data: playerData,
     isLoading,
@@ -40,7 +39,7 @@ const PlayerStatsDisplay = () => {
   }
 
   return (
-    <div>
+    <div className="text-white">
       <h2 className={styles.center}>{user.rsn}'s Stats</h2>
       <ul className={styles.statsList}>
         {playerData.map((stat, index) => (
@@ -58,6 +57,7 @@ const PlayerStatsDisplay = () => {
                   width="24"
                   height="24"
                 />
+
                 <span className={styles.level}>Level {stat.level}</span>
               </>
             )}
