@@ -3,7 +3,7 @@
 import React, { useContext } from "react";
 import { useQuery } from "react-query";
 import AuthContext from "../context/AuthContext";
-import getRunescapeProfile from "../hooks/getRunescapeProfile";
+import getRunescapeProfile from "../hooks/getRunescapeProfileSkills";
 import styles from "../style/PlayerStatsDisplayStyle.module.css";
 import skillImages from "../images/skillImages";
 
@@ -26,8 +26,8 @@ const PlayerStatsDisplay = () => {
     enabled: !!user.rsn,
   });
 
-  if (!user || !user.rsn) {
-    return <div>No player stats available.</div>;
+  if (!user.rsn) {
+    return <div className="text-white">No player stats available.</div>;
   }
 
   if (isLoading) {

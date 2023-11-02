@@ -182,11 +182,11 @@ app.post("/item", async (req, res) => {
 
     const item = results[0];
 
-    const highLow = await fetch(
+    const highLowData = await fetch(
       `https://prices.runescape.wiki/api/v1/osrs/latest?id=${item.item_id}`
     );
 
-    const timeSeries = await fetch(
+    const timeSeriesData = await fetch(
       `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=24h&id=${item.item_id}`
     );
 
@@ -197,10 +197,10 @@ app.post("/item", async (req, res) => {
       });
     }
 
-    const highLowData = await highLow.json();
-    const timeSeriesData = await timeSeries.json();
+    const highLow = await highLowData.json();
+    const timeSeries = await timeSeriesData.json();
 
-    const response = { highLowData, timeSeriesData }; //call them just highlow and timeseries (makes it more human readable) don't want alot of nesting in your json responses
+    const response = { highLow, timeSeries }; //call them just highlow and timeseries (makes it more human readable) don't want alot of nesting in your json responses
 
     res.json(response);
   } catch (error) {
@@ -213,6 +213,8 @@ app.post("/acctype", ensureLoggedIn, async (req, res) => {
   console.log(req.body);
 
   const user_id = req.session.user.id;
+  req.session.user.rsn = rsn;
+
   const { rsn, account_type } = req.body;
 
   const [results] = await connection.query(
@@ -230,6 +232,16 @@ app.post("/acctype", ensureLoggedIn, async (req, res) => {
     "INSERT INTO players (rsn, account_type, user_id) VALUES (?, ?, ?)",
     [rsn, account_type, user_id]
   );
+
+  if (rsnUpdateSuccess) {
+    req.session.rsn = newRsn;
+    req.session.save((err) => {
+      if (err) {
+        console.error("Session save error:", err);
+        return res.status(500).json({ message: "Failed to save session" });
+      }
+    });
+  }
 
   res.json({ message: "Account Registered" });
 });
@@ -260,10 +272,10 @@ app.get("/playerStats/:playerName", async (req, res) => {
         `server response ${response.status}: ${response.statustText}`
       );
     }
-    // console.log(await response.text());
-    const data = await response.text();
+    const statsData = await response.text();
+    console.log(statsData);
 
-    res.send(data);
+    res.send(statsData);
   } catch (error) {
     res.status(500).send(`Error fetching player data: ${error.message}`);
   }

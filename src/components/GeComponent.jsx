@@ -51,8 +51,8 @@ const GeComponent = () => {
   return (
     <div
       className="flex flex-col min-h-screen bg-center 
-    bg-top bg-repeat-y px-4 py-8 sm:px-6 lg:px-8 bg-black overflow-y-hidden
-    bg-[url(C:\Users\Danie\Desktop\RunePortalv2\src\images\bg2.jpg)] items-center"
+    bg-top bg-repeat px-4 py-8 sm:px-6 lg:px-8 bg-black overflow-y-hidden
+    bg-[url(C:\Users\Danie\Desktop\RunePortalv2\src\images\bg3.jpg)] items-center"
     >
       <div className="mb-4">
         <h1 className=" text-2xl font-bold tracking-tight text-gray-900 dark:text-white ">

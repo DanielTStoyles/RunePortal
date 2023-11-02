@@ -6,16 +6,9 @@ import CurrentUsername from "./LoggedUsername";
 import AuthContext from "../context/AuthContext";
 
 const SideBar = () => {
-  const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { user, logout } = useContext(AuthContext);
 
-  const logout = async () => {
-    await fetch("/api/logout", {
-      method: "POST",
-    });
-    console.log("logged out");
-    window.location.reload();
-  };
+  const navigate = useNavigate();
 
   const ge = () => {
     navigate("/ge");
@@ -27,6 +20,10 @@ const SideBar = () => {
 
   const login = () => {
     navigate("/login");
+  };
+
+  const home = () => {
+    navigate("/home");
   };
 
   return (

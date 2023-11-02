@@ -18,13 +18,10 @@ const ProfileComponent = () => {
 
   return (
     <div
-      className="min-h-screen bg-[url(C:\Users\Danie\Desktop\RunePortalv2\src\images\bg2.jpg)] 
-    bg-repeat-y bg-center bg-top mx-auto 
+      className="min-h-screen bg-[url(C:\Users\Danie\Desktop\RunePortalv2\src\images\bg3.jpg)] 
+    bg-repeat bg-center bg-top mx-auto 
     overflow-y-hidden flex flex-col items-center bg-black py-12 px-4 sm:px-6 lg:px-8"
     >
-      <div>
-        <SideBar user={user} />
-      </div>
       <div className="top-0">
         <h1 className="p-3 text-slate-50 text-4xl">
           <CurrentUsername />
