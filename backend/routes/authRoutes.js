@@ -13,6 +13,7 @@ const router = express.Router();
 router.post("/login", login);
 router.post("/logout", logout);
 router.post("/register", register);
-router.post("/checkSession", checkSession);
+console.log("Setting up /checkSession route");
+router.get("/checkSession", checkSession);
 
 export default router;

@@ -63,5 +63,7 @@ export const logout = async (req, res) => {
 };
 
 export const checkSession = (req, res) => {
+  console.log("inside checkSession handler");
+  console.log(res);
   res.json(req.session.user || null);
 };

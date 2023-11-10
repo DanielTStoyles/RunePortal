@@ -1,6 +1,7 @@
 /** @format */
 
 import connection from "../database.js";
+import { User } from "../models/userModel.js";
 
 export const getUserAccList = async (req, res) => {
   const user_id = req.session.user.id;
@@ -58,10 +59,7 @@ export const getUsername = async (req, res) => {
   const userId = req.session.user.id;
 
   try {
-    const [rows] = await connection.query(
-      "SELECT username FROM users WHERE id = ?",
-      [userId]
-    );
+    const rows = User.getUserById(userId);
     if (rows.length > 0) {
       res.json({ username: rows[0].username });
     } else {
