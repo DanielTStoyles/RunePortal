@@ -2,6 +2,7 @@
 
 import connection from "../database.js";
 import { User } from "../models/userModel.js";
+import getRunescapeProfile from "../../src/hooks/getRunescapeProfileSkills.js";
 
 export const getUserAccList = async (req, res) => {
   const user_id = req.session.user.id;
@@ -21,37 +22,48 @@ export const acctype = async (req, res) => {
   console.log(req.body);
 
   const user_id = req.session.user.id;
-  req.session.user.rsn = rsn;
-
   const { rsn, account_type } = req.body;
 
-  const [results] = await connection.query(
-    "SELECT * FROM players WHERE rsn = ?",
-    [rsn]
-  );
+  try {
+    const [results] = await connection.query(
+      "SELECT * FROM players WHERE rsn = ?",
+      [rsn]
+    );
 
-  console.log(results);
+    console.log(results);
 
-  if (results.length > 0) {
-    return res.status(400).json({ message: "rsn already registered" });
-  }
+    if (results.length > 0) {
+      return res.status(400).json({ message: "rsn already registered" });
+    }
 
-  await connection.query(
-    "INSERT INTO players (rsn, account_type, user_id) VALUES (?, ?, ?)",
-    [rsn, account_type, user_id]
-  );
+    await connection.query(
+      "INSERT INTO players (rsn, account_type, user_id) VALUES (?, ?, ?)",
+      [rsn, account_type, user_id]
+    );
 
-  if (rsnUpdateSuccess) {
-    req.session.rsn = newRsn;
+    const playerStats = await getRunescapeProfile(rsn);
+
+    if (playerStats) {
+      for (const stat of playerStats) {
+        await connection.query(
+          "INSERT INTO player_stats (player_id, skill_name, skill_level, skill_xp, last_updated) VALUES (?, ?, ?, ?, NOW())",
+          [user_id, stat.skill, stat.level, stat.experience]
+        );
+      }
+    }
+
+    req.session.rsn = rsn;
     req.session.save((err) => {
       if (err) {
         console.error("Session save error:", err);
         return res.status(500).json({ message: "Failed to save session" });
       }
+      res.json({ message: "Account Registered" });
     });
+  } catch (error) {
+    console.error("Error in registration process:", error);
+    return res.status(500).json({ message: "Failed to register account" });
   }
-
-  res.json({ message: "Account Registered" });
 };
 
 export const getUsername = async (req, res) => {
@@ -59,7 +71,7 @@ export const getUsername = async (req, res) => {
   const userId = req.session.user.id;
 
   try {
-    const rows = User.getUserById(userId);
+    const rows = await User.getUserById(userId);
     if (rows.length > 0) {
       res.json({ username: rows[0].username });
     } else {

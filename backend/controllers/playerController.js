@@ -1,6 +1,8 @@
 /** @format */
 
 import connection from "../database.js";
+const OSRS_BASE_URL =
+  "https://secure.runescape.com/m=hiscore_oldschool/index_lite.ws";
 
 export const playerStatsByName = async (req, res) => {
   try {
@@ -11,7 +13,7 @@ export const playerStatsByName = async (req, res) => {
     );
     if (!response.ok) {
       throw new Error(
-        `server response ${response.status}: ${response.statustText}`
+        `server response ${response.status}: ${response.statusText}`
       );
     }
     const statsData = await response.text();

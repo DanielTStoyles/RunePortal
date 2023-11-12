@@ -3,7 +3,10 @@
 import { useQuery } from "react-query";
 
 const fetchUsername = async () => {
-  const response = await fetch("/api/getUsername", { credentials: "include" });
+  const response = await fetch("/api/getUsername", {
+    method: "POST",
+    credentials: "include",
+  });
   if (!response.ok) {
     throw new Error("Bad network response ");
   }

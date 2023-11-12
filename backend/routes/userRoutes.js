@@ -11,7 +11,7 @@ import ensureLoggedIn from "../middleware/ensureLoggedIn.js";
 
 const router = express.Router();
 
-router.post("/getUserAccList", ensureLoggedIn, getUserAccList);
+router.get("/getUserAccList", ensureLoggedIn, getUserAccList);
 router.post("/acctype", ensureLoggedIn, acctype);
 router.post("/getUsername", ensureLoggedIn, getUsername);
 
