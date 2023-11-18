@@ -23,7 +23,7 @@ const app = express();
 const PORT = process.env.PORT || 5174;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
-  // setupData();
+  // setupItemData();
 });
 
 app.use(express.json());
@@ -42,7 +42,7 @@ const OSRS_BASE_URL =
 
 const OSRS_GE_BASE_URL = "https://prices.runescape.wiki/api/v1/osrs/mapping";
 
-const setupData = async () => {
+const setupItemData = async () => {
   try {
     const itemsFilePath = "./items.json";
     const items = await itemParse(itemsFilePath);

@@ -19,23 +19,21 @@ export const item = async (req, res) => {
 
     const item = results[0];
 
-    const highLowData = await fetch(
-      `https://prices.runescape.wiki/api/v1/osrs/latest?id=${item.item_id}`
-    );
+    const [highLow, timeSeries] = await Promise.all([
+      fetch(
+        `https://prices.runescape.wiki/api/v1/osrs/latest?id=${item.item_id}`
+      ).then((r) => r.json()),
+      fetch(
+        `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=24h&id=${item.item_id}`
+      ).then((r) => r.json()),
+    ]);
 
-    const timeSeriesData = await fetch(
-      `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=24h&id=${item.item_id}`
-    );
-
-    if (!highLow.ok || !timeSeries.ok) {
+    if (!highLow || !timeSeries) {
       console.error("API Response Not OK:", highLow, timeSeries);
       return res.status(500).json({
         message: "API request failed: " + highLow.statusText,
       });
     }
-
-    const highLow = await highLowData.json();
-    const timeSeries = await timeSeriesData.json();
 
     const response = { highLow, timeSeries }; //call them just highlow and timeseries (makes it more human readable) don't want alot of nesting in your json responses
 

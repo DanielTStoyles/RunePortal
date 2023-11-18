@@ -1,6 +1,7 @@
 /** @format */
 
 import connection from "../database.js";
+
 const OSRS_BASE_URL =
   "https://secure.runescape.com/m=hiscore_oldschool/index_lite.ws";
 

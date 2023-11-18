@@ -22,17 +22,18 @@ const fetchItemData = async (itemName) => {
 const GeComponent = () => {
   const { user } = useContext(AuthContext);
   const [itemName, setItemName] = useState("");
+  const [query, setQuery] = useState(null);
 
   const {
     data: itemData,
     isError,
     isLoading,
-  } = useQuery("item", () => fetchItemData(itemName), { enabled: !!itemName });
+  } = useQuery("item", () => fetchItemData(query), { enabled: !!query });
 
   const handleSubmit = async () => {
     const nameToUppercase =
       itemName.charAt(0).toUpperCase() + itemName.slice(1);
-    setItemName(nameToUppercase);
+    setQuery(nameToUppercase);
   };
 
   let displayData = null;
