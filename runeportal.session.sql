@@ -1,1 +1,1 @@
-SELECT * FROM player_stats;
+SELECT * FROM players;

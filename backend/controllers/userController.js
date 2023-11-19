@@ -18,8 +18,8 @@ export const getUserAccList = async (req, res) => {
   }
 };
 
-export const acctype = async (req, res) => {
-  console.log(req.body);
+export const playerRegistration = async (req, res) => {
+  console.log(req.body, "This is the playerRegistration req.body");
 
   const user_id = req.session.user.id;
   const { rsn, account_type } = req.body;
@@ -40,17 +40,6 @@ export const acctype = async (req, res) => {
       "INSERT INTO players (rsn, account_type, user_id) VALUES (?, ?, ?)",
       [rsn, account_type, user_id]
     );
-
-    const playerStats = await getRunescapeProfile(rsn);
-
-    if (playerStats) {
-      for (const stat of playerStats) {
-        await connection.query(
-          "INSERT INTO player_stats (player_id, skill_name, skill_level, skill_xp, last_updated) VALUES (?, ?, ?, ?, NOW())",
-          [user_id, stat.skill, stat.level, stat.experience]
-        );
-      }
-    }
 
     req.session.rsn = rsn;
     req.session.save((err) => {

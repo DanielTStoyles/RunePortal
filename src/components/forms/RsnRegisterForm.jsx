@@ -3,20 +3,39 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
+import getRunescapeProfile from "../../hooks/getRunescapeProfileSkills";
 
 const RsnRegisterForm = () => {
   const { register, handleSubmit } = useForm();
 
-  const registerMutation = useMutation(async (data) => {
-    const response = await fetch("/api/acctype", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (response.ok) {
-      console.log("good register");
+  const registerMutation = useMutation(
+    async (data) => {
+      const response = await fetch("/api/playerRegistration", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        throw new Error("failed to register player");
+      }
+      console.log(response.json);
+      return response.json();
+    },
+    {
+      onSuccess: async () => {
+        try {
+          const playerData = await getRunescapeProfile();
+          const playerBossData = playerData.playerBossData;
+          // console.log(playerBossData, "Line 28 log of playerBossData");
+        } catch (error) {
+          console.error("Error fetching player data:", error);
+        }
+      },
+      onError: (error) => {
+        console.error("registration error:", error);
+      },
     }
-  });
+  );
 
   const onSubmit = (data) => {
     registerMutation.mutate(data);

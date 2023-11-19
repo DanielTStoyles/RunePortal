@@ -38,11 +38,14 @@ const PlayerStatsDisplay = () => {
     return <div>Error: {error.message}</div>;
   }
 
+  // console.log(playerData, "This is the log");
+  const playerSkills = playerData.playerSkills;
+
   return (
     <div className="text-white">
       <h2 className={styles.center}>{user.rsn}'s Stats</h2>
       <ul className={styles.statsList}>
-        {playerData.map((stat, index) => (
+        {playerSkills.map((stat, index) => (
           <li key={`${stat.skill}-${index}`} className={styles.skillCell}>
             {stat.skill === "Overall" ? (
               <>

@@ -3,7 +3,7 @@ import express from "express";
 
 import {
   getUserAccList,
-  acctype,
+  playerRegistration,
   getUsername,
 } from "../controllers/userController.js";
 
@@ -12,7 +12,7 @@ import ensureLoggedIn from "../middleware/ensureLoggedIn.js";
 const router = express.Router();
 
 router.get("/getUserAccList", ensureLoggedIn, getUserAccList);
-router.post("/acctype", ensureLoggedIn, acctype);
+router.post("/playerRegistration", ensureLoggedIn, playerRegistration);
 router.post("/getUsername", ensureLoggedIn, getUsername);
 
 export default router;
