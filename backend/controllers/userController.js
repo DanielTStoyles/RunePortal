@@ -2,7 +2,11 @@
 
 import connection from "../database.js";
 import { User } from "../models/userModel.js";
-import getRunescapeProfile from "../../src/hooks/getRunescapeProfileSkills.js";
+import getRunescapeProfile from "../../src/hooks/getRunescapeProfile.js";
+
+//implement a selector here to choose an account from the list to set as primary
+//seperate endpoint to change player, changes session object rsn to selected player
+//will automatically reflect in /user
 
 export const getUserAccList = async (req, res) => {
   const user_id = req.session.user.id;
@@ -41,7 +45,12 @@ export const playerRegistration = async (req, res) => {
       [rsn, account_type, user_id]
     );
 
-    req.session.rsn = rsn;
+    //Think ahout the shape of the session object, cookie and user, req.session.user.rsn. Concern that if you want to show the stats of multiple players on the same page
+    //have a player selector in the top left where you select the primary player.
+    //
+
+    req.session.user.rsn = rsn;
+
     req.session.save((err) => {
       if (err) {
         console.error("Session save error:", err);

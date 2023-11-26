@@ -1,6 +1,6 @@
 /** @format */
 
-const bosses = [
+export const bosses = [
   "Abyssal Sire",
   "Alchemical Hydra",
   "Artio",
@@ -61,7 +61,7 @@ const bosses = [
   "Zulrah ",
 ];
 
-const skills = [
+export const skills = [
   "Overall",
   "Attack",
   "Defence",
@@ -88,7 +88,7 @@ const skills = [
   "Construction",
 ];
 
-const clueScrolls = [
+export const clueScrolls = [
   "Clue Scrolls (all)",
   "Clue Scrolls (beginner)",
   "Clue Scrolls (easy)",
@@ -98,13 +98,13 @@ const clueScrolls = [
   "Clue Scrolls (master)",
 ];
 
-// const miniGames = [
-//   "Rifts closed",
-//   "League Points ",
-//   "Deadman Points ",
-//   "Bounty Hunter - Hunter ",
-//   "Bounty Hunter - Rogue ",
-//   "Bounty Hunter (Legacy) - Hunter ",
-//   "Bounty Hunter (Legacy) - Rogue ",
-//   "Soul Wars Zeal",
-// ];
+export const miniGames = [
+  "Rifts closed",
+  "League Points ",
+  "Deadman Points ",
+  "Bounty Hunter - Hunter ",
+  "Bounty Hunter - Rogue ",
+  "Bounty Hunter (Legacy) - Hunter ",
+  "Bounty Hunter (Legacy) - Rogue ",
+  "Soul Wars Zeal",
+];

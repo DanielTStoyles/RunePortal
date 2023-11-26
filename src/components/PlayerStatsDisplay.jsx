@@ -1,51 +1,22 @@
 /** @format */
 
 import React, { useContext } from "react";
-import { useQuery } from "react-query";
 import AuthContext from "../context/AuthContext";
-import getRunescapeProfile from "../hooks/getRunescapeProfileSkills";
 import styles from "../style/PlayerStatsDisplayStyle.module.css";
 import skillImages from "../images/skillImages";
 
-const fetchPlayerData = async (rsn) => {
-  const response = await getRunescapeProfile(rsn);
-  if (!response) {
-    throw new Error("Failed to fetch player data");
-  }
-  return response;
-};
-
-const PlayerStatsDisplay = () => {
+const PlayerStatsDisplay = ({ playerSkillsData }) => {
   const { user } = useContext(AuthContext);
-  const {
-    data: playerData,
-    isLoading,
-    isError,
-    error,
-  } = useQuery(["playerData", user.rsn], () => fetchPlayerData(user.rsn), {
-    enabled: !!user.rsn,
-  });
 
-  if (!user.rsn) {
+  if (!playerSkillsData || playerSkillsData.length === 0) {
     return <div className="text-white">No player stats available.</div>;
   }
-
-  if (isLoading) {
-    return <div>Loading player stats...</div>;
-  }
-
-  if (isError) {
-    return <div>Error: {error.message}</div>;
-  }
-
-  // console.log(playerData, "This is the log");
-  const playerSkills = playerData.playerSkills;
 
   return (
     <div className="text-white">
       <h2 className={styles.center}>{user.rsn}'s Stats</h2>
       <ul className={styles.statsList}>
-        {playerSkills.map((stat, index) => (
+        {playerSkillsData.map((stat, index) => (
           <li key={`${stat.skill}-${index}`} className={styles.skillCell}>
             {stat.skill === "Overall" ? (
               <>

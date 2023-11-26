@@ -3,7 +3,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import getRunescapeProfile from "../../hooks/getRunescapeProfileSkills";
+import getRunescapeProfile from "../../hooks/getRunescapeProfile";
 
 const RsnRegisterForm = () => {
   const { register, handleSubmit } = useForm();
@@ -24,9 +24,9 @@ const RsnRegisterForm = () => {
     {
       onSuccess: async () => {
         try {
-          const playerData = await getRunescapeProfile();
+          const playerData = await getRunescapeProfile(user.rsn);
           const playerBossData = playerData.playerBossData;
-          // console.log(playerBossData, "Line 28 log of playerBossData");
+          console.log(playerBossData, "Line 28 log of playerBossData");
         } catch (error) {
           console.error("Error fetching player data:", error);
         }
