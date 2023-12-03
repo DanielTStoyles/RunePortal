@@ -1,6 +1,7 @@
 /** @format */
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
+import { useQuery } from "react-query";
 import AuthContext from "../../context/AuthContext";
 import PlayerStatsDisplay from "../PlayerStatsDisplay";
 import getRunescapeProfile from "../../hooks/getRunescapeProfile";
@@ -13,26 +14,21 @@ import FriendsListComponent from "../AdventureLogComponents/AdventureLogFriendsL
 
 const AdventureLogBook = () => {
   const { user } = useContext(AuthContext);
-  const [playerSkillsData, setPlayerSkillsData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchProfileData = async () => {
-      try {
-        setIsLoading(true);
-        const profileData = await getRunescapeProfile(user.rsn);
-        if (profileData && profileData.playerSkillsData) {
-          setPlayerSkillsData(profileData.playerSkillsData);
-        }
-      } catch (error) {
-        console.error("error fetching profile data:", error);
-      }
-    };
-
-    if (user.rsn) {
-      fetchProfileData();
+  const {
+    data: playerSkillsData,
+    isLoading,
+    error,
+  } = useQuery(
+    ["runescapeProfile", user.rsn],
+    () => getRunescapeProfile(user.rsn),
+    {
+      enabled: !!user.rsn,
     }
-  }, [user.rsn]);
+  );
+
+  if (error) {
+    console.error("error fetching profile data:", error);
+  }
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-runeportal-background-dark">

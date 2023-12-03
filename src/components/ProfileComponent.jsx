@@ -1,48 +1,39 @@
 /** @format */
 
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
+import { useQuery } from "react-query";
 import AuthContext from "../context/AuthContext";
 import CurrentUsername from "./LoggedUsername";
 import RsnRegisterForm from "./forms/RsnRegisterForm";
 import UserAccList from "../hooks/RegisteredAccFetch";
 import PlayerStatsDisplay from "./PlayerStatsDisplay";
 import getRunescapeProfile from "../hooks/getRunescapeProfile";
-import BossDataDisplay from "./playerBossDataDisplay";
 import GeWatchlistProfileDisplay from "./GeWatchlistProfileDisplay";
 
 const ProfileComponent = () => {
   const { user } = useContext(AuthContext);
   const [showForm, setShowForm] = useState(false);
-  const [playerBossData, setPlayerBossData] = useState([]);
-  const [playerSkillsData, setPlayerSkillsData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = () => {
     setShowForm(!showForm);
   };
 
-  useEffect(() => {
-    const fetchProfileData = async () => {
-      try {
-        setIsLoading(true);
-        const profileData = await getRunescapeProfile(user.rsn);
-        if (
-          profileData &&
-          profileData.playerBossData &&
-          profileData.playerSkillsData
-        ) {
-          setPlayerBossData(profileData.playerBossData);
-          setPlayerSkillsData(profileData.playerSkillsData);
-        }
-      } catch (error) {
-        console.error("error fetching profile data:", error);
-      }
-    };
-
-    if (user.rsn) {
-      fetchProfileData();
+  const {
+    data: profileData,
+    isLoading,
+    isError,
+    error,
+  } = useQuery(
+    ["runescapeProfile", user.rsn],
+    () => getRunescapeProfile(user.rsn),
+    {
+      enabled: !!user.rsn,
     }
-  }, [user.rsn]);
+  );
+
+  if (isError) {
+    console.error("error fetching profile data:", error);
+  }
 
   return (
     <div
@@ -76,11 +67,9 @@ const ProfileComponent = () => {
         {showForm && <RsnRegisterForm />}
       </div>
       <div>
-        <PlayerStatsDisplay playerSkillsData={playerSkillsData} />
+        <PlayerStatsDisplay playerSkillsData={profileData} />
       </div>
-      {/* <div>
-        <BossDataDisplay playerBossData={playerBossData} />
-      </div> */}
+
       <div className="mt-6">
         <GeWatchlistProfileDisplay />
       </div>
@@ -89,9 +78,3 @@ const ProfileComponent = () => {
 };
 
 export default ProfileComponent;
-
-// if (!response.ok) {
-//   throw new Error(
-//     `error fetching profile adventure log: ${response.statusText}`
-//   );
-// }

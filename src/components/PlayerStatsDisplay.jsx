@@ -16,7 +16,7 @@ const PlayerStatsDisplay = ({ playerSkillsData }) => {
     <div className="text-white">
       <h2 className={styles.center}>{user.rsn}'s Stats</h2>
       <ul className={styles.statsList}>
-        {playerSkillsData.map((stat, index) => (
+        {playerSkillsData.playerSkillsData.map((stat, index) => (
           <li key={`${stat.skill}-${index}`} className={styles.skillCell}>
             {stat.skill === "Overall" ? (
               <>
