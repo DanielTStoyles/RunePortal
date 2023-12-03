@@ -1,1 +1,1 @@
-SELECT * FROM player_boss_kills;
+DELETE FROM users WHERE id=15;

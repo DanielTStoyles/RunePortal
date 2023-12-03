@@ -8,6 +8,7 @@ import UserAccList from "../hooks/RegisteredAccFetch";
 import PlayerStatsDisplay from "./PlayerStatsDisplay";
 import getRunescapeProfile from "../hooks/getRunescapeProfile";
 import BossDataDisplay from "./playerBossDataDisplay";
+import GeWatchlistProfileDisplay from "./GeWatchlistProfileDisplay";
 
 const ProfileComponent = () => {
   const { user } = useContext(AuthContext);
@@ -41,7 +42,7 @@ const ProfileComponent = () => {
     if (user.rsn) {
       fetchProfileData();
     }
-  });
+  }, [user.rsn]);
 
   return (
     <div
@@ -77,8 +78,11 @@ const ProfileComponent = () => {
       <div>
         <PlayerStatsDisplay playerSkillsData={playerSkillsData} />
       </div>
-      <div>
+      {/* <div>
         <BossDataDisplay playerBossData={playerBossData} />
+      </div> */}
+      <div className="mt-6">
+        <GeWatchlistProfileDisplay />
       </div>
     </div>
   );
