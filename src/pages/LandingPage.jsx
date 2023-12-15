@@ -5,6 +5,8 @@ import LandingPageCard from "../components/LandingPageDescriptionCard";
 import SideBar from "../components/SideBarComp";
 import RunePortalRegisterForm from "../components/forms/RunePortalRegisterForm";
 import RunePortalLogo from "../components/RunePortalLogo";
+import PlayerStatsDisplay from "../components/PlayerStatsDisplay";
+import ProfileSkillsDisplay from "../components/profileComponents/profileSkillsDisplay";
 
 const LandingPage = () => {
   return (
@@ -52,6 +54,9 @@ const LandingPage = () => {
             description="The Adventure Log is back! Here you can track your progress by achieving milestones,"
             imageUrl="path_to_image"
           />
+        </div>
+        <div>
+          <ProfileSkillsDisplay />
         </div>
       </div>
     </div>

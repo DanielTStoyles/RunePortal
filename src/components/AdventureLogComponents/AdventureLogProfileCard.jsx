@@ -8,7 +8,7 @@ const AdventureLogProfileCard = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <div className="bg-gray-800 rounded-lg p-4 max-w-sm w-full">
+    <div className="bg-runeportal-cardBackground rounded-lg p-4 max-w-sm w-full ml-8">
       <div className="flex items-center space-x-4">
         <img
           src={avatarImage}
@@ -21,11 +21,7 @@ const AdventureLogProfileCard = () => {
           <p className="text-gray-300">Time Played: 228 days 7 hours</p>
         </div>
       </div>
-      <div className="flex justify-end mt-4">
-        <button className="text-sm bg-yellow-500 text-gray-800 font-bold py-2 px-4 rounded">
-          Settings
-        </button>
-      </div>
+      <div className="flex justify-end mt-4 "></div>
     </div>
   );
 };

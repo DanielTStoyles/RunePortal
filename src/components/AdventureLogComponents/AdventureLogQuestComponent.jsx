@@ -13,7 +13,6 @@ const AdventureLogQuestComponent = () => {
     "A Void Dance",
     "All Fired Up",
     "Animal Magnetism",
-    // ... add more quests as needed
   ];
 
   const changeTab = (tab) => {
@@ -21,7 +20,7 @@ const AdventureLogQuestComponent = () => {
   };
 
   return (
-    <div className="bg-gray-800 text-white p-4 rounded-lg shadow-lg max-w-lg w-full">
+    <div className="bg-runeportal-cardBackground text-white p-4 rounded-lg shadow-lg max-w-lg w-full">
       <div className="mb-4 border-b border-gray-700">
         <ul className="flex justify-center -mb-px">
           <li

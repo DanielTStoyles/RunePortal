@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useContext } from "react";
-import ProfileComponent from "../components/ProfileComponent";
+import ProfileComponent from "../components/profileComponents/ProfileComponent";
 import AuthContext from "../context/AuthContext";
 import SideBar from "../components/SideBarComp";
 

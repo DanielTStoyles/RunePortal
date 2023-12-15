@@ -14,7 +14,7 @@ const FriendsListComponent = () => {
   ];
 
   return (
-    <div className="bg-gray-800 text-white p-4 rounded-lg shadow-lg max-w-md w-full">
+    <div className="bg-runeportal-cardBackground text-white p-4 rounded-lg shadow-lg max-w-md w-full">
       <div className="border-b border-gray-700 pb-2 mb-2">
         <h2 className="text-xl font-bold">Friends List</h2>
       </div>

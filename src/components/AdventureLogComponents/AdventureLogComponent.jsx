@@ -34,7 +34,7 @@ const AdventureLogBook = () => {
     <div className="flex justify-center items-center min-h-screen bg-runeportal-background-dark">
       <SideBar />
       <div
-        className="bg-gray-700 shadow-lg rounded-lg overflow-hidden ml-64"
+        className="bg-runeportal-grey shadow-lg rounded-lg overflow-hidden ml-64"
         style={{ width: "1000px" }}
       >
         <div className="flex items-center ">

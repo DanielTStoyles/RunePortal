@@ -17,11 +17,11 @@ const AdventureLogRecentEvents = () => {
     { id: 8, text: "I killed Bork." },
     { id: 9, text: "Levelled up Crafting." },
     { id: 10, text: "I killed 2 boss monsters in Daemonheim" },
-    { id: 11, text: "Levelled all skills over 69" },
+    { id: 11, text: "Levelled all skills over 69 (nice)" },
   ];
 
   return (
-    <div className="max-w-md w-full bg-gray-800 rounded-lg p-4 overflow-hidden shadow-lg">
+    <div className="max-w-md w-full bg-runeportal-cardBackground rounded-lg p-4 overflow-hidden shadow-lg">
       <h2 className="font-bold text-xl mb-2 text-white">My Recent Events</h2>
       <ul className="h-64 overflow-y-auto">
         {events.map((event) => (

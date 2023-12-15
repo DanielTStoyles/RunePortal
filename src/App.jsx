@@ -1,10 +1,9 @@
 /** @format */
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import AuthProvider from "./context/AuthProvider"; // Import AuthProvider
+import AuthProvider from "./context/AuthProvider";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Home from "./pages/Home";
 import GrandExchange from "./pages/GrandeExchange";
 import ProfilePage from "./pages/ProfilePage";
 import LandingPage from "./pages/LandingPage";
@@ -20,7 +19,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/home" element={<LandingPage />} />
             <Route path="/" element={<LandingPage />} />
             <Route path="/ge" element={<GrandExchange />} />
             <Route path="/profile" element={<ProfilePage />} />

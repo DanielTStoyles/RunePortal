@@ -2,13 +2,14 @@
 
 import React, { useContext, useState } from "react";
 import { useQuery } from "react-query";
-import AuthContext from "../context/AuthContext";
-import CurrentUsername from "./LoggedUsername";
-import RsnRegisterForm from "./forms/RsnRegisterForm";
-import UserAccList from "../hooks/RegisteredAccFetch";
-import PlayerStatsDisplay from "./PlayerStatsDisplay";
-import getRunescapeProfile from "../hooks/getRunescapeProfile";
+import AuthContext from "../../context/AuthContext";
+import CurrentUsername from "../LoggedUsername";
+import RsnRegisterForm from "../forms/RsnRegisterForm";
+import UserAccList from "../../hooks/RegisteredAccFetch";
+import PlayerStatsDisplay from "../PlayerStatsDisplay";
+import getRunescapeProfile from "../../hooks/getRunescapeProfile";
 import GeWatchlistProfileDisplay from "./GeWatchlistProfileDisplay";
+import { useParams } from "react-router-dom";
 
 const ProfileComponent = () => {
   const { user } = useContext(AuthContext);
@@ -19,7 +20,7 @@ const ProfileComponent = () => {
   };
 
   const {
-    data: profileData,
+    data: data,
     isLoading,
     isError,
     error,
@@ -67,7 +68,8 @@ const ProfileComponent = () => {
         {showForm && <RsnRegisterForm />}
       </div>
       <div>
-        <PlayerStatsDisplay playerSkillsData={profileData} />
+        {" "}
+        <PlayerStatsDisplay playerSkillsData={profileData} />{" "}
       </div>
 
       <div className="mt-6">
