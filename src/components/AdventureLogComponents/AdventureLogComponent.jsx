@@ -31,36 +31,39 @@ const AdventureLogBook = () => {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-runeportal-background-dark">
+    <div className="flex w-full bg-runeportal-darkpurple">
       <SideBar />
-      <div
-        className="bg-runeportal-grey shadow-lg rounded-lg overflow-hidden ml-64"
-        style={{ width: "1000px" }}
-      >
-        <div className="flex items-center ">
-          <div className=" items-center w-1/2 p-4 border-r border-gray-600">
-            <AdventureLogProfileCard />
-          </div>
-          <div className="w-1/2 p-4">
-            <PlayerStatsDisplay playerSkillsData={playerSkillsData} />
-          </div>
-        </div>
 
-        <div className="flex">
-          <div className="w-1/2 p-4 border-r border-gray-600">
-            <AdventureLogRecentEvents />
+      <div className="flex flex-col items-center bg-runeportal-darkpurple">
+        <div
+          className="bg-runeportal-grey shadow-lg rounded-lg overflow-hidden ml-64"
+          style={{ width: "1000px" }}
+        >
+          <div className="flex items-center ">
+            <div className=" items-center w-1/2 p-4 border-r border-gray-600">
+              <AdventureLogProfileCard />
+            </div>
+            <div className="w-1/2 p-4">
+              <PlayerStatsDisplay playerSkillsData={playerSkillsData} />
+            </div>
           </div>
-          <div className="w-1/2 p-4">
-            <AdventureLogFriendRecentEvents />
-          </div>
-        </div>
 
-        <div className="flex">
-          <div className="w-1/2 p-4 border-r border-gray-600">
-            <AdventureLogQuestComponent />
+          <div className="flex">
+            <div className="w-1/2 p-4 border-r border-gray-600">
+              <AdventureLogRecentEvents />
+            </div>
+            <div className="w-1/2 p-4">
+              <AdventureLogFriendRecentEvents />
+            </div>
           </div>
-          <div className="w-1/2 p-4">
-            <FriendsListComponent />
+
+          <div className="flex">
+            <div className="w-1/2 p-4 border-r border-gray-600">
+              <AdventureLogQuestComponent />
+            </div>
+            <div className="w-1/2 p-4">
+              <FriendsListComponent />
+            </div>
           </div>
         </div>
       </div>

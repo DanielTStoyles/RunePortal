@@ -15,7 +15,9 @@ const SideBar = () => {
   };
 
   const profile = () => {
-    navigate("/profile");
+    if (!user) {
+      navigate("/register");
+    } else navigate("/profile");
   };
 
   const login = () => {
@@ -27,11 +29,13 @@ const SideBar = () => {
   };
 
   const adventureLogPage = () => {
-    navigate("/adventureLogPage");
+    if (!user) {
+      navigate("/register");
+    } else navigate("/adventureLogPage");
   };
 
   return (
-    <aside className="fixed top-0 left-0 z-30 w-64 h-full bg-[#1F1F1F]">
+    <aside className="sticky float-left top-0 left-0 z-30 w-64 h-screen bg-[#1F1F1F]">
       <div className="flex">
         <div className="h-full px-3 py-4 overflow-y-auto ">
           <ul className="space-y-2 font-medium">
