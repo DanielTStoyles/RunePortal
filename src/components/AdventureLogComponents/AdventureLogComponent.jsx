@@ -11,6 +11,7 @@ import AdventureLogRecentEvents from "../AdventureLogComponents/AdventureLogEven
 import AdventureLogFriendRecentEvents from "../AdventureLogComponents/AdventureLogFriendEventsCard";
 import AdventureLogQuestComponent from "../AdventureLogComponents/AdventureLogQuestComponent";
 import FriendsListComponent from "../AdventureLogComponents/AdventureLogFriendsListComponent";
+import NavBarComponent from "../TopNavBarComponent";
 
 const AdventureLogBook = () => {
   const { user } = useContext(AuthContext);
@@ -32,11 +33,13 @@ const AdventureLogBook = () => {
 
   return (
     <div className="flex w-full bg-runeportal-darkpurple">
-      <SideBar />
+      <SideBar user={user} />
 
-      <div className="flex flex-col items-center bg-runeportal-darkpurple">
+      <div className="flex flex-col items-center w-full gap-4 bg-runeportal-darkpurple">
+        <NavBarComponent pageName="Adventure Log" />
+
         <div
-          className="bg-runeportal-grey shadow-lg rounded-lg overflow-hidden ml-64"
+          className="bg-runeportal-grey shadow-lg rounded-lg overflow-hidden"
           style={{ width: "1000px" }}
         >
           <div className="flex items-center ">

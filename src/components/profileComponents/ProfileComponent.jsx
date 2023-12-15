@@ -10,6 +10,7 @@ import PlayerStatsDisplay from "../PlayerStatsDisplay";
 import getRunescapeProfile from "../../hooks/getRunescapeProfile";
 import GeWatchlistProfileDisplay from "./GeWatchlistProfileDisplay";
 import SideBar from "../SideBarComp";
+import NavBarComponent from "../TopNavBarComponent";
 // import { useParams } from "react-router-dom";
 
 const ProfileComponent = () => {
@@ -39,15 +40,13 @@ const ProfileComponent = () => {
 
   return (
     <div className="flex w-full bg-runeportal-darkpurple">
-      <SideBar />
-
-      <div className="flex flex-col items-center min-h-full w-full bg-runeportal-darkpurple">
-        <div className="top-0">
-          <h1 className="p-3 text-slate-50 text-4xl">
-            <CurrentUsername />
-            's Profile
-          </h1>
-        </div>
+      <SideBar user={user} />
+      <div className="flex flex-col items-center w-full gap-4 bg-runeportal-darkpurple">
+        <NavBarComponent pageName="Profile" />
+        <h1 className="p-3 text-slate-50 text-4xl">
+          <CurrentUsername />
+          's Profile
+        </h1>
         <div className="relative items-center ">
           <h2 className=" p-3 text-slate-50 text-xl">Registered Accounts</h2>
           <UserAccList />
@@ -60,8 +59,8 @@ const ProfileComponent = () => {
           <button
             onClick={handleClick}
             className="relative w-1/4 py-2 px-4 
-              border border-lime-400 text-md font-medium rounded-md text-white bg-stone-600 hover:bg-stone-700 
-              focus:outline-none focus:ring-2 focus:ring-lime-600"
+            border border-lime-400 text-md font-medium rounded-md text-white bg-stone-600 hover:bg-stone-700 
+            focus:outline-none focus:ring-2 focus:ring-lime-600"
           >
             {showForm ? "Hide" : "Show"}
           </button>
@@ -72,7 +71,7 @@ const ProfileComponent = () => {
           <PlayerStatsDisplay playerSkillsData={profileData} />
         </div>
 
-        <div>
+        <div className="mb-4">
           <GeWatchlistProfileDisplay />
         </div>
       </div>
