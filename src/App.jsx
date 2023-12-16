@@ -8,6 +8,7 @@ import GrandExchange from "./pages/GrandeExchange";
 import ProfilePage from "./pages/ProfilePage";
 import LandingPage from "./pages/LandingPage";
 import AdventureLogPage from "./pages/AdventureLogPage";
+import GeWatchlist from "./pages/GeWatchlist";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="/ge" element={<GrandExchange />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/adventureLogPage" element={<AdventureLogPage />} />
+            <Route path="/geWatchlist" element={<GeWatchlist />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

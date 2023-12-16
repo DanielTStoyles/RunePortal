@@ -1,11 +1,11 @@
 /** @format */
 
 import React, { useContext, useState } from "react";
-import SideBar from "../SideBarComp";
+import SideBar from "../Nav Components/SideBarComp";
 import AuthContext from "../../context/AuthContext";
 import GeChart from "./GeChart";
 import { useQuery } from "react-query";
-import NavBarComponent from "../TopNavBarComponent";
+import NavBarComponent from "../Nav Components/TopNavBarComponent";
 
 const fetchItemData = async (itemName) => {
   const response = await fetch("/api/item", {
@@ -66,10 +66,13 @@ const GeComponent = () => {
   return (
     <div className="flex w-full bg-runeportal-darkpurple">
       <SideBar user={user} />
+
       <div className="flex flex-col w-full">
         <NavBarComponent pageName="Grand Exchange" />
-        <div className="flex flex-col items-center flex-grow min-h-screen bg-runeportal-darkpurple">
+
+        <div className="flex flex-col items-center gap-4 flex-grow min-h-screen bg-runeportal-darkpurple">
           <div className="text-5xl font-arial text-white">Grand Exchange</div>
+
           <form
             onSubmit={handleSubmit}
             className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
@@ -95,20 +98,24 @@ const GeComponent = () => {
               Search
             </button>
           </form>
-          <h5>{displayData}</h5>
-          {itemData && itemName && itemData?.timeSeries?.data ? (
-            <GeChart
-              high={itemData.high}
-              low={itemData.low}
-              title={itemName}
-              timeSeries={itemData.timeSeries.data}
-            />
-          ) : (
-            <p className="flex text-white items-center justify-center">
-              No data available. Please enter an item name above and press
-              search.
-            </p>
-          )}
+          <div>
+            <h5>{displayData}</h5>
+          </div>
+          <div className=" w-2/3 h-2/3">
+            {itemData && itemName && itemData?.timeSeries?.data ? (
+              <GeChart
+                high={itemData.high}
+                low={itemData.low}
+                title={itemName}
+                timeSeries={itemData.timeSeries.data}
+              />
+            ) : (
+              <p className="flex text-white items-center justify-center">
+                No data available. Please enter an item name above and press
+                search.
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </div>

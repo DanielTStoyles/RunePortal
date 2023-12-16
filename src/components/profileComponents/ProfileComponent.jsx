@@ -9,8 +9,8 @@ import UserAccList from "../../hooks/RegisteredAccFetch";
 import PlayerStatsDisplay from "../PlayerStatsDisplay";
 import getRunescapeProfile from "../../hooks/getRunescapeProfile";
 import GeWatchlistProfileDisplay from "./GeWatchlistProfileDisplay";
-import SideBar from "../SideBarComp";
-import NavBarComponent from "../TopNavBarComponent";
+import SideBar from "../Nav Components/SideBarComp";
+import NavBarComponent from "../Nav Components/TopNavBarComponent";
 // import { useParams } from "react-router-dom";
 
 const ProfileComponent = () => {

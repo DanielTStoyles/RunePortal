@@ -5,13 +5,13 @@ import { useQuery } from "react-query";
 import AuthContext from "../../context/AuthContext";
 import PlayerStatsDisplay from "../PlayerStatsDisplay";
 import getRunescapeProfile from "../../hooks/getRunescapeProfile";
-import SideBar from "../SideBarComp";
+import SideBar from "../Nav Components/SideBarComp";
 import AdventureLogProfileCard from "../AdventureLogComponents/AdventureLogProfileCard";
 import AdventureLogRecentEvents from "../AdventureLogComponents/AdventureLogEventsCard";
 import AdventureLogFriendRecentEvents from "../AdventureLogComponents/AdventureLogFriendEventsCard";
 import AdventureLogQuestComponent from "../AdventureLogComponents/AdventureLogQuestComponent";
 import FriendsListComponent from "../AdventureLogComponents/AdventureLogFriendsListComponent";
-import NavBarComponent from "../TopNavBarComponent";
+import NavBarComponent from "../Nav Components/TopNavBarComponent";
 
 const AdventureLogBook = () => {
   const { user } = useContext(AuthContext);
