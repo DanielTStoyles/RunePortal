@@ -1,5 +1,5 @@
 /** @format */
-import connection from "../database.js";
+import dbconnection from "../database.js";
 
 export const item = async (req, res) => {
   const { itemName } = req.body;
@@ -8,7 +8,7 @@ export const item = async (req, res) => {
   }
 
   try {
-    const [results] = await connection.query(
+    const [results] = await dbconnection.query(
       "SELECT item_id FROM items WHERE item_name = ?",
       [itemName]
     );
@@ -43,4 +43,3 @@ export const item = async (req, res) => {
     res.status(500).json({ message: "Database error" });
   }
 };
-

@@ -1,6 +1,5 @@
 /** @format */
 
-import connection from "../database.js";
 import insertPlayerBossData from "../data/insertPlayerBossData.js";
 
 const OSRS_BASE_URL =

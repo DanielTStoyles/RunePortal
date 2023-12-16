@@ -6,7 +6,7 @@ import makeMySQLSessionStore from "express-mysql-session";
 import express from "express";
 import itemParse from "./data/itemParse.js";
 import insertItemsIntoDatabase from "./data/insertItems.js";
-import connection from "./database.js";
+import dbconnection from "./database.js";
 import authRoutes from "./routes/authRoutes.js";
 import itemsRoutes from "./routes/itemsRoutes.js";
 import todoRoutes from "./routes/todoRoutes.js";
@@ -16,7 +16,7 @@ import playerRoutes from "./routes/playerRoutes.js";
 dotenv.config();
 
 const MySQLStore = makeMySQLSessionStore(session);
-const sessionStore = new MySQLStore({}, connection);
+const sessionStore = new MySQLStore({}, dbconnection);
 
 const app = express();
 
@@ -46,14 +46,14 @@ const setupItemData = async () => {
   try {
     const itemsFilePath = "./items.json";
     const items = await itemParse(itemsFilePath);
-    await insertItemsIntoDatabase(items, connection);
+    await insertItemsIntoDatabase(items, dbconnection);
 
     console.log("Data setup completed.");
   } catch (error) {
     console.error("Error setting up data:", error.message);
   } finally {
-    if (connection) {
-      await connection.end();
+    if (dbconnection) {
+      await dbconnection.end();
     }
   }
 };

@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "sst start",
+    "deploy": "sst deploy",
+    "remove": "sst remove"
   },
   "dependencies": {
     "chart.js": "^4.4.0",

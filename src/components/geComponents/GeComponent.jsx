@@ -42,11 +42,11 @@ const GeComponent = () => {
   let displayData = null;
 
   if (isLoading) {
-    return <p>Loading data...</p>; // Display a loading message
+    return <p>Loading data...</p>;
   }
 
   if (isError) {
-    return <p>Error fetching data. Please try again later.</p>; // Display an error message
+    return <p>Error fetching data. Please try again later.</p>;
   }
 
   if (itemData) {

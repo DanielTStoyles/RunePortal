@@ -7,6 +7,6 @@ dotenv.config();
 
 const url = process.env.MYSQL_URL;
 console.log("MYSQL_URL:", url);
-const connection = mysql.createPool(url);
+const dbconnection = mysql.createPool(url);
 
-export default connection;
+export default dbconnection;

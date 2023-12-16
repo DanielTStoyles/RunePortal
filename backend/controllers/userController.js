@@ -1,6 +1,6 @@
 /** @format */
 
-import connection from "../database.js";
+import dbconnection from "../database.js";
 import { User } from "../models/userModel.js";
 import getRunescapeProfile from "../../src/hooks/getRunescapeProfile.js";
 
@@ -11,7 +11,7 @@ import getRunescapeProfile from "../../src/hooks/getRunescapeProfile.js";
 export const getUserAccList = async (req, res) => {
   const user_id = req.session.user.id;
   try {
-    const [rows] = await connection.query(
+    const [rows] = await dbconnection.query(
       "SELECT rsn, account_type FROM players WHERE user_id = ?",
       [user_id]
     );
@@ -29,7 +29,7 @@ export const playerRegistration = async (req, res) => {
   const { rsn, account_type } = req.body;
 
   try {
-    const [results] = await connection.query(
+    const [results] = await dbconnection.query(
       "SELECT * FROM players WHERE rsn = ?",
       [rsn]
     );
@@ -40,7 +40,7 @@ export const playerRegistration = async (req, res) => {
       return res.status(400).json({ message: "rsn already registered" });
     }
 
-    await connection.query(
+    await dbconnection.query(
       "INSERT INTO players (rsn, account_type, user_id) VALUES (?, ?, ?)",
       [rsn, account_type, user_id]
     );
