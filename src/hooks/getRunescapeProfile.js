@@ -42,7 +42,6 @@ const getRunescapeProfile = async (rsn) => {
       playerClueScrolls,
       playerMiniGames,
     };
-    
   } catch (error) {
     console.error(
       `Error fetching player data line 150 in getRunescapeProfile: ${error.message}`

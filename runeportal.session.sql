@@ -1,1 +1,1 @@
-DELETE FROM users WHERE id=15;
+SELECT * FROM players;

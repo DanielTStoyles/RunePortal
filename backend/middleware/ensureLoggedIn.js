@@ -1,7 +1,7 @@
 /** @format */
 
 const ensureLoggedIn = (req, res, next) => {
-  console.log("Session data:", req.session);
+  // console.log("Session data:", req.session);
   if (!req.session.user.id) {
     return res.status(401).json({ message: "User isn't logged in" });
   }

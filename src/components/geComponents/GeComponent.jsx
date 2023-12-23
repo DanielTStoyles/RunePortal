@@ -7,8 +7,10 @@ import GeChart from "./GeChart";
 import { useQuery } from "react-query";
 import NavBarComponent from "../Nav Components/TopNavBarComponent";
 
+const apiBaseUrl = import.meta.env.VITE_APP_API;
+
 const fetchItemData = async (itemName) => {
-  const response = await fetch("/api/item", {
+  const response = await fetch(`${apiBaseUrl}/item`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ itemName }),

@@ -2,8 +2,7 @@
 
 import dbconnection from "../database.js";
 import { User } from "../models/userModel.js";
-import getRunescapeProfile from "../../src/hooks/getRunescapeProfile.js";
-
+import insertPlayerData from "../scripts/insertPlayerItemDynamo.js";
 //implement a selector here to choose an account from the list to set as primary
 //seperate endpoint to change player, changes session object rsn to selected player
 //will automatically reflect in /user
@@ -44,11 +43,16 @@ export const playerRegistration = async (req, res) => {
       "INSERT INTO players (rsn, account_type, user_id) VALUES (?, ?, ?)",
       [rsn, account_type, user_id]
     );
-
     //Think ahout the shape of the session object, cookie and user, req.session.user.rsn. Concern that if you want to show the stats of multiple players on the same page
     //have a player selector in the top left where you select the primary player.
     //
 
+    try {
+      await insertPlayerData(rsn);
+      console.log("OSRS data inserted into Dynamo successfully");
+    } catch (dberror) {
+      console.error("Error inserting OSRS data into Dynamo", dberror);
+    }
     req.session.user.rsn = rsn;
 
     req.session.save((err) => {
@@ -65,7 +69,6 @@ export const playerRegistration = async (req, res) => {
 };
 
 export const getUsername = async (req, res) => {
-  console.log(req.session);
   const userId = req.session.user.id;
 
   try {

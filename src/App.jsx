@@ -12,6 +12,9 @@ import GeWatchlist from "./pages/GeWatchlist";
 
 const queryClient = new QueryClient();
 
+const apiBaseUrl = import.meta.env.VITE_APP_API;
+console.log(apiBaseUrl);
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
