@@ -65,6 +65,7 @@ export const logout = async (req, res) => {
 
 export const checkSession = (req, res) => {
   res.json(req.session.user || null);
+  // console.log(req.session);
 
   if (req.session.user) {
     console.log("Session and User confirmed");

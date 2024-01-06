@@ -3,7 +3,7 @@
 import React, { useContext, useState } from "react";
 import { useQuery } from "react-query";
 import AuthContext from "../../context/AuthContext";
-import CurrentUsername from "../LoggedUsername";
+import CurrentUsername from "../CurrentUsername";
 import RsnRegisterForm from "../forms/RsnRegisterForm";
 import UserAccList from "../../hooks/RegisteredAccFetch";
 import PlayerStatsDisplay from "../PlayerStatsDisplay";
@@ -11,6 +11,7 @@ import getRunescapeProfile from "../../hooks/getRunescapeProfile";
 import GeWatchlistProfileDisplay from "./GeWatchlistProfileDisplay";
 import SideBar from "../Nav Components/SideBarComp";
 import NavBarComponent from "../Nav Components/TopNavBarComponent";
+import PrimaryPlayerSelector from "./primaryPlayerSelector";
 // import { useParams } from "react-router-dom";
 
 const ProfileComponent = () => {
@@ -47,10 +48,14 @@ const ProfileComponent = () => {
           <CurrentUsername />
           's Profile
         </h1>
+        <div>
+          <PrimaryPlayerSelector />
+        </div>
+        {/* 
         <div className="relative items-center ">
           <h2 className=" p-3 text-slate-50 text-xl">Registered Accounts</h2>
           <UserAccList />
-        </div>
+        </div> */}
         <div className="flex flex-col justify-center items-center">
           <h3 className="text-white">
             Haven't registered your account yet? Click the button below to get

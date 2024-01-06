@@ -83,3 +83,17 @@ export const getUsername = async (req, res) => {
     res.status(500).json({ message: "Database error" });
   }
 };
+
+export const getUserAccountType = async (req, res) => {
+  const user_id = req.session.user.id;
+  try {
+    const [rows] = await dbconnection.query(
+      "SELECT account_type FROM players WHERE user_id = ?",
+      [user_id]
+    );
+    res.json(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "database error" });
+  }
+};
