@@ -3,7 +3,7 @@ import { skills, clueScrolls, bosses, miniGames } from "../repository/lists.js";
 
 const getRunescapeProfile = async (rsn) => {
   try {
-    const response = await fetch(`/api/playerStats/${rsn}`);
+    const response = await fetch(`/api/playerData/${rsn}`);
     const data = await response.text();
 
     if (!response.ok) {
@@ -44,7 +44,7 @@ const getRunescapeProfile = async (rsn) => {
     };
   } catch (error) {
     console.error(
-      `Error fetching player data line 150 in getRunescapeProfile: ${error.message}`
+      `Error fetching player data line 47 in getRunescapeProfile: ${error.message}`
     );
     return null;
   }

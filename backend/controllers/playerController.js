@@ -2,10 +2,10 @@
 
 import insertPlayerBossData from "../data/insertPlayerBossData.js";
 
-const OSRS_BASE_URL =
+export const OSRS_BASE_URL =
   "https://secure.runescape.com/m=hiscore_oldschool/index_lite.ws";
 
-export const playerStatsByName = async (req, res) => {
+export const playerDataByName = async (req, res) => {
   try {
     const { playerName } = req.params;
     console.log(playerName, "playerName Log");

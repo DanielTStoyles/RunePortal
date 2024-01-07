@@ -7,7 +7,7 @@ import AccountType from "../AccountType";
 
 const PrimaryPlayerSelector = () => {
   return (
-    <div className="flex items-center gap-6 px-4 py-2 rounded">
+    <div className="flex w-full items-center gap-6 px-4 py-2 rounded">
       <div className=" align-left bg-gray-300 rounded-full w-20 h-20"></div>
       {/* Avatar */}
       <div className="flex flex-col">

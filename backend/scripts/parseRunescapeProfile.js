@@ -8,7 +8,7 @@ import {
 
 const parseRunescapeProfile = async (rsn) => {
   try {
-    const url = `http://localhost:5174/playerStats/${rsn}`;
+    const url = `http://localhost:5174/playerData/${rsn}`;
 
     const response = await fetch(url);
     console.log("Requesting URL:", url);

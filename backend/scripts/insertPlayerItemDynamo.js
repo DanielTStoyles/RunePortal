@@ -2,7 +2,6 @@
 
 import AWS from "aws-sdk";
 import parseRunescapeProfile from "./parseRunescapeProfile.js";
-import fetch from "node-fetch";
 
 AWS.config.update({ region: "us-east-1" });
 

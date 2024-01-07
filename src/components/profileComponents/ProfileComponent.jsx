@@ -44,10 +44,7 @@ const ProfileComponent = () => {
       <SideBar user={user} />
       <div className="flex flex-col items-center w-full gap-4 bg-runeportal-darkpurple">
         <NavBarComponent pageName="Profile" />
-        <h1 className="p-3 text-slate-50 text-4xl">
-          <CurrentUsername />
-          's Profile
-        </h1>
+
         <div>
           <PrimaryPlayerSelector />
         </div>
