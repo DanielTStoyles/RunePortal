@@ -12,6 +12,7 @@ import AdventureLogFriendRecentEvents from "../AdventureLogComponents/AdventureL
 import AdventureLogQuestComponent from "../AdventureLogComponents/AdventureLogQuestComponent";
 import FriendsListComponent from "../AdventureLogComponents/AdventureLogFriendsListComponent";
 import NavBarComponent from "../Nav Components/TopNavBarComponent";
+import AdventureLogDisplay from "./AdventureLogDisplay";
 
 const AdventureLogBook = () => {
   const { user } = useContext(AuthContext);
@@ -65,7 +66,7 @@ const AdventureLogBook = () => {
               <AdventureLogQuestComponent />
             </div>
             <div className="w-1/2 p-4">
-              <FriendsListComponent />
+              <AdventureLogDisplay />
             </div>
           </div>
         </div>

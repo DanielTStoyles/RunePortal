@@ -4,14 +4,12 @@ import dotenv from "dotenv";
 import session from "express-session";
 import makeMySQLSessionStore from "express-mysql-session";
 import express from "express";
-import itemParse from "./data/itemParse.js";
-import insertItemsIntoDatabase from "./data/insertItems.js";
 import dbconnection from "./database.js";
 import authRoutes from "./routes/authRoutes.js";
 import itemsRoutes from "./routes/itemsRoutes.js";
-import todoRoutes from "./routes/todoRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import playerRoutes from "./routes/playerRoutes.js";
+import lambdaRoutes from "./routes/lambdaRoutes.js";
 
 dotenv.config();
 
@@ -42,28 +40,28 @@ const OSRS_BASE_URL =
 
 const OSRS_GE_BASE_URL = "https://prices.runescape.wiki/api/v1/osrs/mapping";
 
-const setupItemData = async () => {
-  try {
-    const itemsFilePath = "./items.json";
-    const items = await itemParse(itemsFilePath);
-    await insertItemsIntoDatabase(items, dbconnection);
+// const setupItemData = async () => {
+//   try {
+//     const itemsFilePath = "./items.json";
+//     const items = await itemParse(itemsFilePath);
+//     await insertItemsIntoDatabase(items, dbconnection);
 
-    console.log("Data setup completed.");
-  } catch (error) {
-    console.error("Error setting up data:", error.message);
-  } finally {
-    if (dbconnection) {
-      await dbconnection.end();
-    }
-  }
-};
+//     console.log("Data setup completed.");
+//   } catch (error) {
+//     console.error("Error setting up data:", error.message);
+//   } finally {
+//     if (dbconnection) {
+//       await dbconnection.end();
+//     }
+//   }
+// };
 
 // const setupQuestData=async () =>{
 
 // }
 
 app.use(authRoutes);
-app.use(todoRoutes);
 app.use(playerRoutes);
 app.use(itemsRoutes);
 app.use(userRoutes);
+app.use(lambdaRoutes);

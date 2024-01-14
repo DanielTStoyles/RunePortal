@@ -6,13 +6,14 @@ import AuthContext from "../../context/AuthContext";
 import CurrentUsername from "../CurrentUsername";
 import RsnRegisterForm from "../forms/RsnRegisterForm";
 import UserAccList from "../../hooks/RegisteredAccFetch";
-import PlayerStatsDisplay from "../PlayerStatsDisplay";
 import getRunescapeProfile from "../../hooks/getRunescapeProfile";
-import GeWatchlistProfileDisplay from "./GeWatchlistProfileDisplay";
 import SideBar from "../Nav Components/SideBarComp";
 import NavBarComponent from "../Nav Components/TopNavBarComponent";
 import PrimaryPlayerSelector from "./primaryPlayerSelector";
-// import { useParams } from "react-router-dom";
+import ProfileSkillsDisplay from "./profileSkillsDisplay";
+import ProfileAdventureLog from "./ProfileAdventureLog";
+import ProfileWatchlist from "./ProfileWatchlist";
+import BigTest from "./BigTest";
 
 const ProfileComponent = () => {
   const { user } = useContext(AuthContext);
@@ -67,15 +68,17 @@ const ProfileComponent = () => {
             {showForm ? "Hide" : "Show"}
           </button>
           {showForm && <RsnRegisterForm />}
+          <BigTest />
         </div>
         <div>
-          {" "}
-          <PlayerStatsDisplay playerSkillsData={profileData} />
+          {/* <PlayerStatsDisplay playerSkillsData={profileData} /> */}
+          <ProfileSkillsDisplay playerSkillsData={profileData} />
+          <ProfileWatchlist />
         </div>
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <GeWatchlistProfileDisplay />
-        </div>
+        </div> */}
       </div>
     </div>
   );

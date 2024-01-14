@@ -13,6 +13,8 @@ export default {
         "runeportal-buttonpurple": "#53358D",
         "runeportal-background-dark": "#0A090B",
         "runeportal-cardBackground": "#28272A",
+        "gray-700": "#272323",
+        "gray-600": "#5d5e1f",
       },
     },
   },

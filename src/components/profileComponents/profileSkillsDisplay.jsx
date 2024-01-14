@@ -1,57 +1,52 @@
 /** @format */
 
-import React from "react";
+import React, { useContext } from "react";
+import AuthContext from "../../context/AuthContext";
+import skillImages from "../../images/skillImages";
+import CircleProgress from "./CircleProgress";
+import { calculateProgressToNextLevel } from "../../util/osrsUtil";
 
-const ProfileSkillsDisplay = () => {
-  // Assuming 100% progress for the example. This value should be dynamic based on the actual progress.
-  const circleStyle = {
-    background: "conic-gradient(#413F46 100%, transparent 80%)",
-  };
+const PlayerStatsDisplay = ({ playerSkillsData }) => {
+  const { user } = useContext(AuthContext);
+
+  if (!playerSkillsData || playerSkillsData.length === 0) {
+    return <div className="text-white">No player stats available.</div>;
+  }
 
   return (
-    <div className="flex items-center justify-between px-4 py-2 bg-[#19181B] text-white">
-      {/* Skill Icon and Name */}
-      <div className="flex items-center gap-3">
-        <div className="w-4 h-4 bg-green-500"></div>{" "}
-        {/* Placeholder for icon */}
-        <span className="font-semibold text-sm">Agility</span>
-      </div>
-
-      {/* Level */}
-      <div className="w-12 text-center">
-        <span className="text-sm">99</span>
-      </div>
-
-      {/* Experience */}
-      <div className="w-20 text-center">
-        <span className="text-sm">999.99m</span>
-      </div>
-
-      {/* Rank */}
-      <div className="w-10 text-center">
-        <span className="text-sm">1k</span>
-      </div>
-
-      {/* Circular Progress to Next Level */}
-      <div className="flex items-center gap-2">
-        <div className="relative">
-          {/* The circle background */}
-          <div className="w-6 h-6 rounded-full bg-[#28272A]"></div>
-          {/* The progress circle */}
-          <div
-            className="w-6 h-6 rounded-full absolute top-0 left-0"
-            style={circleStyle}
-          ></div>
-          {/* The percentage text */}
-          <div className="absolute w-full h-full flex items-center justify-center">
-            <span className="text-xs text-white">100%</span>
+    <div className="text-white">
+      <h2 className="text-center mb-4">{user.rsn}'s Stats</h2>
+      <div className="overflow-x-auto">
+        <div className="inline-block min-w-full">
+          <div className="grid grid-cols-5 gap-4 mb-2">
+            <div className="text-right font-bold">Skill</div>
+            <div className="text-right font-bold">Level</div>
+            <div className="text-right font-bold">Exp.</div>
+            <div className="text-right font-bold">Rank</div>
+            {/* <div className="text-right font-bold">% to Next Level</div> */}
           </div>
+          {playerSkillsData.playerSkillsData.map((stat, index) => (
+            <div
+              key={`${stat.skill}-${index}`}
+              className="grid grid-cols-4 gap-4 items-center bg-gray-700 rounded p-2 mb-2"
+            >
+              <div className="flex items-center">
+                <img
+                  className="w-6 h-6 mr-2"
+                  src={skillImages[stat.skill]}
+                  alt={stat.skill}
+                />
+                <span>{stat.skill}</span>
+              </div>
+              <div>{stat.level}</div>
+              <div>{stat.experience.toLocaleString()} </div>
+              <div>{stat.rank.toLocaleString()}</div>
+            </div>
+          ))}
         </div>
-        {/* Text next to the progress circle */}
-        <span className="text-sm">to Lvl. 99</span>
       </div>
     </div>
   );
 };
 
-export default ProfileSkillsDisplay;
+export default PlayerStatsDisplay;
