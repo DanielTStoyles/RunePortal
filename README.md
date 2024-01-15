@@ -4,8 +4,7 @@ RunePortal is a dedicated hub for OSRS (Old School RuneScape) players, offering 
 Features
 
     Grand Exchange Search: Dive into an intuitive visual display of the Grand Exchange, allowing you to check the current price trends and data for various items.
-    Triumphs: Our very own achievements system! Much like Xbox achievements, but tailored specifically for OSRS. Showcase your in-game milestones and triumphs.
-    Player Stat Comparison: Stack your statistics against your friends or rivals, seeing where you shine or where you might need a little more grinding.
+    Player Adventure Log: Track your characters journey by viewing entries in your adventure log showing advancements in skill levels, boss kill counts, and more!
     More To Come: We're continually working on bringing more features to enhance your OSRS experience.
 
 Getting Started
