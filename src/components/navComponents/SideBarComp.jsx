@@ -11,7 +11,7 @@ const SideBar = () => {
   const navigate = useNavigate();
 
   const ge = () => {
-    navigate("/ge");
+    navigate("/geSearch");
   };
 
   const geWatchlist = () => {

@@ -2,8 +2,8 @@
 
 import React from "react";
 
-import SideBar from "../components/Nav Components/SideBarComp";
-import NavBarComponent from "../components/Nav Components/TopNavBarComponent";
+import SideBar from "../components/navComponents/SideBarComp";
+import NavBarComponent from "../components/navComponents/TopNavBarComponent";
 import RunePortalRegisterForm from "../components/forms/RunePortalRegisterForm";
 
 const RegisterPage = () => {

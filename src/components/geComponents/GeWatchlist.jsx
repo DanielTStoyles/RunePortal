@@ -1,10 +1,10 @@
 /** @format */
 
 import React, { useContext } from "react";
-import SideBar from "../Nav Components/SideBarComp";
+import SideBar from "../navComponents/SideBarComp";
 import AuthContext from "../../context/AuthContext";
-import NavBarComponent from "../Nav Components/TopNavBarComponent";
-import GeSearchBar from "./GeSearchBar";
+import NavBarComponent from "../navComponents/TopNavBarComponent";
+import GeSearchBar from "./GeSearchComponent";
 
 const WatchlistItem = ({
   itemName,

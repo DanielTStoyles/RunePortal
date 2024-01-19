@@ -4,11 +4,12 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import AuthProvider from "./context/AuthProvider";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import GrandExchange from "./pages/GrandeExchange";
 import ProfilePage from "./pages/ProfilePage";
 import LandingPage from "./pages/LandingPage";
 import AdventureLogPage from "./pages/AdventureLogPage";
 import GeWatchlist from "./pages/GeWatchlist";
+import GeResultsPage from "./pages/GeResultsPage";
+import GeSearchPage from "./pages/GeSearchPage";
 
 const queryClient = new QueryClient();
 
@@ -25,7 +26,8 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/home" element={<LandingPage />} />
             <Route path="/" element={<LandingPage />} />
-            <Route path="/ge" element={<GrandExchange />} />
+            <Route path="/results/:itemName" element={<GeResultsPage />} />
+            <Route path="/geSearch" element={<GeSearchPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/adventureLogPage" element={<AdventureLogPage />} />
             <Route path="/geWatchlist" element={<GeWatchlist />} />
