@@ -20,15 +20,6 @@ const sessionStore = new MySQLStore({}, dbconnection);
 
 const app = express();
 
-app.use(express.json());
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-app.use(express.static(path.join(__dirname, "public")));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "public", "index.html"));
-});
-
 app.use(
   session({
     secret: "keyboardcat",
@@ -38,11 +29,23 @@ app.use(
   })
 );
 
-app.use(authRoutes);
-app.use(playerRoutes);
-app.use(itemsRoutes);
-app.use(userRoutes);
-app.use(lambdaRoutes);
+app.use(express.json());
+
+const api = express.Router();
+
+api.use(authRoutes);
+api.use(playerRoutes);
+api.use(itemsRoutes);
+api.use(userRoutes);
+api.use(lambdaRoutes);
+app.use("/api", api);
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "public", "index.html"));
+});
 
 const PORT = process.env.PORT || 5174;
 app.listen(PORT, () => {

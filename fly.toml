@@ -1,15 +1,15 @@
-# fly.toml app configuration file generated for runeportal on 2024-01-20T21:02:57-03:30
+# fly.toml app configuration file generated for runeportal on 2024-01-21T13:18:21-03:30
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = "runeportal"
-primary_region = "ewr"
+primary_region = "yul"
 
 [build]
 
 [http_service]
-  internal_port = 80
+  internal_port = 5174
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true

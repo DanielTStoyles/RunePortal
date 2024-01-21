@@ -20,7 +20,7 @@ export const login = async (req, res) => {
   if (user.password !== password) {
     return res.status(400).json({ message: "Incorrect password" });
   }
-
+  console.log(user);
   req.session.user = user;
 
   res.json({ message: "Logged in" });
@@ -65,7 +65,7 @@ export const logout = async (req, res) => {
 
 export const checkSession = (req, res) => {
   res.json(req.session.user || null);
-  // console.log(req.session);
+  console.log(req.session);
 
   if (req.session.user) {
     console.log("Session and User confirmed");
