@@ -10,6 +10,8 @@ import itemsRoutes from "./routes/itemsRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import playerRoutes from "./routes/playerRoutes.js";
 import lambdaRoutes from "./routes/lambdaRoutes.js";
+import { fileURLToPath } from "url";
+import path from "path";
 
 dotenv.config();
 
@@ -18,13 +20,14 @@ const sessionStore = new MySQLStore({}, dbconnection);
 
 const app = express();
 
-const PORT = process.env.PORT || 5174;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-  // setupItemData();
-});
-
 app.use(express.json());
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "public", "index.html"));
+});
 
 app.use(
   session({
@@ -35,10 +38,18 @@ app.use(
   })
 );
 
-const OSRS_BASE_URL =
-  "https://secure.runescape.com/m=hiscore_oldschool/index_lite.ws";
+app.use(authRoutes);
+app.use(playerRoutes);
+app.use(itemsRoutes);
+app.use(userRoutes);
+app.use(lambdaRoutes);
 
-const OSRS_GE_BASE_URL = "https://prices.runescape.wiki/api/v1/osrs/mapping";
+const PORT = process.env.PORT || 5174;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+
+// Code for retirieving list of items
 
 // const setupItemData = async () => {
 //   try {
@@ -55,13 +66,3 @@ const OSRS_GE_BASE_URL = "https://prices.runescape.wiki/api/v1/osrs/mapping";
 //     }
 //   }
 // };
-
-// const setupQuestData=async () =>{
-
-// }
-
-app.use(authRoutes);
-app.use(playerRoutes);
-app.use(itemsRoutes);
-app.use(userRoutes);
-app.use(lambdaRoutes);

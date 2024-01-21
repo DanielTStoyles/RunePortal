@@ -18,29 +18,31 @@ const GeSearchComponent = ({ isResultsPage }) => {
     }
   };
   return (
-    <div>
-      <form
-        onSubmit={handleSubmit}
-        className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
-      >
-        <h2 className="mb-4 text-white">Search Items</h2>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Type item name here..."
-          className="px-2 py-1 mb-4 w-full rounded-md"
-        ></input>
-
-        <button
-          onClick={handleSubmit}
-          className=" items-center px-3 py-2 text-xlg font-medium text-center text-white 
-bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 
-dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-full"
-        >
-          Search
-        </button>
-      </form>
+    <div className="flex justify-start w-full pl-[140px] my-10">
+      <div className="w-[400px] px-[26px]">
+        <form onSubmit={handleSubmit} className="w-full">
+          <div className="text-zinc-400 text-4xl font-bold font-['Arial'] mb-8">
+            Grand Exchange
+          </div>
+          <div className="flex items-center gap-2.5">
+            <div className="flex-grow h-10 px-[26px] py-0.5 bg-neutral-800 rounded-3xl border border-neutral-700 flex items-center">
+              <input
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                placeholder="Type item name here..."
+                className="flex-grow px-2 py-1 rounded-3xl bg-neutral-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              ></input>
+            </div>
+            <button
+              type="submit"
+              className="w-24 h-10 px-4 py-2 bg-zinc-600 rounded-3xl text-white text-xl font-normal font-['Arial']"
+            >
+              Search
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
