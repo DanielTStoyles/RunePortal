@@ -50,7 +50,7 @@ const ProfileComponent = () => {
         {/* Flex container for ProfileSkillsDisplay and AdventureLogProfileDisplay */}
         <div className="flex w-full">
           {/* ProfileSkillsDisplay - Adjust sizing as needed */}
-          <div className="flex-grow">
+          <div className="flex-grow max-w-3/5">
             <ProfileSkillsDisplay playerSkillsData={profileData} />
           </div>
 
