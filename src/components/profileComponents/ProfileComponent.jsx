@@ -13,7 +13,7 @@ import PrimaryPlayerSelector from "./primaryPlayerSelector";
 import ProfileSkillsDisplay from "./profileSkillsDisplay";
 import ProfileAdventureLog from "./ProfileAdventureLog";
 import ProfileWatchlist from "./ProfileWatchlist";
-import BigTest from "./BigTest";
+import AdventureLogProfileDisplay from "../AdventureLogComponents/AdventureLogProfileDisplay";
 
 const ProfileComponent = () => {
   const { user } = useContext(AuthContext);
@@ -43,42 +43,32 @@ const ProfileComponent = () => {
   return (
     <div className="flex w-full bg-runeportal-darkpurple">
       <SideBar user={user} />
-      <div className="flex flex-col items-center w-full gap-4 bg-runeportal-darkpurple">
+      <div className="flex flex-col w-full bg-runeportal-darkpurple">
         <NavBarComponent pageName="Profile" />
+        <PrimaryPlayerSelector />
 
-        <div>
-          <PrimaryPlayerSelector />
+        {/* Flex container for ProfileSkillsDisplay and AdventureLogProfileDisplay */}
+        <div className="flex w-full">
+          {/* ProfileSkillsDisplay - Adjust sizing as needed */}
+          <div className="flex-grow">
+            <ProfileSkillsDisplay playerSkillsData={profileData} />
+          </div>
+
+          {/* AdventureLogProfileDisplay - Adjust sizing as needed */}
+          <div className="w-1/3">
+            <AdventureLogProfileDisplay />
+          </div>
         </div>
-        {/* 
-        <div className="relative items-center ">
-          <h2 className=" p-3 text-slate-50 text-xl">Registered Accounts</h2>
-          <UserAccList />
-        </div> */}
+
+        {/* Other components */}
         <div className="flex flex-col justify-center items-center">
-          <h3 className="text-white">
-            Haven't registered your account yet? Click the button below to get
-            started!
-          </h3>
-          <button
-            onClick={handleClick}
-            className="relative w-1/4 py-2 px-4 
-            border border-lime-400 text-md font-medium rounded-md text-white bg-stone-600 hover:bg-stone-700 
-            focus:outline-none focus:ring-2 focus:ring-lime-600"
-          >
-            {showForm ? "Hide" : "Show"}
-          </button>
-          {showForm && <RsnRegisterForm />}
-          <BigTest />
-        </div>
-        <div>
-          {/* <PlayerStatsDisplay playerSkillsData={profileData} /> */}
-          <ProfileSkillsDisplay playerSkillsData={profileData} />
-          <ProfileWatchlist />
+          {/* ... */}
         </div>
 
-        {/* <div className="mb-4">
-          <GeWatchlistProfileDisplay />
-        </div> */}
+        {/* Uncomment other components as needed */}
+        {/* <PlayerStatsDisplay playerSkillsData={profileData} /> */}
+        {/* <ProfileWatchlist /> */}
+        {/* <GeWatchlistProfileDisplay /> */}
       </div>
     </div>
   );

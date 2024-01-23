@@ -3,8 +3,6 @@
 import React, { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import skillImages from "../../images/skillImages";
-import CircleProgress from "./CircleProgress";
-import { calculateProgressToNextLevel } from "../../util/osrsUtil";
 
 const PlayerStatsDisplay = ({ playerSkillsData }) => {
   const { user } = useContext(AuthContext);
@@ -14,35 +12,42 @@ const PlayerStatsDisplay = ({ playerSkillsData }) => {
   }
 
   return (
-    <div className="text-white">
-      <h2 className="text-center mb-4">{user.rsn}'s Stats</h2>
+    <div className="min-w-2/3 ">
+      <div className="text-white text-zinc-200 text-2xl font-bold font-['Arial']">
+        {user.rsn}'s Skills
+      </div>
       <div className="overflow-x-auto">
-        <div className="inline-block min-w-full">
-          <div className="grid grid-cols-5 gap-4 mb-2">
-            <div className="text-right font-bold">Skill</div>
-            <div className="text-right font-bold">Level</div>
-            <div className="text-right font-bold">Exp.</div>
-            <div className="text-right font-bold">Rank</div>
-            {/* <div className="text-right font-bold">% to Next Level</div> */}
-          </div>
-          {playerSkillsData.playerSkillsData.map((stat, index) => (
-            <div
-              key={`${stat.skill}-${index}`}
-              className="grid grid-cols-4 gap-4 items-center bg-gray-700 rounded p-2 mb-2"
-            >
-              <div className="flex items-center">
-                <img
-                  className="w-6 h-6 mr-2"
-                  src={skillImages[stat.skill]}
-                  alt={stat.skill}
-                />
-                <span>{stat.skill}</span>
-              </div>
-              <div>{stat.level}</div>
-              <div>{stat.experience.toLocaleString()} </div>
-              <div>{stat.rank.toLocaleString()}</div>
+        <div className="inline-block min-w-full text-white">
+          <div className="bg-gray-700 rounded-lg">
+            <div className="grid grid-cols-4 gap-4 p-2">
+              <div className="text-left font-bold">Skill</div>
+              <div className="text-left font-bold">Level</div>
+              <div className="text-left font-bold">Exp.</div>
+              <div className="text-left font-bold">Rank</div>
             </div>
-          ))}
+            {playerSkillsData.playerSkillsData.map((stat, index) => (
+              <div
+                key={`${stat.skill}-${index}`}
+                className="grid grid-cols-4 gap-4 p-2"
+              >
+                <div className="flex items-center">
+                  {index !== 0 && (
+                    <img
+                      className="w-6 h-6 mr-2"
+                      src={skillImages[stat.skill]}
+                      alt={stat.skill}
+                    />
+                  )}
+                  <span>{stat.skill}</span>
+                </div>
+                <div className="text-left">{stat.level}</div>
+                <div className="text-left">
+                  {stat.experience.toLocaleString()}
+                </div>
+                <div className="text-left">{stat.rank.toLocaleString()}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
