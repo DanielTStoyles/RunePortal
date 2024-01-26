@@ -9,13 +9,15 @@ const MainPageLayout = ({ children, pageTitle }) => {
   const { user } = useContext(AuthContext);
 
   return (
-    <div className="flex w-full bg-runeportal-darkpurple">
-      <SideBar user={user} />
-
-      <div className="flex flex-col w-full">
+    <div className="flex w-full bg-runeportal-darkpurple min-h-screen">
+      <SideBar user={user} className="w-64 flex-shrink-0" />{" "}
+      {/* Fixed width sidebar */}
+      <div className="flex flex-col flex-grow">
+        {" "}
+        {/* Main content area */}
         <NavBarComponent pageName={pageTitle} />
-
-        <div className="flex flex-col items-center gap-4 w-full bg-runeportal-darkpurple">
+        {/* Main container for children with padding and margin */}
+        <div className="flex flex-col p-8 m-8 rounded-lg shadow overflow-hidden">
           {children}
         </div>
       </div>

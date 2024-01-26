@@ -14,6 +14,8 @@ import ProfileSkillsDisplay from "./profileSkillsDisplay";
 import ProfileAdventureLog from "./ProfileAdventureLog";
 import ProfileWatchlist from "./ProfileWatchlist";
 import AdventureLogProfileDisplay from "../AdventureLogComponents/AdventureLogProfileDisplay";
+import { CombatLevelData, OverallLvlData, OverallXpData } from "./DataBars";
+import MainPageLayout from "../../pages/MainPageLayout";
 
 const ProfileComponent = () => {
   const { user } = useContext(AuthContext);
@@ -41,36 +43,33 @@ const ProfileComponent = () => {
   }
 
   return (
-    <div className="flex w-full bg-runeportal-darkpurple">
-      <SideBar user={user} />
-      <div className="flex flex-col w-full bg-runeportal-darkpurple">
-        <NavBarComponent pageName="Profile" />
-        <PrimaryPlayerSelector />
-
-        {/* Flex container for ProfileSkillsDisplay and AdventureLogProfileDisplay */}
-        <div className="flex w-full">
-          {/* ProfileSkillsDisplay - Adjust sizing as needed */}
-          <div className="flex-grow max-w-3/5">
-            <ProfileSkillsDisplay playerSkillsData={profileData} />
-          </div>
-
-          {/* AdventureLogProfileDisplay - Adjust sizing as needed */}
-          <div className="w-1/3">
-            <AdventureLogProfileDisplay />
-          </div>
+    <MainPageLayout pageTitle="Profile">
+      <div className="flex items-center p-4">
+        <div className="pl-8">
+          <PrimaryPlayerSelector />
         </div>
 
-        {/* Other components */}
-        <div className="flex flex-col justify-center items-center">
-          {/* ... */}
+        {/* This div is used to group the data bars and push them to the right */}
+        <div className="flex space-x-8 pl-32">
+          <CombatLevelData />
+          <OverallXpData />
+          <OverallLvlData />
         </div>
-
-        {/* Uncomment other components as needed */}
-        {/* <PlayerStatsDisplay playerSkillsData={profileData} /> */}
-        {/* <ProfileWatchlist /> */}
-        {/* <GeWatchlistProfileDisplay /> */}
       </div>
-    </div>
+
+      {/* Flex container for ProfileSkillsDisplay and AdventureLogProfileDisplay */}
+      <div className="flex w-full">
+        {/* ProfileSkillsDisplay */}
+        <div className="flex-grow p-4">
+          <ProfileSkillsDisplay playerSkillsData={profileData} />
+        </div>
+
+        {/* AdventureLogProfileDisplay */}
+        <div className="w-1/3 p-4">
+          <AdventureLogProfileDisplay />
+        </div>
+      </div>
+    </MainPageLayout>
   );
 };
 

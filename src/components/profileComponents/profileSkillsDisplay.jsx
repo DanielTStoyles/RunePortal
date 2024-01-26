@@ -12,7 +12,9 @@ const PlayerStatsDisplay = ({ playerSkillsData }) => {
   }
 
   return (
-    <div className="min-w-2/3 ">
+    <div className="min-w-2/3 pl-16">
+      {" "}
+      {/* Added p-4 for padding */}
       <div className="text-white text-zinc-200 text-2xl font-bold font-['Arial']">
         {user.rsn}'s Skills
       </div>
