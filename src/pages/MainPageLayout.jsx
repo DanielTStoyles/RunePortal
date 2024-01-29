@@ -17,9 +17,7 @@ const MainPageLayout = ({ children, pageTitle }) => {
         {/* Main content area */}
         <NavBarComponent pageName={pageTitle} />
         {/* Main container for children with padding and margin */}
-        <div className="flex flex-col p-8 m-8 rounded-lg shadow overflow-hidden">
-          {children}
-        </div>
+        <div>{children}</div>
       </div>
     </div>
   );

@@ -24,10 +24,6 @@ const SideBar = () => {
     } else navigate("/profile");
   };
 
-  const home = () => {
-    navigate("/home");
-  };
-
   const adventureLogPage = () => {
     if (!user) {
       navigate("/register");

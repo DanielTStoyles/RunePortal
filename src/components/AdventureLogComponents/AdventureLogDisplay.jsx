@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import fetchAdventureLog from "../fetchAdventureLog";
+
 const AdventureLogDisplay = () => {
   const [log, setLog] = useState("");
   const [loading, setLoading] = useState(true);

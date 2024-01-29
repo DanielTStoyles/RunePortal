@@ -38,6 +38,7 @@ export const bosses = [
   "Phantom Muspah ",
   "Sarachnis ",
   "Scorpia ",
+  "Scurrius",
   "Skotizo ",
   "Spindel ",
   "Tempoross ",

@@ -1,17 +1,22 @@
 /** @format */
 
 const fetchAdventureLog = async () => {
-  const playerId = "999"; //hardcoded in to test wit
+  const playerId = "999"; // hardcoded to test with
   try {
-    const response = await fetch(`/api/fetchAdventureLog/${playerId}`);
-    console.log(response);
+    const response = await fetch(`/api/adventure-logs/${playerId}`);
     if (!response.ok) {
-      throw new Error("bad network resposne");
+      throw new Error("Bad network response");
     }
-    await response.json();
-    return "good";
+    const logs = await response.json();
+
+    const entries = logs.map((log) => log.entry);
+
+    // Output the entries to the console or return them
+    console.log(entries);
+    return entries;
   } catch (error) {
-    console.error("problem with the fetch in fetchAdventureLog");
+    console.error("Problem with fetch in fetchAdventureLog", error);
+    return []; // Return an empty array as a fallback
   }
 };
 

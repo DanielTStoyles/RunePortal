@@ -1,7 +1,9 @@
 /** @format */
-import { skills, clueScrolls, bosses, miniGames } from "../repository/lists.js";
+import { skills, clueScrolls, bosses } from "../repository/lists.js";
 
-const getRunescapeProfile = async (rsn) => {
+const getRunescapeProfile = async (playerId) => {
+  const rsn = playerId;
+  console.log(rsn, "getRunescapeProfile rsn log");
   try {
     const response = await fetch(`/api/playerData/${rsn}`);
     const data = await response.text();
@@ -44,7 +46,7 @@ const getRunescapeProfile = async (rsn) => {
     };
   } catch (error) {
     console.error(
-      `Error fetching player data line 47 in getRunescapeProfile: ${error.message}`
+      `Error fetching player data line 51 in getRunescapeProfile: ${error.message}`
     );
     return null;
   }
