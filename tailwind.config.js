@@ -16,6 +16,9 @@ export default {
         "gray-700": "#272323",
         "gray-600": "#5d5e1f",
       },
+      gridTemplateColumns: {
+        profile: "repeat(auto-fit, minmax(240px, 1fr))",
+      },
     },
   },
   plugins: [],

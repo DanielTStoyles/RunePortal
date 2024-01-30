@@ -4,11 +4,12 @@ import React, { useContext, useState } from "react";
 import { useQuery } from "react-query";
 import AuthContext from "../../context/AuthContext";
 import RsnRegisterForm from "../forms/RsnRegisterForm";
-import getRunescapeProfile from "../../hooks/getRunescapeProfile";
 import PrimaryPlayerSelector from "./primaryPlayerSelector";
 import AdventureLogProfileDisplay from "../AdventureLogComponents/AdventureLogProfileDisplay";
 import { CombatLevelData, OverallLvlData, OverallXpData } from "./DataBars";
 import MainPageLayout from "../../pages/MainPageLayout";
+import PlayerStatsDisplay from "./ProfileSkillsDisplay";
+import getRunescapeProfile from "../../hooks/getRunescapeProfile";
 
 const ProfileComponent = () => {
   const { user } = useContext(AuthContext);
@@ -37,30 +38,57 @@ const ProfileComponent = () => {
 
   return (
     <MainPageLayout pageTitle="Profile">
-      <div className="flex items-center p-4">
-        <div className="pl-8">
+      {/* Container for the entire page content */}
+      <div className="p-4">
+        {/* Top bar section with Profile selector and stats */}
+        <div className="bg-gray-800 rounded-lg p-4 mb-4 flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-4">
           <PrimaryPlayerSelector />
-          <RsnRegisterForm />
-        </div>
-
-        {/* This div is used to group the data bars and push them to the right */}
-        <div className="flex space-x-8 pl-32">
           <CombatLevelData />
           <OverallXpData />
           <OverallLvlData />
         </div>
-      </div>
 
-      {/* Flex container for ProfileSkillsDisplay and AdventureLogProfileDisplay */}
-      <div className="flex w-full">
-        ProfileSkillsDisplay
-        <div className="flex-grow p-4"></div>
-        {/* AdventureLogProfileDisplay */}
-        <div className="w-1/3 p-4">
-          <AdventureLogProfileDisplay />
+        {/* Main Content Area */}
+        {/* This container will hold both the Skills and Adventure Log side by side */}
+        <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4">
+          {/* Skills Section */}
+          <div className="bg-gray-800 rounded-lg p-4">
+            <PlayerStatsDisplay playerSkillsData={profileData} />
+          </div>
+
+          {/* Adventure Log Section */}
+          <div className="bg-gray-800 rounded-lg p-4 flex">
+            <AdventureLogProfileDisplay />
+          </div>
         </div>
       </div>
     </MainPageLayout>
+
+    // <MainPageLayout pageTitle="Profile">
+    //   <div className="justify-start items-center gap-4 inline-flex">
+    //     <div className="pl-8">
+    //       <PrimaryPlayerSelector />
+    //       <RsnRegisterForm />
+    //     </div>
+
+    //     {/* This div is used to group the data bars and push them to the right */}
+    //     <div className="justify-between items-center inline-flex">
+    //       <CombatLevelData />
+    //       <OverallXpData />
+    //       <OverallLvlData />
+    //     </div>
+
+    //     <div className="text-white">
+    //       <div className="flex-col justify-start items-start gap-4 inline-flex">
+    //         <PlayerStatsDisplay playerSkillsData={profileData} />
+    //       </div>
+    //       {/* AdventureLogProfileDisplay */}
+    //       <div className="">
+    //         <AdventureLogProfileDisplay />
+    //       </div>
+    //     </div>
+    //   </div>
+    // </MainPageLayout>
   );
 };
 

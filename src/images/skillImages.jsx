@@ -1,6 +1,7 @@
 /** @format */
 
 const skillImages = {
+  Overall: new URL("./overall.png", import.meta.url).href,
   Agility: new URL("./agility.png", import.meta.url).href,
   Attack: new URL("./attack.png", import.meta.url).href,
   Construction: new URL("./construction.png", import.meta.url).href,

@@ -7,7 +7,8 @@ export const playerDataByName = async (req, res) => {
     const { playerName } = req.params;
     console.log(playerName, "playerName Log");
 
-    res.send(getPlayerData(playerName));
+    const playerData = await getPlayerData(playerName);
+    res.send(playerData);
   } catch (error) {
     res
       .status(500)
