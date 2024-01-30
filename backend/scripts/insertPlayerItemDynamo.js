@@ -1,7 +1,7 @@
 /** @format */
 
 import AWS from "aws-sdk";
-import parseRunescapeProfile from "./parseRunescapeProfile.js";
+import getPlayerData from "../util/getPlayerData.js";
 
 AWS.config.update({ region: "us-east-1" });
 
@@ -10,7 +10,7 @@ const tableName = "AdventureLog";
 
 const insertPlayerData = async (rsn) => {
   try {
-    const playerData = await parseRunescapeProfile(rsn);
+    const playerData = await getPlayerData(rsn);
     if (!playerData) {
       throw new Error("Failed to parse player profile");
     }

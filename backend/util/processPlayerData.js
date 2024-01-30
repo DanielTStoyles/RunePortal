@@ -1,21 +1,24 @@
 /** @format */
 
 import { fetchAdventurePlayerData } from "../controllers/adventureLogController.js";
-import getRunescapeProfile from "../../src/hooks/getRunescapeProfile.js";
 import comparePlayerData from "./diff.js";
 import writeLogEntry from "./writeLogEntry.js";
+import getPlayerData from "./getPlayerData.js";
 
-const processPlayerData = async (playerId) => {
+const processPlayerData = async (rsn) => {
   try {
-    const oldData = await fetchAdventurePlayerData(playerId);
-    const newData = await getRunescapeProfile(playerId);
-    console.log(playerId, newData);
+    const oldData = await fetchAdventurePlayerData(rsn);
+    delete oldData["logTimeStamp"];
+    const newData = await getPlayerData(rsn);
+
+    console.log(rsn, oldData, newData);
 
     const differences = comparePlayerData(oldData, newData);
 
     if (differences) {
+      console.log(differences);
       differences.forEach((difference) => {
-        writeLogEntry(playerId, difference);
+        writeLogEntry(rsn, difference);
       });
     }
   } catch (error) {

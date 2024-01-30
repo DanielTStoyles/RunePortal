@@ -1,8 +1,8 @@
 /** @format */
 
 import React from "react";
-import LandingPageCard from "../components/LandingPageDescriptionCard";
 import SideBar from "../components/navComponents/SideBarComp";
+import LandingPageCard from "../components/landingPage/LandingPageDescriptionCard";
 import RunePortalRegisterForm from "../components/forms/RunePortalRegisterForm";
 import NavBarComponent from "../components/navComponents/TopNavBarComponent";
 import RunePortalLogo from "../images/RunePortalLogo.png";

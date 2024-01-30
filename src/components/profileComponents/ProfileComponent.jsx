@@ -3,16 +3,9 @@
 import React, { useContext, useState } from "react";
 import { useQuery } from "react-query";
 import AuthContext from "../../context/AuthContext";
-import CurrentUsername from "../CurrentUsername";
 import RsnRegisterForm from "../forms/RsnRegisterForm";
-import UserAccList from "../../hooks/RegisteredAccFetch";
 import getRunescapeProfile from "../../hooks/getRunescapeProfile";
-import SideBar from "../navComponents/SideBarComp";
-import NavBarComponent from "../navComponents/TopNavBarComponent";
 import PrimaryPlayerSelector from "./primaryPlayerSelector";
-import ProfileSkillsDisplay from "./profileSkillsDisplay";
-import ProfileAdventureLog from "./ProfileAdventureLog";
-import ProfileWatchlist from "./ProfileWatchlist";
 import AdventureLogProfileDisplay from "../AdventureLogComponents/AdventureLogProfileDisplay";
 import { CombatLevelData, OverallLvlData, OverallXpData } from "./DataBars";
 import MainPageLayout from "../../pages/MainPageLayout";
@@ -47,6 +40,7 @@ const ProfileComponent = () => {
       <div className="flex items-center p-4">
         <div className="pl-8">
           <PrimaryPlayerSelector />
+          <RsnRegisterForm />
         </div>
 
         {/* This div is used to group the data bars and push them to the right */}
@@ -59,11 +53,8 @@ const ProfileComponent = () => {
 
       {/* Flex container for ProfileSkillsDisplay and AdventureLogProfileDisplay */}
       <div className="flex w-full">
-        {/* ProfileSkillsDisplay */}
-        <div className="flex-grow p-4">
-          <ProfileSkillsDisplay playerSkillsData={profileData} />
-        </div>
-
+        ProfileSkillsDisplay
+        <div className="flex-grow p-4"></div>
         {/* AdventureLogProfileDisplay */}
         <div className="w-1/3 p-4">
           <AdventureLogProfileDisplay />

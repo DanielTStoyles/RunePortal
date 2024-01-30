@@ -30,7 +30,7 @@ export const fetchAdventurePlayerData = async (playerId) => {
 
   try {
     const data = await docClient.query(params).promise();
-    return data.Items;
+    return data.Items[0];
   } catch (err) {
     console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
     throw new Error("Error fetching player data");

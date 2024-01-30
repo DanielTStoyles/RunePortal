@@ -1,9 +1,9 @@
 /** @format */
 
 import React from "react";
-import DropdownButton from "./dropdownButton";
-import CurrentUsername from "../CurrentUsername";
-import AccountType from "../AccountType";
+import DropdownButton from "./DropdownButton";
+import CurrentUsername from "../../hooks/CurrentUsername";
+import AccountType from "../../hooks/AccountType";
 
 const PrimaryPlayerSelector = () => {
   return (

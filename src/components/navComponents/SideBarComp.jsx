@@ -2,7 +2,7 @@
 
 import React, { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import CurrentUsername from "../CurrentUsername";
+import CurrentUsername from "../../hooks/CurrentUsername";
 import AuthContext from "../../context/AuthContext";
 
 const SideBar = () => {

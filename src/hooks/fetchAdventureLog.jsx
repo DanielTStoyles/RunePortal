@@ -1,7 +1,7 @@
 /** @format */
 
 const fetchAdventureLog = async () => {
-  const playerId = "999"; // hardcoded to test with
+  const playerId = "Wuglington"; // hardcoded to test with
   try {
     const response = await fetch(`/api/adventure-logs/${playerId}`);
     if (!response.ok) {
@@ -9,7 +9,7 @@ const fetchAdventureLog = async () => {
     }
     const logs = await response.json();
 
-    const entries = logs.map((log) => log.entry);
+    const entries = logs.map((log) => log.detail);
 
     // Output the entries to the console or return them
     console.log(entries);

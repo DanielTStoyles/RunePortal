@@ -3,7 +3,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import getRunescapeProfile from "../../hooks/getRunescapeProfile";
 
 const RsnRegisterForm = () => {
   const { register, handleSubmit } = useForm();

@@ -12,7 +12,6 @@ import playerRoutes from "./routes/playerRoutes.js";
 import { fileURLToPath } from "url";
 import adventureLogRoutes from "./routes/adventureLogRoutes.js";
 import path from "path";
-import processPlayerData from "./util/processPlayerData.js";
 
 dotenv.config();
 
@@ -51,9 +50,9 @@ app.get("*", (req, res) => {
 const PORT = process.env.PORT || 5174;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
-  processPlayerData("Wuglington").then(() => {
-    console.log("Player data processing completed.");
-  });
+  // processPlayerData("Wuglington").then(() => {
+  //   console.log("Player data processing completed.");
+  // });
 });
 
 // Code for retirieving list of items
