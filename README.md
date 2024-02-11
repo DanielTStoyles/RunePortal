@@ -1,8 +1,9 @@
-# React + Vite
+<!-- @format -->
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Runeportal
 
-Currently, two official plugins are available:
+- **Grand Exchange Search**: Dive into an intuitive visual display of the Grand Exchange, allowing you to check the current price trends and data for various items.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Player Adventure Log**: Track your characters journey by viewing entries in your adventure log showing advancements in skill levels, boss kill counts, and more!
+
+- **More To Come**: We're continually working on bringing more features to enhance your OSRS experience.

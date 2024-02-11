@@ -3,6 +3,7 @@
 import React, { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import skillImages from "../../images/skillImages";
+import CircleProgress from "./CircleProgress";
 
 const PlayerStatsDisplay = ({ playerSkillsData }) => {
   const { user } = useContext(AuthContext);
@@ -23,10 +24,16 @@ const PlayerStatsDisplay = ({ playerSkillsData }) => {
       <div className="overflow-x-auto">
         <div className="inline-block min-w-full text-white">
           <div className="bg-gray-700 rounded-lg">
-            <div className="grid grid-cols-4 gap-4 p-2">
-              <div className="text-left font-bold">Skill</div>
-              <div className="text-left font-bold">Level</div>
-              <div className="text-left font-bold">Exp.</div>
+            <div className="grid grid-cols-5 gap-4 p-2">
+              <div className="text-center font-bold">Skill</div>
+              <div className="text-center font-bold">Level</div>
+              <div className="text-center font-bold">Exp.</div>
+              <div className="text-center font-bold">Rank</div>
+              <div className="text-center font-bold">
+                {" "}
+                % to next level
+                <CircleProgress progress={75} />
+              </div>
             </div>
             {playerSkillsData.skills.map((skill, index) => (
               <div

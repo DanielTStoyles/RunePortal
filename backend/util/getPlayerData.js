@@ -34,12 +34,13 @@ const getPlayerData = async (playerId) => {
     }
   );
   if (!response.ok) {
-    throw new Error(
-      `server response ${response.status}: ${response.statusText}`
-    );
+    return {
+      error: true,
+      message: `No player by the name ${playerId} was found, if you have changed your in-game name please edit the player info`,
+    };
   }
   const statsData = await response.json();
-  console.log(statsData, "THIS IS THE STATS DATA");
+  // console.log(statsData, "THIS IS THE STATS DATA, getPlayerData.js");
 
   return { ...normalizePlayerData(statsData), playerId: playerId };
 };

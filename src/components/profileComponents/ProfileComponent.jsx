@@ -41,11 +41,17 @@ const ProfileComponent = () => {
       {/* Container for the entire page content */}
       <div className="p-4">
         {/* Top bar section with Profile selector and stats */}
-        <div className="bg-gray-800 rounded-lg p-4 mb-4 flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-4">
+        <div
+          className="bg-gray-600 rounded-lg pt-4 pl-4 pb-4 mb-4 flex flex-col space-y-4 
+  lg:flex-row lg:space-y-0 lg:space-x-5"
+        >
           <PrimaryPlayerSelector />
-          <CombatLevelData />
-          <OverallXpData />
-          <OverallLvlData />
+          <div className="p-2 lg:space-x-4">
+            <CombatLevelData />
+            <OverallXpData />
+            <OverallLvlData />
+          </div>
+          {/* <RsnRegisterForm /> */}
         </div>
 
         {/* Main Content Area */}
@@ -57,7 +63,7 @@ const ProfileComponent = () => {
           </div>
 
           {/* Adventure Log Section */}
-          <div className="bg-gray-800 rounded-lg p-4 flex">
+          <div className="bg-gray-800 rounded-lg p-4 flex flex-grow ">
             <AdventureLogProfileDisplay />
           </div>
         </div>

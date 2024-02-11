@@ -43,9 +43,6 @@ export const playerRegistration = async (req, res) => {
       "INSERT INTO players (rsn, account_type, user_id) VALUES (?, ?, ?)",
       [rsn, account_type, user_id]
     );
-    //Think ahout the shape of the session object, cookie and user, req.session.user.rsn. Concern that if you want to show the stats of multiple players on the same page
-    //have a player selector in the top left where you select the primary player.
-    //
 
     try {
       await insertPlayerData(rsn);
@@ -97,3 +94,7 @@ export const getUserAccountType = async (req, res) => {
     res.status(500).json({ message: "database error" });
   }
 };
+
+//Think ahout the shape of the session object, cookie and user, req.session.user.rsn. Concern that if you want to show the stats of multiple players on the same page
+//have a player selector in the top left where you select the primary player.
+//

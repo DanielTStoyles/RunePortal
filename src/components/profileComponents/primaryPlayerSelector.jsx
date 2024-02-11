@@ -2,7 +2,7 @@
 
 import React from "react";
 import DropdownButton from "./DropdownButton";
-import CurrentUsername from "../../hooks/CurrentUsername";
+import SelectedPlayerName from "../../hooks/SelectedPlayerName";
 import AccountType from "../../hooks/AccountType";
 
 const PrimaryPlayerSelector = () => {
@@ -12,7 +12,7 @@ const PrimaryPlayerSelector = () => {
       {/* Avatar */}
       <div className="flex flex-col">
         <span className="text-white text-xl font-bold">
-          <CurrentUsername />
+          <SelectedPlayerName />
         </span>
         <span className="text-gray-400 text-base">
           {" "}

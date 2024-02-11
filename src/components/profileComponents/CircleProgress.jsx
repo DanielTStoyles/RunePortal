@@ -21,7 +21,7 @@ const CircleProgress = ({ progress }) => {
           cy="25"
         />
         <circle
-          stroke="blue"
+          stroke="gray"
           fill="transparent"
           strokeWidth="5"
           strokeDasharray={circumference}

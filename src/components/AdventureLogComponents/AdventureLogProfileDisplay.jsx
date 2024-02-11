@@ -1,7 +1,7 @@
 /** @format */
 const AdventureLogProfileDisplay = () => {
   return (
-    <div className="flex-col pr-12">
+    <div className=" flex flex-grow flex-col pr-4">
       {" "}
       {/* Use flex-col for a column layout and padding */}
       {/* Title container without a set width to align with the content below */}

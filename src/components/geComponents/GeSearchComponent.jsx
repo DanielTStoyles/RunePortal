@@ -9,7 +9,7 @@ const GeSearchComponent = ({ isResultsPage }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formattedInputValue = inputValue.replace(/\s+/g, "_");
+    const formattedInputValue = inputValue.trim().replace(/\s+/g, "_");
 
     if (isResultsPage) {
       window.location.href = `/results/${formattedInputValue}`;
@@ -17,32 +17,41 @@ const GeSearchComponent = ({ isResultsPage }) => {
       navigate(`/results/${formattedInputValue}`);
     }
   };
+
   return (
-    <div className="flex justify-start w-full pl-[140px] my-10">
-      <div className="w-[400px] px-[26px]">
-        <form onSubmit={handleSubmit} className="w-full">
-          <div className="text-zinc-400 text-4xl font-bold font-['Arial'] mb-8">
-            Grand Exchange
-          </div>
-          <div className="flex items-center gap-2.5">
-            <div className="flex-grow h-10 px-[26px] py-0.5 bg-neutral-800 rounded-3xl border border-neutral-700 flex items-center">
-              <input
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Type item name here..."
-                className="flex-grow px-2 py-1 rounded-3xl bg-neutral-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              ></input>
-            </div>
-            <button
-              type="submit"
-              className="w-24 h-10 px-4 py-2 bg-zinc-600 rounded-3xl text-white text-xl font-normal font-['Arial']"
-            >
-              Search
-            </button>
-          </div>
-        </form>
-      </div>
+    <div className="flex flex-col items-center justify-center min-h-screen px-4">
+      {/* Title */}
+      <h1 className="text-zinc-200 text-2xl md:text-4xl font-bold mb-4 text-center">
+        Find Item Prices on the Grand Exchange
+      </h1>
+
+      {/* Subtitle/Search label */}
+      <h2 className="text-stone-300 text-xl md:text-3xl font-bold mb-4 text-center">
+        Search Item
+      </h2>
+
+      {/* Search bar and button */}
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-md flex flex-col md:flex-row items-center gap-3"
+      >
+        {/* Input field */}
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          placeholder="Item Name..."
+          className="flex-grow bg-neutral-700 text-stone-300 text-xl font-normal focus:outline-none rounded-lg border border-zinc-700 px-4 py-2 w-full"
+        />
+
+        {/* Search button */}
+        <button
+          type="submit"
+          className="h-10 bg-rp-buttonNormal hover:bg-rp-buttonHover rounded-lg px-6 py-2 flex items-center justify-center w-full md:w-auto"
+        >
+          <span className="text-zinc-200 text-base font-bold">Search</span>
+        </button>
+      </form>
     </div>
   );
 };

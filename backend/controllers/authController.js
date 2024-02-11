@@ -71,3 +71,15 @@ export const checkSession = (req, res) => {
     console.log("Session and User confirmed");
   }
 };
+
+export const updateRsn = (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).json({ message: "Not logged in" });
+  }
+
+  const { newRsn } = req.body;
+
+  req.session.user.rsn = newRsn;
+
+  res.json({ message: "RSN updated succcessfully", rsn: newRsn });
+};

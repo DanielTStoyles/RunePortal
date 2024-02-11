@@ -12,6 +12,8 @@ import playerRoutes from "./routes/playerRoutes.js";
 import { fileURLToPath } from "url";
 import adventureLogRoutes from "./routes/adventureLogRoutes.js";
 import path from "path";
+import { updateAllPlayers } from "./util/processPlayerData.js";
+import cron from "node-cron";
 
 dotenv.config();
 
@@ -47,16 +49,20 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "public", "index.html"));
 });
 
+// cron.schedule("* * * * *", () => {
+//   console.log("Running processAllPlayersData every minute");
+//   updateAllPlayers();
+// });
+
 const PORT = process.env.PORT || 5174;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
-  // processPlayerData("Wuglington").then(() => {
-  //   console.log("Player data processing completed.");
-  // });
+  updateAllPlayers().then(() => {
+    console.log("Player data updating completed.");
+  });
 });
 
 // Code for retirieving list of items
-
 // const setupItemData = async () => {
 //   try {
 //     const itemsFilePath = "./items.json";
