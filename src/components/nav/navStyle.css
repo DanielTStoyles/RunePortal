@@ -1,9 +1,0 @@
-/**
- * NavBar.css
- *
- * @format
- */
-
-.drawer-toggle.open {
-  transform: translateX(335px);
-}
