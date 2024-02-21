@@ -10,6 +10,8 @@ import AdventureLogPage from "./pages/AdventureLogPage";
 import GeWatchlist from "./pages/GeWatchlist";
 import GeResultsPage from "./pages/GeResultsPage";
 import GeSearchPage from "./pages/GeSearchPage";
+import NotFoundPage from "./pages/ErrorPage";
+import OopsComponent from "./components/reDirectPages/OopsComponent";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +33,8 @@ function App() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/adventureLogPage" element={<AdventureLogPage />} />
             <Route path="/geWatchlist" element={<GeWatchlist />} />
+            <Route path="/oops" element={<OopsComponent />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

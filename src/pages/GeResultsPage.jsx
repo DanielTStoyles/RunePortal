@@ -2,14 +2,15 @@
 
 import React from "react";
 import MainPageLayout from "./MainPageLayout";
-import GeResultsComponent from "../components/geComponents/GeResultsComponent";
-import GeSearchComponent from "../components/geComponents/GeSearchComponent";
+import GeResultPageComponent from "../components/geComponents/GeResultPageComponent";
 
 const GeResultsPage = () => {
   return (
-    <MainPageLayout pageTitle="Grand Exchange">
-      <GeSearchComponent isResultsPage={true} />
-      <GeResultsComponent />
+    <MainPageLayout
+      pageTitle="Grand Exchange"
+      contentClassName="flex-grow p-8 md:p-12 lg:p-16"
+    >
+      <GeResultPageComponent />
     </MainPageLayout>
   );
 };

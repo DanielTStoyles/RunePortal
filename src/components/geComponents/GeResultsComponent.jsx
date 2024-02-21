@@ -104,7 +104,7 @@ const GeResultsComponent = () => {
           </div>
         </div>
       </div>
-      <div className="w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 min-h-[80vh]">
+      <div className=" w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 min-h-[80vh]">
         {itemData && itemData?.timeSeries?.data ? (
           <GeChart
             high={itemData.high}

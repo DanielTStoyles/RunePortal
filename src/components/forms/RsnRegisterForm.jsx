@@ -25,59 +25,83 @@ const RsnRegisterForm = () => {
   };
 
   return (
-    <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
-      <input type="hidden" name="remember" value="true" />
-      <div className="rounded-md shadow-sm -space-y-px">
-        <div className="mb-2">
-          <label htmlFor="rsn" className="sr-only">
-            RSN
-          </label>
-          <input
-            id="rsn"
-            name="rsn"
-            type="text"
-            {...register("rsn", { required: true })}
-            className="appearance-none rounded-none relative block w-full px-3 py-2 
-            border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md 
-            focus:outline-none focus:ring-lime-600 focus:border-indigo-500 focus:z-10 sm:text-sm"
-            placeholder="RSN"
-          />
-        </div>
-        <div className="mb-2">
-          <label htmlFor="account_type" className="sr-only">
-            Account Type
-          </label>
-          <select
-            id="account_type"
-            name="account_type"
-            {...register("account_type", { required: true })}
-            className="appearance-none rounded-none relative block w-full px-3 py-2 
-            border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md 
-            focus:outline-none focus:ring-lime-600 focus:border-indigo-500 focus:z-10 sm:text-sm"
-          >
-            <option value="Normal">Normal</option>
-            <option value="Ironman">Ironman</option>
-            <option value="Hardcore Ironman">Hardcore Ironman</option>
-            <option value="Ultimate Ironman">Ultimate Ironman</option>
-            <option value="Group Ironman">Group Ironman</option>
-          </select>
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-            <img
-              src="./images/dropdown-icon.png"
-              alt="dropdown"
-              className="h-4 w-4"
-            />
-          </div>
-        </div>
+    <form
+      className="w-full p-8 bg-neutral-800 rounded-lg border border-zinc-800 flex flex-col justify-start items-start gap-6"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <div className="text-zinc-200 text-2xl font-normal font-['Arial']">
+        Register an Account
       </div>
-      <div>
+
+      <div className="w-full px-6 py-4 bg-zinc-900 rounded-lg border border-zinc-800 flex justify-start items-start gap-2.5">
+        <label htmlFor="email" className="sr-only">
+          Email
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="text"
+          {...register("email", { required: true })}
+          className="appearance-none w-full bg-zinc-900 text-zinc-200 placeholder-zinc-500 rounded-none px-3 py-2 focus:outline-none"
+          placeholder="Email"
+        />
+      </div>
+
+      <div className="w-full px-6 py-4 bg-zinc-900 rounded-lg border border-zinc-800 flex justify-start items-start gap-2.5">
+        <label htmlFor="password" className="sr-only">
+          Password
+        </label>
+        <input
+          id="password"
+          name="password"
+          type="text"
+          {...register("password", { required: true })}
+          className="appearance-none w-full bg-zinc-900 text-zinc-200 placeholder-zinc-500 rounded-none px-3 py-2 focus:outline-none"
+          placeholder="Password"
+        />
+      </div>
+
+      {/* RSN Input */}
+      <div className="w-full px-6 py-4 bg-zinc-900 rounded-lg border border-zinc-800 flex justify-start items-start gap-2.5">
+        <label htmlFor="rsn" className="sr-only">
+          RSN
+        </label>
+        <input
+          id="rsn"
+          name="rsn"
+          type="text"
+          {...register("rsn", { required: true })}
+          className="appearance-none w-full bg-zinc-900 text-zinc-200 placeholder-zinc-500 rounded-none px-3 py-2 focus:outline-none"
+          placeholder="RSN"
+        />
+      </div>
+
+      {/* Account Type Select */}
+      <div className="w-full px-6 py-4 bg-zinc-900 rounded-lg border border-zinc-800 flex justify-start items-center gap-2.5">
+        <label htmlFor="account_type" className="sr-only">
+          Account Type
+        </label>
+        <select
+          id="account_type"
+          name="account_type"
+          {...register("account_type", { required: true })}
+          className="appearance-none w-full bg-zinc-900 text-zinc-200 placeholder-zinc-500 rounded-none px-3 py-2 focus:outline-none"
+        >
+          <option value="Normal">Normal</option>
+          <option value="Ironman">Ironman</option>
+          <option value="Hardcore Ironman">Hardcore Ironman</option>
+          <option value="Ultimate Ironman">Ultimate Ironman</option>
+          <option value="Group Ironman">Group Ironman</option>
+        </select>
+      </div>
+
+      {/* Submit Button */}
+      <div className="w-full px-6 py-3 bg-purple-900 rounded-lg flex justify-center items-center gap-1">
         <button
           type="submit"
-          className="relative w-full flex flex-col justify-center items-center py-2 px-4 
-          border border-lime-400 text-md font-medium rounded-md text-white bg-stone-600 hover:bg-stone-700 
-          focus:outline-none focus:ring-2 focus:ring-lime-600"
+          className="w-full text-zinc-200 text-base font-bold font-['Arial'] py-2 focus:outline-none"
         >
-          Submit
+          Register
         </button>
       </div>
     </form>
@@ -85,11 +109,3 @@ const RsnRegisterForm = () => {
 };
 
 export default RsnRegisterForm;
-
-{
-  /* <img
-src="./images/dropdown-icon.png"
-alt="dropdown icon"
-className="h-4 w-4"
-/> */
-}

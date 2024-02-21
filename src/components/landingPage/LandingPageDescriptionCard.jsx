@@ -4,21 +4,21 @@ import React from "react";
 
 const LandingPageCard = ({ title, description, imageUrl }) => {
   return (
-    <div className="box-border flex flex-row items-start p-[24px] gap-[24px] w-[632px] h-[148px] bg-[#1F1F1F] border border-[#53358D] rounded-[8px]">
-      <div className="w-[100px] h-[100px] bg-[#D9D9D9] flex-none order-0 rounded-full overflow-hidden">
-        {/* Image */}
-        <img
-          src={imageUrl}
-          alt={title}
-          className="object-cover w-full h-full"
-        />
-      </div>
-      <div className="flex flex-col items-start gap-[24px] w-[281px] flex-none order-1">
-        <div className="font-arial text-[24px] leading-[28px] text-white flex-none order-0">
-          {title}
+    <div className="w-[628px] h-[148px] p-6 bg-neutral-800 rounded-lg border border-zinc-800 justify-start items-start gap-6 inline-flex">
+      <div className="w-[100px] h-[100px] justify-center items-center flex">
+        <div className="w-[100px] h-[100px] relative flex-col justify-start items-start flex">
+          <div className="w-[100px] h-[100px] bg-zinc-500 rounded-full" />
+          <div className="text-white text-lg font-normal font-['Arial']">
+            {/* image to be placed here */}
+          </div>
         </div>
-        <div className="font-arial text-[16px] leading-[18px] text-[#CCCCCC] flex-none order-1">
-          {description}
+      </div>
+      <div className="flex-col justify-start items-start gap-6 inline-flex">
+        <div className="text-zinc-200 text-2xl font-normal font-['Arial']">
+          {/* title here         */}
+        </div>
+        <div className="text-zinc-400 text-base font-normal font-['Arial']">
+          {/* description here         */}
         </div>
       </div>
     </div>

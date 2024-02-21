@@ -9,11 +9,9 @@ import AuthContext from "../../context/AuthContext";
 const RunePortalLoginForm = () => {
   const { checkSession } = useContext(AuthContext);
   const { register, handleSubmit } = useForm();
-
   const navigate = useNavigate();
 
   const loginMutation = useMutation(async (data) => {
-    console.log("Initialized");
     const response = await fetch("/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -21,11 +19,9 @@ const RunePortalLoginForm = () => {
     });
 
     if (response.ok) {
-      console.log("good login");
       navigate("/home");
       checkSession();
     }
-    console.log("fetch sent");
   });
 
   const onSubmit = (data) => {
@@ -33,59 +29,50 @@ const RunePortalLoginForm = () => {
   };
 
   return (
-    <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
-      <input type="hidden" name="remember" value="true" />
-      <div className="rounded-md shadow-sm -space-y-px">
-        <div className="mb-2">
-          <label htmlFor="email-address" className="sr-only">
-            Email address
-          </label>
-          <input
-            id="email-address"
-            name="email"
-            type="email"
-            {...register("email", { required: true })}
-            className="appearance-none rounded-none relative block w-full px-3 py-2 
-                    border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md 
-                    focus:outline-none focus:ring-lime-600 focus:border-indigo-500 focus:z-10 sm:text-sm"
-            placeholder="Email address"
-          />
-        </div>
-        <div>
-          <label htmlFor="password" className="sr-only">
-            Password
-          </label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            {...register("password", { required: true })}
-            className="appearance-none rounded-none relative block w-full px-3 py-2 
-                    border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md 
-                    focus:outline-none focus:ring-lime-600 focus:border-indigo-500 focus:z-10 sm:text-sm"
-            placeholder="Password"
-          />
-        </div>
-        <div className="w-full text-center">
-          <Link
-            to="http://localhost:5173/register"
-            className="text-blue-500 hover:text-blue-700"
-          >
-            {" "}
-            Don't have an account? Click here to Register{" "}
-          </Link>
-        </div>
+    <form
+      className="w-full p-8 bg-neutral-800 rounded-lg border border-zinc-800 flex flex-col justify-start items-start gap-6"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <div className="text-zinc-200 text-xl md:text-2xl font-normal">
+        Log In
       </div>
-      <div>
-        <button
-          type="submit"
-          className="group relative w-full flex justify-center py-2 px-4 
-                  border border-lime-400 text-md font-medium rounded-md text-white bg-stone-600 hover:bg-stone-700 
-                  focus:outline-none focus:ring-2 focus:ring-lime-600"
-        >
-          Sign In
-        </button>
+
+      {/* Email Input */}
+      <div className="w-full flex flex-col justify-start items-start gap-2.5">
+        <input
+          id="email-address"
+          name="email"
+          type="email"
+          {...register("email", { required: true })}
+          className="appearance-none w-full bg-zinc-900 text-zinc-200 placeholder-zinc-500 rounded-lg px-3 py-2 focus:outline-none"
+          placeholder="Email address"
+        />
       </div>
+
+      {/* Password Input */}
+      <div className="w-full flex flex-col justify-start items-center gap-2.5">
+        <input
+          id="password"
+          name="password"
+          type="password"
+          {...register("password", { required: true })}
+          className="appearance-none w-full bg-zinc-900 text-zinc-200 placeholder-zinc-500 rounded-lg px-3 py-2 focus:outline-none"
+          placeholder="Password"
+        />
+      </div>
+
+      {/* Log In Button */}
+      <button
+        type="submit"
+        className="w-full bg-purple-900 text-zinc-200 text-base font-bold rounded-lg px-6 py-2 focus:outline-none"
+      >
+        Log In
+      </button>
+
+      {/* Forgot Password Link */}
+      <a href="#" className="text-violet-400 text-base font-normal">
+        Forgot Password or Username?
+      </a>
     </form>
   );
 };
