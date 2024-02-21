@@ -25,31 +25,32 @@ const SideBar = () => {
 
   const profile = () => {
     if (!user) {
-      navigate("/register");
+      navigate("/oops");
     } else navigate("/profile");
   };
 
   const adventureLogPage = () => {
     if (!user) {
-      navigate("/register");
+      navigate("/oops");
     } else navigate("/adventureLogPage");
   };
 
   return (
     <aside className="sticky float-left top-0 left-0 z-30 w-64 h-screen bg-[#1F1F1F]">
-      <div className="flex">
-        <div className="h-full px-3 py-4 overflow-y-auto ">
+      <div className="flex flex-col">
+        <div className="flex items-center justify-center mt-2">
+          <button onClick={home}>
+            <img
+              src={RunePortalLogo1}
+              alt="RunePortal Logo"
+              className="w-[100px] h-[110px]"
+            />
+          </button>
+        </div>
+        <div className="h-full px-3 py-2 overflow-y-auto ">
+          <div className="flex justify-center items-center mb-8"></div>
           <ul className="space-y-2 font-medium">
-            <div className="flex justify-center items-center mb-8">
-              <button onClick={home}>
-                <img
-                  src={RunePortalLogo1}
-                  alt="RunePortal Logo"
-                  className="w-[100px] h-[110px]"
-                />
-              </button>
-            </div>
-            {/* {user ? (
+            {user ? (
               <li>
                 <a
                   href="#"
@@ -67,7 +68,7 @@ const SideBar = () => {
                   Sign Up!{" "}
                 </Link>{" "}
               </li>
-            )} */}
+            )}
 
             <li onClick={profile}>
               <a

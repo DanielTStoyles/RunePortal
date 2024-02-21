@@ -9,16 +9,16 @@ const LandingPageCard = ({ title, description, imageUrl }) => {
         <div className="w-[100px] h-[100px] relative flex-col justify-start items-start flex">
           <div className="w-[100px] h-[100px] bg-zinc-500 rounded-full" />
           <div className="text-white text-lg font-normal font-['Arial']">
-            {/* image to be placed here */}
+            {imageUrl}
           </div>
         </div>
       </div>
       <div className="flex-col justify-start items-start gap-6 inline-flex">
         <div className="text-zinc-200 text-2xl font-normal font-['Arial']">
-          {/* title here         */}
+          {title}
         </div>
         <div className="text-zinc-400 text-base font-normal font-['Arial']">
-          {/* description here         */}
+          {description}
         </div>
       </div>
     </div>

@@ -43,7 +43,7 @@ const NavBarComponent = ({ pageName }) => {
             className="w-[11px] h-4 mr-1"
           />{" "}
           <div className="text-zinc-200 text-sm font-bold font-['Arial']">
-            Logout
+            Login
           </div>
         </button>
       )}
