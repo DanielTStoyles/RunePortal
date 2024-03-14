@@ -3,7 +3,6 @@
 import React, { useContext, useState } from "react";
 import { useQuery } from "react-query";
 import AuthContext from "../../context/AuthContext";
-import RsnRegisterForm from "../forms/RsnRegisterForm";
 import PrimaryPlayerSelector from "./primaryPlayerSelector";
 import AdventureLogProfileDisplay from "../AdventureLogComponents/AdventureLogProfileDisplay";
 import { CombatLevelData, OverallLvlData, OverallXpData } from "./DataBars";
@@ -36,6 +35,8 @@ const ProfileComponent = () => {
     console.error("error fetching profile data:", error);
   }
 
+  const playerId = user.rsn;
+
   return (
     <MainPageLayout pageTitle="Profile">
       {/* Container for the entire page content */}
@@ -43,7 +44,7 @@ const ProfileComponent = () => {
         {/* Top bar section with Profile selector and stats */}
         <div
           className="bg-gray-600 rounded-lg pt-4 pl-4 pb-4 mb-4 flex flex-col space-y-4 
-  lg:flex-row lg:space-y-0 lg:space-x-5"
+                    lg:flex-row lg:space-y-0 lg:space-x-5"
         >
           <PrimaryPlayerSelector />
           <div className="p-2 lg:space-x-4">
@@ -64,37 +65,11 @@ const ProfileComponent = () => {
 
           {/* Adventure Log Section */}
           <div className="bg-gray-800 rounded-lg p-4 flex flex-grow ">
-            <AdventureLogProfileDisplay />
+            <AdventureLogProfileDisplay playerId={playerId} />
           </div>
         </div>
       </div>
     </MainPageLayout>
-
-    // <MainPageLayout pageTitle="Profile">
-    //   <div className="justify-start items-center gap-4 inline-flex">
-    //     <div className="pl-8">
-    //       <PrimaryPlayerSelector />
-    //       <RsnRegisterForm />
-    //     </div>
-
-    //     {/* This div is used to group the data bars and push them to the right */}
-    //     <div className="justify-between items-center inline-flex">
-    //       <CombatLevelData />
-    //       <OverallXpData />
-    //       <OverallLvlData />
-    //     </div>
-
-    //     <div className="text-white">
-    //       <div className="flex-col justify-start items-start gap-4 inline-flex">
-    //         <PlayerStatsDisplay playerSkillsData={profileData} />
-    //       </div>
-    //       {/* AdventureLogProfileDisplay */}
-    //       <div className="">
-    //         <AdventureLogProfileDisplay />
-    //       </div>
-    //     </div>
-    //   </div>
-    // </MainPageLayout>
   );
 };
 

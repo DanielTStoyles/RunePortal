@@ -8,7 +8,7 @@ const RsnRegisterForm = () => {
   const { register, handleSubmit } = useForm();
 
   const registerMutation = useMutation(async (data) => {
-    const response = await fetch("/api/playerRegistration", {
+    const response = await fetch("/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -26,66 +26,67 @@ const RsnRegisterForm = () => {
 
   return (
     <form
-      className="w-full p-8 bg-neutral-800 rounded-lg border border-zinc-800 flex flex-col justify-start items-start gap-6"
+      className="w-full max-w-xl p-10 bg-zinc-900 rounded-lg border border-zinc-800 flex flex-col justify-start items-start gap-4"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="text-zinc-200 text-2xl font-normal font-['Arial']">
+      <h2 className="text-zinc-200 text-3xl font-bold mb-8">
         Register an Account
+      </h2>
+
+      <div className="w-full">
+        <input
+          id="username"
+          name="username"
+          type="username" // Assuming you want to change the type to email for better validation
+          {...register("username", { required: true })}
+          className="w-full px-4 py-3 bg-zinc-800 text-zinc-200 placeholder-zinc-500 rounded-md focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+          placeholder="Username"
+        />
       </div>
 
-      <div className="w-full px-6 py-4 bg-zinc-900 rounded-lg border border-zinc-800 flex justify-start items-start gap-2.5">
-        <label htmlFor="email" className="sr-only">
-          Email
-        </label>
+      {/* Email Field */}
+      <div className="w-full">
         <input
           id="email"
           name="email"
-          type="text"
+          type="email" // Assuming you want to change the type to email for better validation
           {...register("email", { required: true })}
-          className="appearance-none w-full bg-zinc-900 text-zinc-200 placeholder-zinc-500 rounded-none px-3 py-2 focus:outline-none"
+          className="w-full px-4 py-3 bg-zinc-800 text-zinc-200 placeholder-zinc-500 rounded-md focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
           placeholder="Email"
         />
       </div>
 
-      <div className="w-full px-6 py-4 bg-zinc-900 rounded-lg border border-zinc-800 flex justify-start items-start gap-2.5">
-        <label htmlFor="password" className="sr-only">
-          Password
-        </label>
+      {/* Password Field */}
+      <div className="w-full">
         <input
           id="password"
           name="password"
-          type="text"
+          type="password" // To hide the password input
           {...register("password", { required: true })}
-          className="appearance-none w-full bg-zinc-900 text-zinc-200 placeholder-zinc-500 rounded-none px-3 py-2 focus:outline-none"
+          className="w-full px-4 py-3 bg-zinc-800 text-zinc-200 placeholder-zinc-500 rounded-md focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
           placeholder="Password"
         />
       </div>
 
-      {/* RSN Input */}
-      <div className="w-full px-6 py-4 bg-zinc-900 rounded-lg border border-zinc-800 flex justify-start items-start gap-2.5">
-        <label htmlFor="rsn" className="sr-only">
-          RSN
-        </label>
+      {/* RSN Field */}
+      <div className="w-full">
         <input
           id="rsn"
           name="rsn"
           type="text"
           {...register("rsn", { required: true })}
-          className="appearance-none w-full bg-zinc-900 text-zinc-200 placeholder-zinc-500 rounded-none px-3 py-2 focus:outline-none"
-          placeholder="RSN"
+          className="w-full px-4 py-3 bg-zinc-800 text-zinc-200 placeholder-zinc-500 rounded-md focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+          placeholder="Runescape Username"
         />
       </div>
 
       {/* Account Type Select */}
-      <div className="w-full px-6 py-4 bg-zinc-900 rounded-lg border border-zinc-800 flex justify-start items-center gap-2.5">
-        <label htmlFor="account_type" className="sr-only">
-          Account Type
-        </label>
+      <div className="w-full">
         <select
           id="account_type"
           name="account_type"
           {...register("account_type", { required: true })}
-          className="appearance-none w-full bg-zinc-900 text-zinc-200 placeholder-zinc-500 rounded-none px-3 py-2 focus:outline-none"
+          className="w-full px-4 py-3 bg-zinc-800 text-zinc-200 placeholder-zinc-500 rounded-md focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
         >
           <option value="Normal">Normal</option>
           <option value="Ironman">Ironman</option>
@@ -96,13 +97,20 @@ const RsnRegisterForm = () => {
       </div>
 
       {/* Submit Button */}
-      <div className="w-full px-6 py-3 bg-purple-900 rounded-lg flex justify-center items-center gap-1">
+      <div className="w-full">
         <button
           type="submit"
-          className="w-full text-zinc-200 text-base font-bold font-['Arial'] py-2 focus:outline-none"
+          className="w-full px-6 py-3 bg-rp-buttonNormal text-zinc-200 text-base font-bold rounded-md hover:bg-rp-buttonHover focus:outline-none focus:border-purple-700 focus:ring-2 focus:ring-purple-700"
         >
           Register
         </button>
+      </div>
+
+      <div className="text-zinc-300 text-sm mt-4">
+        Have an Account?{" "}
+        <a href="/login" className="text-violet-400 hover:text-violet-300">
+          Log In Here
+        </a>
       </div>
     </form>
   );

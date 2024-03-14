@@ -1,15 +1,18 @@
 /** @format */
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import GeResultsComponent from "./GeResultsComponent";
 
 const GeResultPageComponent = () => {
   const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const formattedInputValue = inputValue.trim().replace(/\s+/g, "_");
+    const isResultsPage = location.pathname.startsWith('/results/'); // Check if the current path is the results page
 
     if (isResultsPage) {
       window.location.href = `/results/${formattedInputValue}`;
@@ -19,7 +22,7 @@ const GeResultPageComponent = () => {
   };
 
   return (
-    <div className=" flex flex-col items-start px-4 p-16 ml-40 w-full">
+    <div className=" flex flex-col items-start ml-40">
       {/* Subtitle/Search label */}
       <h1 className="text-stone-300 text-xl md:text-3xl font-bold mb-4 text-center">
         Search Item
@@ -47,6 +50,10 @@ const GeResultPageComponent = () => {
           <span className="text-zinc-200 text-base font-bold">Search</span>
         </button>
       </form>
+
+      <div>
+      <GeResultsComponent />
+      </div>
     </div>
   );
 };

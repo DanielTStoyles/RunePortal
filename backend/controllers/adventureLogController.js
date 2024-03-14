@@ -5,6 +5,18 @@ import insertPlayerData from "../scripts/insertPlayerItemDynamo.js";
 
 const docClient = new AWS.DynamoDB.DocumentClient();
 
+export const fetchPlayerAdventureLog = async (req, res) => {
+  try {
+    const { playerId } = req.params;
+    console.log(playerId, "adventureLogController log of playerId");
+
+    const data = await fetchAdventureLog(playerId);
+    res.send(data);
+  } catch (error) {
+    throw new error();
+  }
+};
+
 export const fetchAdventureLog = async (playerId) => {
   const params = {
     TableName: "AdventureLogEntries",
@@ -14,7 +26,7 @@ export const fetchAdventureLog = async (playerId) => {
 
   try {
     const data = await docClient.query(params).promise();
-    return data.Items;
+    return data.Items[0];
   } catch (err) {
     throw err;
   }

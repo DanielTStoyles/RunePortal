@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import GeChart from "./GeChart";
 import { useQuery } from "react-query";
+import MembersIcon from "../icons/MembersIcon";
 
 const apiBaseUrl = import.meta.env.VITE_APP_API;
 
@@ -51,6 +52,8 @@ const GeResultsComponent = () => {
   let highValue = null;
   let lowValue = null;
   let currentPrice = null;
+  let priceChange = null;
+  let itemTitle = null;
 
   if (itemData) {
     const highLowData = itemData.highLow.data;
@@ -61,11 +64,22 @@ const GeResultsComponent = () => {
 
   if (highValue && lowValue) {
     currentPrice = (highValue + lowValue) / 2;
+    priceChange = (highValue - lowValue);
+    itemTitle = chartTitle;
   }
 
+
+  
   return (
-    <div className="flex flex-col justify-center items-center w-full h-screen">
-      <div className="flex justify-center items-center gap-4 mb-4">
+    <div className="flex flex-col justify-start items-start w-full h-screen">
+
+      <div className=" text-white flex flex-row text-2xl font-bold mb-4 w-full text-left mt-16 mb-10 gap-2 ">
+         {/* Adjust text alignment and padding as needed */}
+        {itemTitle}
+      <MembersIcon />
+      </div>
+      <div className="flex justify-center items-center gap-4 mb-4 w-full">
+        {/* Four divs containing item information */}
         <div className="px-6 py-4 bg-neutral-800 rounded-lg flex justify-start items-start gap-2.5">
           <div className="text-stone-300 text-xl font-normal font-['Arial']">
             Current Price:
@@ -98,13 +112,12 @@ const GeResultsComponent = () => {
             <div className="left-[92px] top-0 absolute text-zinc-200 text-xl font-normal font-['Arial']">
               ▲▼
             </div>
-            <div className="left-[148px] top-0 absolute text-zinc-200 text-xl font-normal font-['Arial']">
-              999.99b
-            </div>
+            <div className="left-[148px] top-0 absolute text-zinc-200 text-xl font-normal font-['Arial'] overflow-hidden whitespace-nowrap overflow-ellipsis">              {priceChange} gp            
+              </div>
           </div>
         </div>
       </div>
-      <div className=" w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 min-h-[80vh]">
+      <div className=" w-full md:w-2/3 lg:w-full xl:w-full min-h-[400px] bg-zinc-800 rounded-lg">
         {itemData && itemData?.timeSeries?.data ? (
           <GeChart
             high={itemData.high}

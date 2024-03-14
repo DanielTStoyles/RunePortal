@@ -1,11 +1,11 @@
 /** @format */
 
 const getRunescapeProfile = async (rsn) => {
-  console.log(rsn, "getRunescapeProfile rsn log");
+  // console.log(rsn, "getRunescapeProfile rsn log");
   try {
     const response = await fetch(`/api/playerData/${rsn}`);
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
 
     if (!response.ok) {
       throw new Error(`Error fetching player data: ${response.statusText}`);

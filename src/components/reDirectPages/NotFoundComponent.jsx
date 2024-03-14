@@ -10,14 +10,12 @@ const NotFoundComponent = () => {
 
   const navigate = useNavigate();
 
-  const profile = () => {
-    if (!user) {
-      navigate("/register");
-    } else navigate("/profile");
+  const home = () => {
+    navigate("/home");
   };
 
   return (
-    <div className="w-[715px] h-[498px] flex-col justify-start items-center gap-10 inline-flex">
+    <div className="w-[715px] h-[498px] flex-col justify-center items-center gap-10 inline-flex">
       <div>
         <img src={error404} alt="Error 404"></img>
       </div>
@@ -30,9 +28,9 @@ const NotFoundComponent = () => {
       <div className="px-6 py-3 bg-purple-900 rounded-lg justify-center items-center gap-1 inline-flex">
         <button
           className="text-zinc-200 text-base font-bold font-['Arial']"
-          onClick={profile}
+          onClick={home}
         >
-          Back to Profile
+          Back to Home
         </button>
       </div>
     </div>

@@ -7,7 +7,7 @@ import NotFoundComponent from "../components/reDirectPages/notFoundComponent";
 const NotFoundPage = () => {
   return (
     <MainPageLayout pageTitle="404 Not Found">
-      <div>
+      <div className="flex justify-center items-center">
         <NotFoundComponent />
       </div>
     </MainPageLayout>

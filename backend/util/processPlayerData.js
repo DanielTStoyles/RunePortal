@@ -21,9 +21,10 @@ export const processPlayerData = async (rsn) => {
 
     const newData = await getPlayerData(rsn);
 
-    // console.log(rsn, oldData, newData);
+    console.log(rsn, oldData, newData);
 
     const differences = comparePlayerData(oldData, newData);
+    console.log("Differences detected:", differences);
 
     if (differences) {
       console.log(differences);

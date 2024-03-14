@@ -36,7 +36,7 @@ const SideBar = () => {
   };
 
   return (
-    <aside className="sticky float-left top-0 left-0 z-30 w-64 h-screen bg-[#1F1F1F]">
+    <aside className="sticky float-left top-0 left-0 z-30 w-64 h-screen bg-side-nav">
       <div className="flex flex-col">
         <div className="flex items-center justify-center mt-2">
           <button onClick={home}>
@@ -50,7 +50,7 @@ const SideBar = () => {
         <div className="h-full px-3 py-2 overflow-y-auto ">
           <div className="flex justify-center items-center mb-8"></div>
           <ul className="space-y-2 font-medium">
-            {user ? (
+            {/* {user ? (
               <li>
                 <a
                   href="#"
@@ -68,7 +68,7 @@ const SideBar = () => {
                   Sign Up!{" "}
                 </Link>{" "}
               </li>
-            )}
+            )} */}
 
             <li onClick={profile}>
               <a
@@ -147,7 +147,7 @@ const SideBar = () => {
                 </span>
               </a>
             </li>
-            <li onClick={geWatchlist}>
+            {/* <li onClick={geWatchlist}>
               <a
                 href="#"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
@@ -172,7 +172,7 @@ const SideBar = () => {
                   Ge Watchlist
                 </span>
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

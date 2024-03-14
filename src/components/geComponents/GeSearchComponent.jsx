@@ -19,7 +19,7 @@ const GeSearchComponent = ({ isResultsPage }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-4">
+    <div className="flex flex-col items-center justify-center mt-80 px-4 ">
       {/* Title */}
       <h1 className="text-zinc-200 text-2xl md:text-4xl font-bold mb-4 text-center">
         Find Item Prices on the Grand Exchange

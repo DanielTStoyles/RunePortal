@@ -6,9 +6,9 @@ import RunePortalLoginForm from "../forms/RunePortalLoginForm";
 
 const OopsComponent = () => {
   return (
-    <MainPageLayout>
-      <div className="relative w-full min-h-screen bg-stone-950 flex flex-col justify-start items-center text-center px-4 md:px-10 lg:px-20 pt-8 pb-8">
-        <h1 className="text-neutral-300 text-4xl md:text-5xl font-bold mt-10 mb-6">
+    <MainPageLayout pageTitle="Oops!">
+      <div className="relative w-full min-h-screen flex flex-col justify-start items-center text-center px-4 md:px-10 lg:px-20 pt-8 pb-8">
+        <h1 className="text-neutral-300 text-2xl md:text-4xl font-bold mt-10 mb-6">
           Oops! The page you’ve tried to visit requires a registered account.
         </h1>
         <p className="text-zinc-400 text-xl md:text-2xl font-bold mb-8 max-w-2xl">
@@ -20,10 +20,10 @@ const OopsComponent = () => {
           Register or Log In below
         </h2>
         <div className="w-full flex flex-col md:flex-row justify-center items-start gap-10 md:gap-16 mt-6">
-          <div className="w-full md:w-1/2 xl:w-1/3 bg-neutral-800 rounded-lg border border-zinc-800 p-6 flex flex-col justify-start items-start gap-6">
+          <div className="w-full md:w-1/2 xl:w-1/3 p-6 flex flex-col justify-start items-start gap-6">
             <RsnRegisterForm />
           </div>
-          <div className="w-full md:w-1/2 xl:w-1/3 bg-neutral-800 rounded-lg border border-zinc-800 p-6 flex flex-col justify-start items-start gap-6">
+          <div className="w-full md:w-1/2 xl:w-1/3 p-6 flex flex-col justify-start items-start gap-6">
             <RunePortalLoginForm />
           </div>
         </div>

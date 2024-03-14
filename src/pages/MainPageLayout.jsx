@@ -15,7 +15,7 @@ const MainPageLayout = ({
 }) => {
   const { user } = useContext(AuthContext);
 
-  const containerClasses = `relative w-full bg-runeportal-darkpurple min-h-screen flex ${
+  const containerClasses = `relative w-full bg-gradient-to-b from-rp-buttonHover to-nav-bg min-h-screen flex ${
     showSidebar ? "md:flex-row" : "flex-col"
   }`;
 
@@ -24,7 +24,6 @@ const MainPageLayout = ({
       {showSidebar && <SideBar user={user} className={sidebarClassName} />}
       <div className="flex flex-col flex-grow">
         {showNavBar && <NavBarComponent pageName={pageTitle} />}
-        {/* Apply TailwindCSS classes through contentClassName prop */}
         <div className={contentClassName}>{children}</div>
       </div>
     </div>

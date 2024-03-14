@@ -2,22 +2,30 @@
 
 import React from "react";
 
-const LandingPageCard = ({ title, description, imageUrl }) => {
+const TransformedCard = ({
+  title = "Track Your Progress",
+  description = "For one or multiple accounts",
+  imageUrl,
+}) => {
   return (
-    <div className="w-[628px] h-[148px] p-6 bg-neutral-800 rounded-lg border border-zinc-800 justify-start items-start gap-6 inline-flex">
-      <div className="w-[100px] h-[100px] justify-center items-center flex">
+    <div className="w-[410.67px] h-[260px] p-6 bg-zinc-900 rounded-lg border border-zinc-800 flex-col justify-start items-center inline-flex">
+      <div className="w-[100px] h-[100px] justify-center items-center inline-flex">
         <div className="w-[100px] h-[100px] relative flex-col justify-start items-start flex">
-          <div className="w-[100px] h-[100px] bg-zinc-500 rounded-full" />
-          <div className="text-white text-lg font-normal font-['Arial']">
-            {imageUrl}
-          </div>
+          {/* Make sure the background divs are also rounded */}
+          <div className="w-[100px] h-[100px] bg-zinc-500 rounded-full absolute" />
+          <div className="w-[100px] h-[100px] bg-slate-600 rounded-full absolute mb-1" />
+          <img
+            src={imageUrl}
+            alt="Description"
+            className="w-[100px] h-[100px] rounded-full object-cover relative" // Added object-cover and relative
+          />
         </div>
       </div>
-      <div className="flex-col justify-start items-start gap-6 inline-flex">
-        <div className="text-zinc-200 text-2xl font-normal font-['Arial']">
+      <div className="flex-col justify-center items-center gap-6 flex">
+        <div className="self-stretch text-center text-zinc-200 text-2xl font-normal font-['Arial'] mt-2">
           {title}
         </div>
-        <div className="text-zinc-400 text-base font-normal font-['Arial']">
+        <div className="self-stretch text-center text-zinc-400 text-base font-normal font-['Arial']">
           {description}
         </div>
       </div>
@@ -25,4 +33,4 @@ const LandingPageCard = ({ title, description, imageUrl }) => {
   );
 };
 
-export default LandingPageCard;
+export default TransformedCard;
