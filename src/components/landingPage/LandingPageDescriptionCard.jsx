@@ -12,12 +12,12 @@ const TransformedCard = ({
       <div className="w-[100px] h-[100px] justify-center items-center inline-flex">
         <div className="w-[100px] h-[100px] relative flex-col justify-start items-start flex">
           {/* Make sure the background divs are also rounded */}
-          <div className="w-[100px] h-[100px] bg-zinc-500 rounded-full absolute" />
-          <div className="w-[100px] h-[100px] bg-slate-600 rounded-full absolute mb-1" />
+          <div className="w-[100px] h-[100px] absolute" />
+          <div className="w-[100px] h-[100px] absolute mb-1" />
           <img
             src={imageUrl}
             alt="Description"
-            className="w-[100px] h-[100px] rounded-full object-cover relative" // Added object-cover and relative
+            className="w-[100px] h-[100px] relative" // Added object-cover and relative
           />
         </div>
       </div>

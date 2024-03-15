@@ -18,7 +18,7 @@ const NavBarComponent = ({ pageName }) => {
   };
 
   return (
-    <nav className="flex justify-between items-center w-full h-14 bg-nav-bg px-4 mb-4">
+    <nav className="flex justify-between items-center w-full h-14 bg-top-purp px-4 mb-4">
       <div className="text-[#A4A1AA] font-bold text-2xl leading-7 font-arial">
         {pageName}
       </div>

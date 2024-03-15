@@ -5,10 +5,9 @@ import AWS from "aws-sdk";
 const docClient = new AWS.DynamoDB.DocumentClient();
 
 const writeLogEntry = async (playerId, difference) => {
-  const isLevelOrScoreChange =
-    difference.path[2] === "level" || difference.path[2] === "score";
+  const isScoreChange = difference.path[2] === "score";
 
-  if (!isLevelOrScoreChange) return;
+  if (!isScoreChange) return;
 
   const entry = {
     playerId: playerId,

@@ -22,11 +22,13 @@ export const fetchAdventureLog = async (playerId) => {
     TableName: "AdventureLogEntries",
     KeyConditionExpression: "playerId = :playerId",
     ExpressionAttributeValues: { ":playerId": playerId },
+    ScanIndexForward: false,
+    Limit: 3,
   };
 
   try {
     const data = await docClient.query(params).promise();
-    return data.Items[0];
+    return data.Items;
   } catch (err) {
     throw err;
   }

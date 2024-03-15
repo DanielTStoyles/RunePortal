@@ -64,19 +64,16 @@ const GeResultsComponent = () => {
 
   if (highValue && lowValue) {
     currentPrice = (highValue + lowValue) / 2;
-    priceChange = (highValue - lowValue);
+    priceChange = highValue - lowValue;
     itemTitle = chartTitle;
   }
 
-
-  
   return (
     <div className="flex flex-col justify-start items-start w-full h-screen">
-
       <div className=" text-white flex flex-row text-2xl font-bold mb-4 w-full text-left mt-16 mb-10 gap-2 ">
-         {/* Adjust text alignment and padding as needed */}
+        {/* Adjust text alignment and padding as needed */}
         {itemTitle}
-      <MembersIcon />
+        <MembersIcon />
       </div>
       <div className="flex justify-center items-center gap-4 mb-4 w-full">
         {/* Four divs containing item information */}
@@ -107,13 +104,15 @@ const GeResultsComponent = () => {
         <div className="w-[269px] h-[55px] px-6 py-4 bg-neutral-800 rounded-lg flex-col justify-start items-start gap-2.5 inline-flex">
           <div className="relative">
             <div className="left-0 top-0 absolute text-stone-300 text-xl font-normal font-['Arial']">
-              Change:
+              Margin:
             </div>
             <div className="left-[92px] top-0 absolute text-zinc-200 text-xl font-normal font-['Arial']">
               ▲▼
             </div>
-            <div className="left-[148px] top-0 absolute text-zinc-200 text-xl font-normal font-['Arial'] overflow-hidden whitespace-nowrap overflow-ellipsis">              {priceChange} gp            
-              </div>
+            <div className="left-[148px] top-0 absolute text-zinc-200 text-xl font-normal font-['Arial'] overflow-hidden whitespace-nowrap overflow-ellipsis">
+              {" "}
+              {priceChange} gp
+            </div>
           </div>
         </div>
       </div>

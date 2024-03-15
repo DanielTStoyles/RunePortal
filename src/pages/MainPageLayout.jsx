@@ -15,7 +15,7 @@ const MainPageLayout = ({
 }) => {
   const { user } = useContext(AuthContext);
 
-  const containerClasses = `relative w-full bg-gradient-to-b from-rp-buttonHover to-nav-bg min-h-screen flex ${
+  const containerClasses = `relative w-full bg-gradient-to-b from-top-purp to-bottom-black min-h-screen flex ${
     showSidebar ? "md:flex-row" : "flex-col"
   }`;
 

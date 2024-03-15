@@ -4,9 +4,9 @@ import React from "react";
 import LandingPageCard from "../components/landingPage/LandingPageDescriptionCard";
 import RunePortalLogo1 from "../images/RunePortalLogo1.png";
 import MainPageLayout from "./MainPageLayout";
-import ladningImage1 from "../images/landingImage1.jpg";
-import gevectorjpg from "../images/gevectorjpg.jpg";
-import scrolliconjpg from "../images/scrolliconjpg.jpg";
+import landingProgress from "../images/landingProgress.jpg";
+import geLanding from "../images/geLanding.png";
+import scrollLanding from "../images/scrollLanding.png";
 
 const LandingPage = () => {
   return (
@@ -33,17 +33,17 @@ const LandingPage = () => {
             <LandingPageCard
               title="Track Progress"
               description="Track the progress of all your OSRS accounts, as well as other players!"
-              imageUrl={ladningImage1}
+              imageUrl={landingProgress}
             />
             <LandingPageCard
               title="Grand Exchange Price Tracker"
               description="View live item prices on the Grand Exchange!"
-              imageUrl={gevectorjpg}
+              imageUrl={geLanding}
             />
             <LandingPageCard
               title="Adventure Log"
               description="The adventure log is BACK! Track your progress in the world of Gilenor with your own personal adventure log for each character"
-              imageUrl={scrolliconjpg}
+              imageUrl={scrollLanding}
             />
           </div>
         </div>

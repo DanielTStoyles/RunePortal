@@ -1,3 +1,5 @@
+/** @format */
+
 import * as React from "react";
 const MembersIcon = (props) => (
   <svg
