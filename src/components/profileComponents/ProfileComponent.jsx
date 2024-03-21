@@ -42,29 +42,29 @@ const ProfileComponent = () => {
       {/* Container for the entire page content */}
       <div className="p-4">
         {/* Top bar section with Profile selector and stats */}
-        <div
-          className="bg-gray-600 rounded-lg pt-4 pl-4 pb-4 mb-4 flex flex-col space-y-4 
-                    lg:flex-row lg:space-y-0 lg:space-x-5"
-        >
-          <PrimaryPlayerSelector />
-          <div className="p-2 lg:space-x-4">
-            <CombatLevelData />
-            <OverallXpData />
-            <OverallLvlData />
+        <div className="rounded-lg pt-4 pl-4 pb-4 mb-4">
+          {/* Wrapper div to move content to the right */}
+          <div className="flex justify-center">
+            <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-5">
+              <PrimaryPlayerSelector />
+              <div className="p-2 lg:space-x-4">
+                <CombatLevelData />
+                <OverallXpData />
+                <OverallLvlData />
+              </div>
+              {/* <RsnRegisterForm /> */}
+            </div>
           </div>
-          {/* <RsnRegisterForm /> */}
         </div>
-
         {/* Main Content Area */}
-        {/* This container will hold both the Skills and Adventure Log side by side */}
-        <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4">
+        {/* This container will hold both the Skills and Adventure Log side by side with reduced spacing */}
+        <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-2 justify-center">
           {/* Skills Section */}
-          <div className="bg-gray-800 rounded-lg p-4">
+          <div className=" rounded-lg p-4 flex-grow lg:max-w-xl ">
             <PlayerStatsDisplay playerSkillsData={profileData} />
           </div>
-
           {/* Adventure Log Section */}
-          <div className="bg-gray-800 rounded-lg p-4 flex flex-grow ">
+          <div className=" rounded-lg p-4 flex-grow lg:flex-grow-0 lg:w-1/3">
             <AdventureLogProfileDisplay playerId={playerId} />
           </div>
         </div>

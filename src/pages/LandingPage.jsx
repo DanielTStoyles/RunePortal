@@ -4,9 +4,11 @@ import React from "react";
 import LandingPageCard from "../components/landingPage/LandingPageDescriptionCard";
 import RunePortalLogo1 from "../images/RunePortalLogo1.png";
 import MainPageLayout from "./MainPageLayout";
-import landingProgress from "../images/landingProgress.jpg";
+import landingProgress from "../images/landingProgress.png";
 import geLanding from "../images/geLanding.png";
 import scrollLanding from "../images/scrollLanding.png";
+import slogan from "../images/slogan.png";
+import welcome from "../images/welcome.png";
 
 const LandingPage = () => {
   return (
@@ -14,17 +16,15 @@ const LandingPage = () => {
       {/* Make this container grow to fill the space and center its children */}
       <div>
         <div className="flex-grow flex flex-col items-center">
-          <div className="text-[64px] text-pink-300 font-elmessiri">
-            Welcome to
+          <div className="mb-6">
+            <img src={welcome} alt="Welcome" />{" "}
           </div>
           <img
             src={RunePortalLogo1}
             alt="RunePortal Logo"
             className="w-[254px] h-[300px] mb-6"
           />
-          <p className="text-white text-2xl mb-8">
-            Progress and Prices all in one place
-          </p>
+          <img src={slogan} alt="Runeportal Slogan" />
         </div>
 
         {/* Cards Container Centered */}

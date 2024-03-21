@@ -24,23 +24,21 @@ const PlayerStatsDisplay = ({ playerSkillsData }) => {
       <div className="overflow-x-auto">
         <div className="inline-block min-w-full text-white">
           <div className="bg-gray-700 rounded-lg">
-            <div className="grid grid-cols-5 gap-4 p-2">
+            <div className="grid grid-cols-3 gap-4 p-2 items-center">
               <div className="text-center font-bold">Skill</div>
               <div className="text-center font-bold">Level</div>
               <div className="text-center font-bold">Exp.</div>
-              <div className="text-center font-bold">Rank</div>
-              <div className="text-center font-bold">
-                {" "}
+              {/* <div className="text-center font-bold items-center">
                 % to next level
                 <CircleProgress progress={75} />
-              </div>
+              </div> */}
             </div>
             {playerSkillsData.skills.map((skill, index) => (
               <div
                 key={`${skill.name}-${index}`}
-                className="grid grid-cols-4 gap-4 p-2"
+                className="grid grid-cols-3 gap-4 p-2 items-center"
               >
-                <div className="flex items-center">
+                <div className="flex items-center justify-center">
                   <img
                     className="w-6 h-6 mr-2"
                     src={skillImages[skill.name]}
@@ -48,8 +46,8 @@ const PlayerStatsDisplay = ({ playerSkillsData }) => {
                   />
                   <span>{skill.name}</span>
                 </div>
-                <div className="text-left">{skill.level}</div>
-                <div className="text-left">{skill.xp.toLocaleString()}</div>
+                <div className="text-center">{skill.level}</div>
+                <div className="text-center">{skill.xp.toLocaleString()}</div>
               </div>
             ))}
           </div>

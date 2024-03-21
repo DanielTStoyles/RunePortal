@@ -29,8 +29,8 @@ const AdventureLogProfileDisplay = ({ playerId }) => {
   }
 
   return (
-    <div className="flex flex-grow flex-col pr-4">
-      <div className="flex items-center mb-4">
+    <div className="flex flex-grow flex-col pr-12">
+      <div className="flex items-center">
         <h2 className="text-zinc-200 text-2xl font-bold font-['Arial']">
           Adventure Log
         </h2>
@@ -44,9 +44,9 @@ const AdventureLogProfileDisplay = ({ playerId }) => {
           adventureLogs.map((log, index) => (
             <div
               key={index}
-              className="h-[99px] p-4 bg-zinc-800 border-b border-neutral-700 flex flex-col justify-start gap-2"
+              className="h-[80px] p-2 bg-zinc-800 border-b border-neutral-700 flex flex-col justify-start gap-2 "
             >
-              <div className="text-zinc-200 text-lg font-normal font-['Arial']">
+              <div className="text-zinc-200 text-lg font-normal font-['Arial'] mt-2">
                 {transformLogDetail(log)}
               </div>
             </div>

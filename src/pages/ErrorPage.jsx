@@ -2,7 +2,7 @@
 
 import React from "react";
 import MainPageLayout from "./MainPageLayout";
-import NotFoundComponent from "../components/reDirectPages/notFoundComponent";
+import NotFoundComponent from "../components/reDirectPages/NotFoundComponent";
 
 const NotFoundPage = () => {
   return (
