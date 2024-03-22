@@ -2,7 +2,7 @@
 
 import React from "react";
 import LandingPageCard from "../components/landingPage/LandingPageDescriptionCard";
-import RunePortalLogo1 from "../images/RunePortalLogo1.png";
+import finalLogo from "../images/finalLogo.png";
 import MainPageLayout from "./MainPageLayout";
 import landingProgress from "../images/landingProgress.png";
 import geLanding from "../images/geLanding.png";
@@ -20,7 +20,7 @@ const LandingPage = () => {
             <img src={welcome} alt="Welcome" />{" "}
           </div>
           <img
-            src={RunePortalLogo1}
+            src={finalLogo}
             alt="RunePortal Logo"
             className="w-[254px] h-[300px] mb-6"
           />

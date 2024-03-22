@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import CurrentUsername from "../../hooks/CurrentUsername";
 import AuthContext from "../../context/AuthContext";
-import RunePortalLogo1 from "../../images/RunePortalLogo1.png";
+import finalLogo from "../../images/finalLogo.png";
 
 const SideBar = () => {
   const { user } = useContext(AuthContext);
@@ -41,7 +41,7 @@ const SideBar = () => {
         <div className="flex items-center justify-center mt-2">
           <button onClick={home}>
             <img
-              src={RunePortalLogo1}
+              src={finalLogo}
               alt="RunePortal Logo"
               className="w-[100px] h-[110px]"
             />

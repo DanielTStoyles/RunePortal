@@ -2,7 +2,7 @@
 
 export const CombatLevelData = () => {
   return (
-    <div className="bg-neutral-800 rounded-lg justify-center items-center gap-2 inline-flex sm:w-[260px] sm:py-2">
+    <div className="bg-neutral-800 rounded-lg justify-center items-center gap-2 inline-flex sm:w-[240px] sm:py-2">
       <div className="justify-center items-center gap-2.5 flex">
         <svg
           width="21"
@@ -43,7 +43,7 @@ export const CombatLevelData = () => {
 
 export const OverallXpData = () => {
   return (
-    <div className="bg-neutral-800 rounded-lg justify-center items-center gap-2 inline-flex sm:w-[260px] sm:py-2">
+    <div className="bg-neutral-800 rounded-lg justify-center items-center gap-2 inline-flex sm:w-[240px] sm:py-2">
       <div className="justify-center items-center gap-2.5 flex">
         <svg
           width="20"
@@ -87,7 +87,7 @@ export const OverallXpData = () => {
 
 export const OverallLvlData = () => {
   return (
-    <div className="bg-neutral-800 rounded-lg justify-center items-center gap-2 inline-flex sm:w-[260px] sm:py-2">
+    <div className="bg-neutral-800 rounded-lg justify-center items-center gap-2 inline-flex sm:w-[240px] sm:py-2">
       <div className="justify-center items-center gap-2.5 flex">
         <svg
           width="20"

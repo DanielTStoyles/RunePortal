@@ -45,7 +45,7 @@ const ProfileComponent = () => {
         <div className="rounded-lg pt-4 pl-4 pb-4 mb-4">
           {/* Wrapper div to move content to the right */}
           <div className="flex justify-center">
-            <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-5">
+            <div className="flex flex-col  mr-5 space-y-4 lg:flex-row lg:space-y-0 lg:space-x-5">
               <PrimaryPlayerSelector />
               <div className="p-2 lg:space-x-4">
                 <CombatLevelData />
@@ -60,7 +60,7 @@ const ProfileComponent = () => {
         {/* This container will hold both the Skills and Adventure Log side by side with reduced spacing */}
         <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-2 justify-center">
           {/* Skills Section */}
-          <div className=" rounded-lg p-4 flex-grow lg:max-w-xl ">
+          <div className=" flex jusitfy-start rounded-lg p-4 flex-grow lg:max-w-xl ">
             <PlayerStatsDisplay playerSkillsData={profileData} />
           </div>
           {/* Adventure Log Section */}
