@@ -5,21 +5,35 @@ import DropdownButton from "./DropdownButton";
 import SelectedPlayerName from "../../hooks/SelectedPlayerName";
 import AccountType from "../../hooks/AccountType";
 import gnome_funny from "../../images/gnome_funny.png";
+import ironMode from "../../images/ironMode.png";
+import overall from "../../images/overall.png";
 
 const PrimaryPlayerSelector = () => {
   return (
-    <div className="flex gap-6 px-4 py-2 rounded">
+    <div className="flex gap-6 px-4 py-2 rounded items-start">
       {/* Avatar */}
-      <img className="w-20 h-20 relative rounded-[47px]" src={gnome_funny} />
-      <div className="flex flex-col">
-        <span className="text-white text-xl font-bold ">
+      <img
+        className="w-20 h-20 relative rounded-[47px]"
+        src={gnome_funny}
+        alt="Player Avatar"
+      />
+
+      {/* Right column for player's name, account type, and icons */}
+      <div className="flex flex-col justify-center">
+        {/* Player's name */}
+        <div className="text-white text-2xl font-bold">
           <SelectedPlayerName />
-        </span>
-        <span className="text-gray-400 text-base">
-          {" "}
+        </div>
+
+        {/* Account type and its icon */}
+        <div className="flex items-center text-gray-400 text-base mt-2">
+          <img src={ironMode} alt="overall xp icon" className="w-5 h-5 mr-2" />
+          {/* <img src={overall} alt="overall xp icon" className="w-5 h-5 mr-2" /> */}
+
           <AccountType />
-        </span>
+        </div>
       </div>
+
       <DropdownButton />
     </div>
   );

@@ -3,12 +3,12 @@
 import { useQuery } from "react-query";
 import transformLogDetail from "../../util/transformLogDetail";
 
-const AdventureLogProfileDisplay = ({ playerId }) => {
+const AdventureLogBossDisplay = ({ playerId }) => {
   const fetchAdventureLogs = async () => {
     if (!playerId) {
       return;
     }
-    const response = await fetch(`/api/adventurelogs/${playerId}`);
+    const response = await fetch(`/api/adventurelogsBoss/${playerId}`);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -20,13 +20,20 @@ const AdventureLogProfileDisplay = ({ playerId }) => {
     error,
     isLoading,
     isError,
-  } = useQuery(["adventureLogs", playerId], fetchAdventureLogs, {
+  } = useQuery(["adventureLogs", "boss", playerId], fetchAdventureLogs, {
     enabled: !!playerId,
   });
 
   if (!playerId) {
     return <div className="text-white">Loading player data...</div>;
   }
+
+  // Filter boss score entries
+  const bossScoreEntries = adventureLogs?.filter((log) => {
+    const detail = JSON.parse(log.detail);
+    const pathValue = detail.path[1];
+    return pathValue >= 18 && pathValue <= 78;
+  });
 
   return (
     <div className="flex flex-grow flex-col pr-12">
@@ -35,16 +42,16 @@ const AdventureLogProfileDisplay = ({ playerId }) => {
           Adventure Log
         </h2>
       </div>
-      <div className="w-[510px] rounded-xlg border border-neutral-700">
+      <div className="w-full rounded-lg border border-neutral-700">
         {isLoading ? (
           <div>Loading...</div>
         ) : isError ? (
           <div>Error: {error.message}</div>
-        ) : Array.isArray(adventureLogs) ? (
-          adventureLogs.map((log, index) => (
+        ) : bossScoreEntries && bossScoreEntries.length > 0 ? (
+          bossScoreEntries.map((log, index) => (
             <div
               key={index}
-              className="h-[80px] w-[508px] p-2 bg-comp-color border-b border-neutral-700 flex flex-col justify-start gap-2 "
+              className="h-[80px] p-2 bg-zinc-800 border-b border-neutral-700 flex flex-col justify-start gap-2"
             >
               <div className="text-zinc-200 text-lg font-normal font-['Arial'] mt-2">
                 {transformLogDetail(log)}
@@ -53,7 +60,7 @@ const AdventureLogProfileDisplay = ({ playerId }) => {
           ))
         ) : (
           <div className="text-zinc-200 text-lg font-normal font-['Arial']">
-            {transformLogDetail(adventureLogs)}
+            No boss score entries found.
           </div>
         )}
       </div>
@@ -66,4 +73,4 @@ const AdventureLogProfileDisplay = ({ playerId }) => {
   );
 };
 
-export default AdventureLogProfileDisplay;
+export default AdventureLogBossDisplay;

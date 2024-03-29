@@ -1,8 +1,10 @@
 /** @format */
 
+import overall from "../../images/overall.png";
+
 export const CombatLevelData = () => {
   return (
-    <div className="bg-neutral-800 rounded-lg justify-center items-center gap-2 inline-flex sm:w-[240px] sm:py-2">
+    <div className="bg-comp-color rounded-lg justify-center items-center gap-2 inline-flex sm:w-[247px] sm:py-4">
       <div className="justify-center items-center gap-2.5 flex">
         <svg
           width="21"
@@ -43,37 +45,9 @@ export const CombatLevelData = () => {
 
 export const OverallXpData = () => {
   return (
-    <div className="bg-neutral-800 rounded-lg justify-center items-center gap-2 inline-flex sm:w-[240px] sm:py-2">
+    <div className="bg-comp-color  rounded-lg justify-center items-center gap-2 inline-flex sm:w-[247px] sm:py-2">
       <div className="justify-center items-center gap-2.5 flex">
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-        >
-          <rect y="0.800049" width="20" height="18.4" fill="url(#pattern0)" />
-          <defs>
-            <pattern
-              id="pattern0"
-              patternContentUnits="objectBoundingBox"
-              width="1"
-              height="1"
-            >
-              <use
-                xlinkHref="#image0_382_8498"
-                transform="scale(0.04 0.0434783)"
-              />
-            </pattern>
-            <image
-              id="image0_382_8498"
-              width="25"
-              height="23"
-              xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAXCAYAAAD+4+QTAAAAAXNSR0IArs4c6QAAAiJJREFUSEtjZGBg/M/A8J+RgQjAzsH+H13Zzx8/CeplBFkiKyvD8PjxY7yKQRZkLypGscNG2pIh0jmEgZBFYEsE+PkYPnz8iNMSkAVBUyIZJPmk4JaYChowzD43n+Fo/T4GMVExvI6E+wSkG5tvQBYs2LwYIzBBFoAASZbgCi6YL5Bt8ZP3AvuCLpZ8eP+R4eqEs8QHFyk+cZBwZph5ZDrYJ0Rbws7BBk8h2JIpKNKRAVmWgJIwCLx6/YrhkH8gw7c37+Bmehw9yGDd6IRiiRe7HcOyF5tJ8wnIEpAFO6ztUQzjEhFisNu4Hqclnz98Yni04DbxcbLGyhojmd64dpUh7fYtrJbMvLEUrJ4kSybIS6NYIiOtwHDyzEWG0qf3cFry5cNnhncbXhDnE5Dpa23McVqiXWCMIhcl4cvQe2IGWAxmCSi4cZVr8ByPzyeELAEZrm4+BcUOCWFuhoPbEsGplihL5BJUUQxwEbdn2HBzC9wn2Cy4fGEFw7tnO8FBCbekRUAAxSA5MUmGyw8eg+MElyWgoLL3ghQvyABkATgoKbVkxaH1DN+Ov2VQ1bBFsUBKKYkBpyWlbDwoinUVZPH6hOqWCAVIoDggiNeaYdmdA1h9wsQfzvD6MaQ0wAgudJ9IS/IzPH3+ERwnVLEEZOskZQ0U18Isybt7g0EyQo4knzy6UMLw4eMnBliZCE5dGMmDSgKwtgO4XpeVlaWZRaB6CgDLC2aBRa8fMgAAAABJRU5ErkJggg=="
-            />
-          </defs>
-        </svg>
+        <img src={overall} alt="overall xp icon" className="w-19 h-19" />
       </div>
       <div className="text-zinc-500 text-xl font-normal font-['Arial']">
         Overall Exp.
@@ -87,37 +61,9 @@ export const OverallXpData = () => {
 
 export const OverallLvlData = () => {
   return (
-    <div className="bg-neutral-800 rounded-lg justify-center items-center gap-2 inline-flex sm:w-[240px] sm:py-2">
+    <div className="bg-comp-color  rounded-lg justify-center items-center gap-2 inline-flex sm:w-[247px] sm:py-2">
       <div className="justify-center items-center gap-2.5 flex">
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-        >
-          <rect y="0.800049" width="20" height="18.4" fill="url(#pattern0)" />
-          <defs>
-            <pattern
-              id="pattern0"
-              patternContentUnits="objectBoundingBox"
-              width="1"
-              height="1"
-            >
-              <use
-                xlinkHref="#image0_382_8498"
-                transform="scale(0.04 0.0434783)"
-              />
-            </pattern>
-            <image
-              id="image0_382_8498"
-              width="25"
-              height="23"
-              xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAXCAYAAAD+4+QTAAAAAXNSR0IArs4c6QAAAiJJREFUSEtjZGBg/M/A8J+RgQjAzsH+H13Zzx8/CeplBFkiKyvD8PjxY7yKQRZkLypGscNG2pIh0jmEgZBFYEsE+PkYPnz8iNMSkAVBUyIZJPmk4JaYChowzD43n+Fo/T4GMVExvI6E+wSkG5tvQBYs2LwYIzBBFoAASZbgCi6YL5Bt8ZP3AvuCLpZ8eP+R4eqEs8QHFyk+cZBwZph5ZDrYJ0Rbws7BBk8h2JIpKNKRAVmWgJIwCLx6/YrhkH8gw7c37+Bmehw9yGDd6IRiiRe7HcOyF5tJ8wnIEpAFO6ztUQzjEhFisNu4Hqclnz98Yni04DbxcbLGyhojmd64dpUh7fYtrJbMvLEUrJ4kSybIS6NYIiOtwHDyzEWG0qf3cFry5cNnhncbXhDnE5Dpa23McVqiXWCMIhcl4cvQe2IGWAxmCSi4cZVr8ByPzyeELAEZrm4+BcUOCWFuhoPbEsGplihL5BJUUQxwEbdn2HBzC9wn2Cy4fGEFw7tnO8FBCbekRUAAxSA5MUmGyw8eg+MElyWgoLL3ghQvyABkATgoKbVkxaH1DN+Ov2VQ1bBFsUBKKYkBpyWlbDwoinUVZPH6hOqWCAVIoDggiNeaYdmdA1h9wsQfzvD6MaQ0wAgudJ9IS/IzPH3+ERwnVLEEZOskZQ0U18Isybt7g0EyQo4knzy6UMLw4eMnBliZCE5dGMmDSgKwtgO4XpeVlaWZRaB6CgDLC2aBRa8fMgAAAABJRU5ErkJggg=="
-            />
-          </defs>
-        </svg>
+        <img src={overall} alt="overall xp icon" className="w-19 h-19" />
       </div>
       <div className="text-zinc-500 text-xl font-normal font-['Arial']">
         Overall Lvl.

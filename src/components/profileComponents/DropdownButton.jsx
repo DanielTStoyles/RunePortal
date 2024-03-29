@@ -60,13 +60,13 @@ const UserAccList = () => {
     <div className="relative w-24">
       <button
         onClick={toggleDropdown}
-        className="flex items-center justify-center gap-2 border-2 border-slate-500 px-4 py-2 rounded w-[1/2]"
+        className="flex items-center justify-center gap-2 border-2 border-slate-500 px-4 py-2 rounded bg-dropButton-color"
       >
         <ChevronDownIcon className="w-5 h-5 text-white" />
       </button>
 
       {isDropdownVisible && (
-        <div className="absolute w-32 left-0 right-0 mt-1 bg-white border border-slate-200 rounded shadow-lg z-10">
+        <div className="absolute w-32 left-0 right-0 mt-1 border border-slate-200 rounded shadow-lg z-10 bg-white">
           <ul className="max-h-60 overflow-auto">
             {data.map((entry, index) => (
               <li

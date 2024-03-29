@@ -7,11 +7,9 @@ import getRunescapeProfile from "../../hooks/getRunescapeProfile";
 import MainPageLayout from "../../pages/MainPageLayout";
 import AdventureLogSkillsGrid from "./AdventureLogSkillsGrid";
 import PrimaryPlayerSelector from "../profileComponents/primaryPlayerSelector";
-import {
-  AdventureLogBossEntryDisplay,
-  AdventureLogClueScrollDisplay,
-  AdventureLogMinigameDisplay,
-} from "./AdventureLogActivitiesDisplays";
+import AdventureLogBossDisplay from "./AdventureLogBossDisplays";
+import AdventureLogClueDisplay from "./AdventureLogClueDisplay";
+import AdventureLogMinigameDisplay from "./AdventureLogMinigameDisplay";
 
 const AdventureLogBook = () => {
   const { user } = useContext(AuthContext);
@@ -31,16 +29,32 @@ const AdventureLogBook = () => {
     console.error("error fetching profile data:", error);
   }
 
+  const playerId = user.rsn;
+
   return (
-    <div className="flex w-full bg-runeportal-darkpurple">
-      <MainPageLayout pageTitle="Adventure Log">
-        <PrimaryPlayerSelector />
-        <AdventureLogSkillsGrid playerSkillsData={playerSkillsData} />
-        <AdventureLogBossEntryDisplay />
-        <AdventureLogClueScrollDisplay />
-        <AdventureLogMinigameDisplay />
-      </MainPageLayout>
-    </div>
+    <MainPageLayout pageTitle="Adventure Log">
+      <div className="p-4">
+        <div className="flex justify-start mb-4">
+          <PrimaryPlayerSelector />
+        </div>
+        {/* Center AdventureLogSkillsGrid */}
+        <div className="flex justify-center mb-4">
+          <AdventureLogSkillsGrid playerSkillsData={playerSkillsData} />
+        </div>
+        {/* Log displays in a row */}
+        <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-2 justify-center">
+          <div className="p-4 rounded-lg">
+            <AdventureLogBossDisplay playerId={playerId} />
+          </div>
+          <div className="p-4 rounded-lg">
+            <AdventureLogClueDisplay playerId={playerId} />
+          </div>
+          <div className="p-4 rounded-lg">
+            <AdventureLogMinigameDisplay playerId={playerId} />
+          </div>
+        </div>
+      </div>
+    </MainPageLayout>
   );
 };
 
