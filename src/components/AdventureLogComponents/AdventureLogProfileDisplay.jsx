@@ -35,7 +35,7 @@ const AdventureLogProfileDisplay = ({ playerId }) => {
           Adventure Log
         </h2>
       </div>
-      <div className="w-[510px] rounded-xlg border border-neutral-700">
+      <div className="w-[510px] rounded-lg border border-bground-color overflow-hidden">
         {isLoading ? (
           <div>Loading...</div>
         ) : isError ? (
@@ -44,7 +44,7 @@ const AdventureLogProfileDisplay = ({ playerId }) => {
           adventureLogs.map((log, index) => (
             <div
               key={index}
-              className="h-[80px] w-[508px] p-2 bg-comp-color border-b border-neutral-700 flex flex-col justify-start gap-2 "
+              className="h-[80px] w-full p-2 bg-comp-color border-b border-bground-color flex flex-col justify-start gap-2"
             >
               <div className="text-zinc-200 text-lg font-normal font-['Arial'] mt-2">
                 {transformLogDetail(log)}

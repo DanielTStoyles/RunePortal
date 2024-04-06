@@ -15,5 +15,6 @@ router.get("/adventurelogs/:playerId", fetchPlayerAdventureLog);
 router.get("/adventurelogsBoss/:playerId", fetchPlayerAdventureLogBoss);
 router.get("/adventurelogsClue/:playerId", fetchPlayerAdventureLogClue);
 router.get("/adventurelogsMiniGame/:playerId", fetchPlayerAdventureLogMinigame);
+router.get("/adventurelogsSkill/:playerId", fetchPlayerAdventureLogSkill);
 
 export default router;

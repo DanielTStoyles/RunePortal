@@ -6,8 +6,9 @@ const docClient = new AWS.DynamoDB.DocumentClient();
 
 const writeLogEntry = async (playerId, difference) => {
   const isScoreChange = difference.path[2] === "score";
+  const isSkillLevelChange = difference.path[1] == "level";
 
-  if (!isScoreChange) return;
+  if (!isScoreChange && !isSkillLevelChange) return;
 
   const entry = {
     playerId: playerId,

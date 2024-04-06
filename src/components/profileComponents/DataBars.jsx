@@ -1,8 +1,11 @@
 /** @format */
 
 import overall from "../../images/overall.png";
+import calculateCombatLevel from "../../util/cmbLvlCalc";
 
-export const CombatLevelData = () => {
+export const CombatLevelData = ({ playerSkillsData }) => {
+  const combatLevel = calculateCombatLevel(playerSkillsData);
+
   return (
     <div className="bg-comp-color rounded-lg justify-center items-center gap-2 inline-flex sm:w-[247px] sm:py-4">
       <div className="justify-center items-center gap-2.5 flex">
@@ -37,39 +40,55 @@ export const CombatLevelData = () => {
         Combat Level
       </div>
       <div className="text-zinc-200 text-xl font-normal font-['Arial']">
-        999
+        {combatLevel}
       </div>
     </div>
   );
 };
 
-export const OverallXpData = () => {
+export const OverallXpData = ({ playerSkillsData }) => {
+  const overallXp =
+    playerSkillsData?.skills?.[0]?.xp?.toLocaleString() || "N/A";
+
   return (
-    <div className="bg-comp-color  rounded-lg justify-center items-center gap-2 inline-flex sm:w-[247px] sm:py-2">
-      <div className="justify-center items-center gap-2.5 flex">
+    <div
+      className="flex bg-comp-color rounded-lg justify-center items-center gap-2 sm:py-2"
+      style={{
+        minWidth: "247px",
+        width: "auto",
+        paddingLeft: "10px",
+        paddingRight: "10px",
+      }}
+    >
+      <div className="flex justify-center items-center gap-2.5">
         <img src={overall} alt="overall xp icon" className="w-19 h-19" />
       </div>
       <div className="text-zinc-500 text-xl font-normal font-['Arial']">
         Overall Exp.
       </div>
       <div className="text-zinc-200 text-xl font-normal font-['Arial']">
-        9.99b
+        {overallXp}
       </div>
     </div>
   );
 };
 
-export const OverallLvlData = () => {
+export const OverallLvlData = ({ playerSkillsData }) => {
+  const overallLevel = playerSkillsData?.skills?.[0]?.level || "N/A";
+
   return (
-    <div className="bg-comp-color  rounded-lg justify-center items-center gap-2 inline-flex sm:w-[247px] sm:py-2">
+    <div
+      className="bg-comp-color rounded-lg justify-center items-center gap-2 inline-flex sm:w-[247px] sm:py-2"
+      style={{ paddingLeft: "10px", paddingRight: "10px" }}
+    >
       <div className="justify-center items-center gap-2.5 flex">
-        <img src={overall} alt="overall xp icon" className="w-19 h-19" />
+        <img src={overall} alt="overall level icon" className="w-19 h-19" />
       </div>
       <div className="text-zinc-500 text-xl font-normal font-['Arial']">
         Overall Lvl.
       </div>
       <div className="text-zinc-200 text-xl font-normal font-['Arial']">
-        9.99b
+        {overallLevel}
       </div>
     </div>
   );

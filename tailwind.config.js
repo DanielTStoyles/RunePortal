@@ -25,6 +25,7 @@ export default {
         "side-nav": "#100D17",
         "top-purp": "#15111E",
         "bottom-black": "#0F0D11",
+        "bground-color": "#302D39",
         "button-border": "#583782",
         "comp-color": "#25222B",
       },

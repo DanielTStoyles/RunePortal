@@ -10,6 +10,8 @@ import PrimaryPlayerSelector from "../profileComponents/primaryPlayerSelector";
 import AdventureLogBossDisplay from "./AdventureLogBossDisplays";
 import AdventureLogClueDisplay from "./AdventureLogClueDisplay";
 import AdventureLogMinigameDisplay from "./AdventureLogMinigameDisplay";
+import AdventureLogLevel from "./AdventureLogLevel";
+import AdventureLogSkillProgress from "./AdventureLogSkillProgress";
 
 const AdventureLogBook = () => {
   const { user } = useContext(AuthContext);
@@ -40,6 +42,14 @@ const AdventureLogBook = () => {
         {/* Center AdventureLogSkillsGrid */}
         <div className="flex justify-center mb-4">
           <AdventureLogSkillsGrid playerSkillsData={playerSkillsData} />
+        </div>
+
+        <div>
+          <AdventureLogSkillProgress playerSkillsData={playerSkillsData} />
+        </div>
+
+        <div>
+          <AdventureLogLevel className="p-4 rounded-lg" />
         </div>
         {/* Log displays in a row */}
         <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-2 justify-center">

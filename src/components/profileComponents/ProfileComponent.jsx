@@ -37,6 +37,8 @@ const ProfileComponent = () => {
 
   const playerId = user.rsn;
 
+  // console.log(profileData, "Sheeesh");
+
   return (
     <MainPageLayout pageTitle="Profile">
       {/* Container for the entire page content */}
@@ -51,7 +53,9 @@ const ProfileComponent = () => {
               <div className="flex-grow">
                 <div className="flex justify-end space-x-9 mr-64 mt-10">
                   {" "}
-                  <CombatLevelData playerSkillsData={profileData} />
+                  {profileData && (
+                    <CombatLevelData playerSkillsData={profileData} />
+                  )}
                   <OverallXpData playerSkillsData={profileData} />
                   <OverallLvlData playerSkillsData={profileData} />
                 </div>

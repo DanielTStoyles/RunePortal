@@ -29,8 +29,9 @@ const PrimaryPlayerSelector = () => {
         <div className="flex items-center text-gray-400 text-base mt-2">
           <img src={ironMode} alt="overall xp icon" className="w-5 h-5 mr-2" />
           {/* <img src={overall} alt="overall xp icon" className="w-5 h-5 mr-2" /> */}
+          <p>Ironman</p>
 
-          <AccountType />
+          {/* <AccountType /> */}
         </div>
       </div>
 

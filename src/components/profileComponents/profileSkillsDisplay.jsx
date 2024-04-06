@@ -29,18 +29,18 @@ const PlayerStatsDisplay = ({ playerSkillsData }) => {
               Skill
             </div>
             <div className="text-comp-text font-bold text-center">Level</div>
-            <div className="text-comp-text font-bold text-center">EXP</div>
+            <div className="text-comp-text font-bold text-end">EXP</div>
           </div>
-          {playerSkillsData.skills.map((skill, index) => (
+          {playerSkillsData.skills.slice(1).map((skill, index) => (
             <div
               key={index}
-              className={`grid grid-cols-3 gap-4 items-center ${
-                index < playerSkillsData.skills.length - 1
+              className={`grid grid-cols-3 gap-4 ${
+                index < playerSkillsData.skills.length - 2
                   ? "border-b border-skills-border pb-2"
                   : ""
               }`}
             >
-              <div className="flex items-center text-white">
+              <div className="flex text-white">
                 <img
                   className="w-6 h-6 mr-2"
                   src={skillImages[skill.name]}
@@ -49,7 +49,7 @@ const PlayerStatsDisplay = ({ playerSkillsData }) => {
                 <span>{skill.name}</span>
               </div>
               <div className="text-center text-white">{skill.level}</div>
-              <div className="text-center text-white">
+              <div className="text-end text-white pr-[1px]">
                 {skill.xp.toLocaleString()} XP
               </div>
             </div>

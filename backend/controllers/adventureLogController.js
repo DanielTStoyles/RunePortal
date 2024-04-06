@@ -53,6 +53,18 @@ export const fetchPlayerAdventureLogMinigame = async (req, res) => {
   }
 };
 
+export const fetchPlayerAdventureLogSkill = async (req, res) => {
+  try {
+    const { playerId } = req.params;
+    console.log(playerId, "adventureLogController log of playerId");
+
+    const data = await fetchAdventureLogSkill(playerId);
+    res.send(data);
+  } catch (error) {
+    throw new error();
+  }
+};
+
 export const fetchAdventureLog = async (playerId) => {
   const params = {
     TableName: "AdventureLogEntries",
@@ -199,6 +211,44 @@ export const fetchAdventureLogMinigame = async (playerId) => {
     throw err;
   }
   return minigameEntries;
+};
+
+export const fetchAdventureLogSkill = async (playerId) => {
+  let fetchedItems = [];
+  let lastEvaluatedKey = null;
+  let skillLevelChanges = [];
+
+  try {
+    do {
+      const params = {
+        TableName: "AdventureLogEntries",
+        KeyConditionExpression: "playerId = :playerId",
+        ExpressionAttributeValues: { ":playerId": playerId },
+        ScanIndexForward: false,
+        ExclusiveStartKey: lastEvaluatedKey,
+      };
+
+      const data = await docClient.query(params).promise();
+      fetchedItems = data.Items;
+      lastEvaluatedKey = data.LastEvaluatedKey;
+
+      // Filter for skill level change entries
+      const newSkillEntries = fetchedItems.filter((item) => {
+        const detail = JSON.parse(item.detail);
+        // Define your condition here based on 'detail' structure for skill level changes
+        return /* your condition for skill level change */;
+      });
+
+      skillLevelChanges = [...skillLevelChanges, ...newSkillEntries];
+
+      // Optionally limit the number of entries if needed
+    } while (skillLevelChanges.length < desiredCount && lastEvaluatedKey);
+  } catch (err) {
+    console.error("Error fetching adventure logs: ", err);
+    throw err;
+  }
+
+  return skillLevelChanges;
 };
 
 export const fetchAdventurePlayerData = async (playerId) => {
