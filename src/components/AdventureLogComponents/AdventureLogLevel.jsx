@@ -1,22 +1,31 @@
 /** @format */
 
 import { useQuery } from "react-query";
-import transformLogDetail from "../../util/transformLogDetail"; // Adjust this utility for skill level logs if necessary
+import transformLogDetail from "../../util/transformLogDetail";
 
 const AdventureLogLevel = ({ playerId }) => {
+  const fetchSkillLogs = async () => {
+    if (!playerId) {
+      return;
+    }
+    const response = await fetch(`/api/adventurelogsSkill/${playerId}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  };
+
   const {
     data: skillLogs,
     error,
     isLoading,
     isError,
-  } = useQuery(
-    ["adventureLogs", "skill", playerId],
-    () => fetchAdventureLogsSkill(playerId), // Ensure this function is defined to fetch skill logs
-    { enabled: !!playerId }
-  );
+  } = useQuery(["skillLogs", playerId], fetchSkillLogs, {
+    enabled: !!playerId,
+  });
 
   return (
-    <div className="flex flex-grow flex-col pr-12">
+    <div className="flex w-[500px] h-[300px] flex-col pr-12">
       <div className="flex items-center">
         <h2 className="text-zinc-200 text-2xl font-bold font-['Arial']">
           Skill Level Progress
@@ -34,8 +43,7 @@ const AdventureLogLevel = ({ playerId }) => {
               className="h-[80px] p-2 bg-zinc-800 border-b border-neutral-700 flex flex-col justify-start gap-2"
             >
               <div className="text-zinc-200 text-lg font-normal font-['Arial'] mt-2">
-                {transformLogDetail(log)}{" "}
-                {/* Adjust if necessary for skill log details */}
+                {transformLogDetail(log)}
               </div>
             </div>
           ))

@@ -7,6 +7,7 @@ import {
   fetchPlayerAdventureLogBoss,
   fetchPlayerAdventureLogClue,
   fetchPlayerAdventureLogMinigame,
+  fetchPlayerAdventureLogSkill,
 } from "../controllers/adventureLogController.js";
 
 const router = express.Router();

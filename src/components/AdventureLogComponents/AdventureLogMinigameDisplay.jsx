@@ -29,13 +29,14 @@ const AdventureLogMinigameDisplay = ({ playerId }) => {
   if (isError) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="flex flex-grow flex-col pr-12">
+    <div className="flex flex-grow flex-col">
       <div className="flex items-center">
-        <h2 className="text-zinc-200 text-2xl font-bold">
-          Minigame Adventure Log
-        </h2>
+        <h2 className="text-zinc-200 text-2xl font-bold">Minigames</h2>
       </div>
-      <div className="w-full rounded-lg border border-neutral-700">
+      <div
+        className="w-full rounded-lg border border-neutral-700 overflow-y-auto"
+        style={{ maxHeight: "320px" }}
+      >
         {adventureLogs && adventureLogs.length > 0 ? (
           adventureLogs.map((log, index) => (
             <div

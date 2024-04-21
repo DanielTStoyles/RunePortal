@@ -1,6 +1,6 @@
 /** @format */
 
-const osrsXpTable = [
+export const osrsXpTable = [
   // lvl 1-99 xp values
   0, 83, 174, 276, 388, 512, 650, 801, 969, 1154, 1358, 1584, 1833, 2107, 2411,
   2746, 3115, 3523, 3973, 4470, 5018, 5624, 6291, 7028, 7842, 8740, 9730, 10824,
@@ -13,20 +13,3 @@ const osrsXpTable = [
   3597792, 3972294, 4385776, 4842295, 5346332, 5902831, 6517253, 7195629,
   7944614, 8771558, 9684577, 10692629, 11805606, 13034431,
 ];
-
-// Helper function to get XP required for given level
-const getLevelXP = (level) => osrsXpTable[level - 1];
-
-export const calculateProgressToNextLevel = (currentXP) => {
-  let level = osrsXpTable.findIndex((xp) => currentXP < xp);
-
-  // If currentXP doesn't reach any higher level, set to max level
-  if (level === -1) level = osrsXpTable.length;
-
-  const currentLevelXP = getLevelXP(level);
-  const nextLevelXP = getLevelXP(level + 1);
-  const progressToNextLevel =
-    ((currentXP - currentLevelXP) / (nextLevelXP - currentLevelXP)) * 100;
-
-  return Math.min(progressToNextLevel, 100);
-};

@@ -2,7 +2,6 @@
 
 import React, { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import CurrentUsername from "../../hooks/CurrentUsername";
 import AuthContext from "../../context/AuthContext";
 import finalLogo from "../../images/finalLogo.png";
 
@@ -19,10 +18,6 @@ const SideBar = () => {
     navigate("/geSearch");
   };
 
-  const geWatchlist = () => {
-    navigate("/geWatchList");
-  };
-
   const profile = () => {
     if (!user) {
       navigate("/oops");
@@ -36,9 +31,9 @@ const SideBar = () => {
   };
 
   return (
-    <aside className="sticky float-left top-0 left-0 z-30 w-64 h-screen bg-side-nav">
+    <aside className="sticky float-left top-0 left-0 z-30 w-64 h-screen bg-side-nav border-r-[1px] border-r-[#19161D] ">
       <div className="flex flex-col">
-        <div className="flex items-center justify-center mt-2">
+        <div className="flex items-center justify-center mt-10">
           <button onClick={home}>
             <img
               src={finalLogo}
@@ -50,26 +45,6 @@ const SideBar = () => {
         <div className="h-full px-3 py-2 overflow-y-auto ">
           <div className="flex justify-center items-center mb-8"></div>
           <ul className="space-y-2 font-medium">
-            {/* {user ? (
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                >
-                  <CurrentUsername />
-                </a>
-              </li>
-            ) : (
-              <li>
-                <Link
-                  to="/register"
-                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                >
-                  Sign Up!{" "}
-                </Link>{" "}
-              </li>
-            )} */}
-
             <li onClick={profile}>
               <a
                 href="#"
@@ -147,32 +122,6 @@ const SideBar = () => {
                 </span>
               </a>
             </li>
-            {/* <li onClick={geWatchlist}>
-              <a
-                href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <svg
-                  width="24"
-                  height="25"
-                  viewBox="0 0 24 25"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M16.5 7.41089V11.4609M16.5 7.41089C16.5 8.65334 13.4778 9.66089 9.75 9.66089C6.0222 9.66089 3 8.65334 3 7.41089M16.5 7.41089C16.5 6.16844 13.4778 5.16089 9.75 5.16089C6.0222 5.16089 3 6.16844 3 7.41089M16.5 11.4609C15.8681 11.4602 15.2431 11.5929 14.666 11.8503C14.0889 12.1078 13.5727 12.4842 13.1511 12.9549M16.5 11.4609C18.9854 11.4609 21 13.4755 21 15.9609C21 18.4462 18.9854 20.4609 16.5 20.4609C15.6945 20.4609 14.9376 20.2494 14.2833 19.8781M13.1511 12.9549C12.4085 13.7799 11.9984 14.8509 12 15.9609M13.1511 12.9549C12.4356 13.7514 12 14.8053 12 15.9609M13.1511 12.9549C12.1526 13.1493 10.9902 13.2609 9.75 13.2609C6.0222 13.2609 3 12.2533 3 11.0109M12 15.9609C12.0003 16.7574 12.2117 17.5396 12.6128 18.2277C13.014 18.9159 13.5904 19.4854 14.2833 19.8781M14.2833 19.8781C13.0854 20.2404 11.4951 20.4609 9.75 20.4609C6.0222 20.4609 3 19.4533 3 18.2109V7.41089M3 14.6109C3 15.8533 6.0222 16.8609 9.75 16.8609C10.5632 16.8609 11.343 16.8132 12.0648 16.725M16.5 13.7109V15.5109M16.5 17.7609V18.2109"
-                    stroke="#A4A1AA"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-
-                <span className="flex-1 ml-3 whitespace-nowrap">
-                  Ge Watchlist
-                </span>
-              </a>
-            </li> */}
           </ul>
         </div>
       </div>
@@ -181,5 +130,3 @@ const SideBar = () => {
 };
 
 export default SideBar;
-
-//Make a redirect page to regsiter when clicking on profile and adventure log without being logged in

@@ -12,6 +12,7 @@ const MainPageLayout = ({
   contentClassName = "p-4",
   showSidebar = true,
   showNavBar = true,
+  centerContent = false, // new prop to control content centering
 }) => {
   const { user } = useContext(AuthContext);
 
@@ -19,10 +20,14 @@ const MainPageLayout = ({
     showSidebar ? "md:flex-row" : "flex-col"
   }`;
 
+  const contentContainerClasses = `flex flex-col flex-grow ${
+    centerContent ? "items-center justify-center" : ""
+  }`; // apply centering styles if centerContent is true
+
   return (
     <div className={containerClasses}>
       {showSidebar && <SideBar user={user} className={sidebarClassName} />}
-      <div className="flex flex-col flex-grow">
+      <div className={contentContainerClasses}>
         {showNavBar && <NavBarComponent pageName={pageTitle} />}
         <div className={contentClassName}>{children}</div>
       </div>

@@ -15,7 +15,6 @@ export const transformLogDetail = (log) => {
   }
 
   const { kind, path, lhs, rhs } = detailObj;
-  console.log(detailObj);
 
   const activityId = parseInt(detailObj.path[1], 10);
   const count = detailObj.rhs;

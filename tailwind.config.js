@@ -28,6 +28,11 @@ export default {
         "bground-color": "#302D39",
         "button-border": "#583782",
         "comp-color": "#25222B",
+        "bar-color": "#5E4979",
+        "bar-back": "#74717A",
+        "progress-back": "#1E1B23",
+        "progress-brd": "#292630",
+        "header-txt": "#E5E4E7",
       },
       backgroundImage: {
         "purple-gradient":

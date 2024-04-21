@@ -12,7 +12,7 @@ import welcome from "../images/welcome.png";
 
 const LandingPage = () => {
   return (
-    <MainPageLayout pageTitle="Home">
+    <MainPageLayout>
       {/* Make this container grow to fill the space and center its children */}
       <div>
         <div className="flex-grow flex flex-col items-center">
@@ -28,7 +28,7 @@ const LandingPage = () => {
         </div>
 
         {/* Cards Container Centered */}
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center mt-[80px]">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <LandingPageCard
               title="Track Progress"
@@ -42,7 +42,7 @@ const LandingPage = () => {
             />
             <LandingPageCard
               title="Adventure Log"
-              description="The adventure log is BACK! Track your progress in the world of Gilenor with your own personal adventure log for each character"
+              description="Track your progress with your own personal adventure log for each character"
               imageUrl={scrollLanding}
             />
           </div>

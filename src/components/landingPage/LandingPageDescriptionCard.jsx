@@ -8,7 +8,7 @@ const TransformedCard = ({
   imageUrl,
 }) => {
   return (
-    <div className="w-[410.67px] h-[260px] p-6 bg-zinc-900 rounded-lg border border-zinc-800 flex-col justify-start items-center inline-flex">
+    <div className="w-[410.67px] h-[260px] p-6 bg-progress-back rounded-lg border border-progress-brd flex-col justify-start items-center inline-flex">
       <div className="w-[100px] h-[100px] justify-center items-center inline-flex">
         <div className="w-[100px] h-[100px] relative flex-col justify-start items-start flex">
           {/* Make sure the background divs are also rounded */}

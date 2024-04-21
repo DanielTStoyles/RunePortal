@@ -33,7 +33,7 @@ const PlayerStatsDisplay = ({ playerSkillsData }) => {
       </div>
 
       <div className="w-[1280px] rounded-lg bg-gray-800">
-        <div className="grid grid-cols-8 grid-rows-3 ">
+        <div className="grid grid-cols-8 grid-rows-3">
           {playerSkillsData.skills.slice(0, 24).map((skill, index) => (
             <div
               key={`${skill.name}-${index}`}

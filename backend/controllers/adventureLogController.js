@@ -217,6 +217,7 @@ export const fetchAdventureLogSkill = async (playerId) => {
   let fetchedItems = [];
   let lastEvaluatedKey = null;
   let skillLevelChanges = [];
+  const desiredCount = 10; // Define how many entries you want to fetch
 
   try {
     do {
@@ -232,16 +233,13 @@ export const fetchAdventureLogSkill = async (playerId) => {
       fetchedItems = data.Items;
       lastEvaluatedKey = data.LastEvaluatedKey;
 
-      // Filter for skill level change entries
       const newSkillEntries = fetchedItems.filter((item) => {
         const detail = JSON.parse(item.detail);
-        // Define your condition here based on 'detail' structure for skill level changes
-        return /* your condition for skill level change */;
+        // Assume the detail contains a type that we can check
+        return detail.type === "SkillLevelChange";
       });
 
       skillLevelChanges = [...skillLevelChanges, ...newSkillEntries];
-
-      // Optionally limit the number of entries if needed
     } while (skillLevelChanges.length < desiredCount && lastEvaluatedKey);
   } catch (err) {
     console.error("Error fetching adventure logs: ", err);
