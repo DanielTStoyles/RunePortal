@@ -9,10 +9,12 @@ import { CombatLevelData, OverallLvlData, OverallXpData } from "./DataBars";
 import MainPageLayout from "../../pages/MainPageLayout";
 import PlayerStatsDisplay from "./ProfileSkillsDisplay";
 import getRunescapeProfile from "../../hooks/getRunescapeProfile";
+import AddPlayer from "./AddPlayer";
 
 const ProfileComponent = () => {
   const { user } = useContext(AuthContext);
   const [showForm, setShowForm] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const handleClick = () => {
     setShowForm(!showForm);
@@ -49,7 +51,20 @@ const ProfileComponent = () => {
           {/* Wrapper div to move content to the right */}
           <div className="flex justify-start ml-12">
             <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-5 w-full">
+              <button
+                className="flex justify-center hover:bg-blue-700 text-white font-bold py-1 px-1 rounded-full"
+                onClick={() => setModalOpen(true)}
+                style={{ width: "30px", height: "30px" }}
+                aria-label="Open"
+              >
+                +
+              </button>
               <PrimaryPlayerSelector />
+
+              <AddPlayer
+                isOpen={isModalOpen}
+                onClose={() => setModalOpen(false)}
+              />
               <div className="flex-grow">
                 <div className="flex justify-end space-x-9 mr-64 mt-10">
                   {" "}

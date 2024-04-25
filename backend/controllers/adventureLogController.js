@@ -8,7 +8,7 @@ export const docClient = new AWS.DynamoDB.DocumentClient();
 export const fetchPlayerAdventureLog = async (req, res) => {
   try {
     const { playerId } = req.params;
-    console.log(playerId, "adventureLogController log of playerId");
+    // console.log(playerId, "adventureLogController log of playerId");
 
     const data = await fetchAdventureLog(playerId);
     res.send(data);
@@ -20,7 +20,7 @@ export const fetchPlayerAdventureLog = async (req, res) => {
 export const fetchPlayerAdventureLogBoss = async (req, res) => {
   try {
     const { playerId } = req.params;
-    console.log(playerId, "adventureLogController log of playerId");
+    // console.log(playerId, "adventureLogController log of playerId");
 
     const data = await fetchAdventureLogBoss(playerId);
     res.send(data);
@@ -32,7 +32,7 @@ export const fetchPlayerAdventureLogBoss = async (req, res) => {
 export const fetchPlayerAdventureLogClue = async (req, res) => {
   try {
     const { playerId } = req.params;
-    console.log(playerId, "adventureLogController log of playerId");
+    // console.log(playerId, "adventureLogController log of playerId");
 
     const data = await fetchAdventureLogClue(playerId);
     res.send(data);
@@ -44,7 +44,7 @@ export const fetchPlayerAdventureLogClue = async (req, res) => {
 export const fetchPlayerAdventureLogMinigame = async (req, res) => {
   try {
     const { playerId } = req.params;
-    console.log(playerId, "adventureLogController log of playerId");
+    // console.log(playerId, "adventureLogController log of playerId");
 
     const data = await fetchAdventureLogMinigame(playerId);
     res.send(data);
@@ -56,7 +56,7 @@ export const fetchPlayerAdventureLogMinigame = async (req, res) => {
 export const fetchPlayerAdventureLogSkill = async (req, res) => {
   try {
     const { playerId } = req.params;
-    console.log(playerId, "adventureLogController log of playerId");
+    // console.log(playerId, "adventureLogController log of playerId");
 
     const data = await fetchAdventureLogSkill(playerId);
     res.send(data);
@@ -123,7 +123,7 @@ export const fetchAdventureLogBoss = async (playerId) => {
 };
 
 export const fetchAdventureLogClue = async (playerId) => {
-  console.log(playerId, "playerId LOG FROM CLUE SCROLL BULLSHIT");
+  // console.log(playerId, "playerId LOG FROM CLUE SCROLL BULLSHIT");
   if (!playerId) {
     // You can choose to throw an error or return an error message
     // Throwing an error:

@@ -43,3 +43,15 @@ export const item = async (req, res) => {
     res.status(500).json({ message: "Database error" });
   }
 };
+
+export const fetchItemsFromApi = async () => {
+  try {
+    const response = await fetch("/api?action=query&list=allitems&format=json");
+    if (!response.ok) throw new Error("Network response was not ok");
+    const data = await response.json();
+    return data.query.allitems;
+  } catch (error) {
+    console.error("Failed to fetch items:", error.message);
+    return [];
+  }
+};

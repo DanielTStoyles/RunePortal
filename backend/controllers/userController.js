@@ -22,7 +22,7 @@ export const getUserAccList = async (req, res) => {
 };
 
 export const playerRegistration = async (req, res) => {
-  console.log(req.body, "This is the playerRegistration req.body");
+  // console.log(req.body, "This is the playerRegistration req.body");
 
   const user_id = req.session.user.id;
   const { rsn, account_type } = req.body;

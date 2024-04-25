@@ -3,10 +3,8 @@
 import React from "react";
 import DropdownButton from "./DropdownButton";
 import SelectedPlayerName from "../../hooks/SelectedPlayerName";
-import AccountType from "../../hooks/AccountType";
 import gnome_funny from "../../images/gnome_funny.png";
 import ironMode from "../../images/ironMode.png";
-import overall from "../../images/overall.png";
 
 const PrimaryPlayerSelector = () => {
   return (
