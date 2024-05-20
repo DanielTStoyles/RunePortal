@@ -7,8 +7,8 @@ export const CombatLevelData = ({ playerSkillsData }) => {
   const combatLevel = calculateCombatLevel(playerSkillsData);
 
   return (
-    <div className="bg-comp-color rounded-lg justify-center items-center gap-2 inline-flex sm:w-[247px] sm:py-4">
-      <div className="justify-center items-center gap-2.5 flex">
+    <div className="bg-[#1E1B23] rounded-lg border border-progress-brd justify-center items-center gap-2 inline-flex sm:w-[247px] px-2 ">
+      <div className="justify-center items-center flex">
         <svg
           width="21"
           height="20"
@@ -52,18 +52,17 @@ export const OverallXpData = ({ playerSkillsData }) => {
 
   return (
     <div
-      className="flex bg-comp-color rounded-lg justify-center items-center gap-2 sm:py-2"
+      className="flex bg-[#1E1B23] rounded-lg border border-progress-brd justify-center items-center gap-2 "
       style={{
-        minWidth: "247px",
+        minWidth: "300px",
         width: "auto",
-        paddingLeft: "10px",
-        paddingRight: "10px",
+
       }}
     >
-      <div className="flex justify-center items-center gap-2.5">
+      <div className="flex justify-center items-center gap-2.5 ">
         <img src={overall} alt="overall xp icon" className="w-19 h-19" />
       </div>
-      <div className="text-zinc-500 text-xl font-normal font-['Arial']">
+      <div className="text-zinc-500 text-xl font-normal font-['Arial'] text-nowrap">
         Overall Exp.
       </div>
       <div className="text-zinc-200 text-xl font-normal font-['Arial']">
@@ -78,7 +77,7 @@ export const OverallLvlData = ({ playerSkillsData }) => {
 
   return (
     <div
-      className="bg-comp-color rounded-lg justify-center items-center gap-2 inline-flex sm:w-[247px] sm:py-2"
+      className="bg-[#1E1B23] rounded-lg border border-progress-brd justify-center items-center gap-2 inline-flex sm:w-[247px] sm:py-2"
       style={{ paddingLeft: "10px", paddingRight: "10px" }}
     >
       <div className="justify-center items-center gap-2.5 flex">

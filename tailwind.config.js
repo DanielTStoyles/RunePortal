@@ -13,12 +13,11 @@ export default {
       colors: {
         "runeportal-grey": "#1F1F1F",
         "runeportal-darkpurple": "#0A0A0A",
-        "runeportal-buttonpurple": "#5c3484",
+        "runeportal-buttonpurple": "#583782",
         "runeportal-background-dark": "#0A090B",
         "runeportal-cardBackground": "#28272A",
         "rp-buttonHover": "#492E6B",
         "rp-buttonNormal": "#583782",
-        "dropButton-color": "#583782",
         "skills-border": "#302D39",
         "comp-text": "#74717A",
         "nav-bg": "#15111e",
@@ -33,6 +32,14 @@ export default {
         "progress-back": "#1E1B23",
         "progress-brd": "#292630",
         "header-txt": "#E5E4E7",
+        "side-txt": "#A4A0AB",
+        "link-txt": "#AB71F4",
+        "form-borderdef": "#292630",
+        "form-txthov": "#A4A0AB",
+        "form-brdhov": "#492E6B",
+        "form-brdsel": "#583782",
+        "form-txtsel": "#D0CFD3",
+        "form-bkgdef": "#19161D",
       },
       backgroundImage: {
         "purple-gradient":

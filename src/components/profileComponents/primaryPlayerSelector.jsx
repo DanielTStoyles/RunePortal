@@ -8,7 +8,7 @@ import ironMode from "../../images/ironMode.png";
 
 const PrimaryPlayerSelector = () => {
   return (
-    <div className="flex gap-6 px-4 py-2 rounded items-start">
+    <div className="flex gap-4 rounded items-start min-w-[410px]">
       {/* Avatar */}
       <img
         className="w-20 h-20 relative rounded-[47px]"
@@ -17,9 +17,9 @@ const PrimaryPlayerSelector = () => {
       />
 
       {/* Right column for player's name, account type, and icons */}
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center ">
         {/* Player's name */}
-        <div className="text-white text-2xl font-bold">
+        <div className="text-white text-[36px] font-bold">
           <SelectedPlayerName />
         </div>
 

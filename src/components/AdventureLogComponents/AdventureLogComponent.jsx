@@ -49,8 +49,8 @@ const AdventureLogBook = () => {
         {/* Flex container for alignment */}
         <div className="flex justify-between mb-4 max-w-[1280px]">
           {/* Empty div for spacing, or use margin on AdventureLogLevel */}
-          <AdventureLogLevel playerId={playerId} className="flex-1" />
-          {/* <AdvLogTest className="flex-1" /> */}
+          {/* <AdventureLogLevel playerId={playerId} className="flex-1" /> */}
+          <AdvLogTest className="flex-1" />
           <AdventureLogSkillProgress
             playerSkillsData={playerSkillsData}
             className="flex-1"

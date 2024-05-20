@@ -31,7 +31,7 @@ const AdventureLogProfileDisplay = ({ playerId }) => {
   return (
     <div className="flex flex-grow flex-col pr-12">
       <div className="flex items-center">
-        <h2 className="text-zinc-200 text-2xl font-bold font-['Arial']">
+        <h2 className="text-zinc-200 text-2xl font-bold font-['Arial'] mb-2">
           Adventure Log
         </h2>
       </div>

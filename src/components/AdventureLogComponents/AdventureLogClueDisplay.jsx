@@ -54,7 +54,7 @@ const AdventureLogClueDisplay = ({ playerId }) => {
           clueScoreEntries.map((log, index) => (
             <div
               key={index}
-              className="h-[80px] p-2 bg-zinc-800 border-b border-neutral-700 flex flex-col justify-start gap-2"
+              className="h-[80px] p-2 bg-zinc-800 border-b border-neutral-700 flex flex-col justify-start gap-2 pr-[24px] pl-[24px] pt-[16px] pb-[16px]"
             >
               <div className="text-zinc-200 text-lg font-normal font-['Arial'] mt-2">
                 {transformLogDetail(log)}
@@ -66,11 +66,6 @@ const AdventureLogClueDisplay = ({ playerId }) => {
             No clue score entries found.
           </div>
         )}
-      </div>
-      <div className="flex justify-start mt-4">
-        <div className="text-zinc-400 text-sm font-normal font-['Arial']">
-          Show More
-        </div>
       </div>
     </div>
   );

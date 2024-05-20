@@ -22,16 +22,16 @@ const GeResultPageComponent = () => {
   };
 
   return (
-    <div className=" flex flex-col items-start ml-40">
+    <div className=" flex flex-col items-start w-full pl-16">
       {/* Subtitle/Search label */}
-      <h1 className="text-stone-300 text-xl md:text-3xl font-bold mb-4 text-center">
+      <h1 className="text-stone-300 text-xl md:text-3xl font-bold mb-[24px] text-center">
         Search Item
       </h1>
 
       {/* Search bar and button */}
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-md flex flex-col md:flex-row items-center gap-3"
+        className="w-full max-w-md flex flex-col md:flex-row items-center gap-[24px]"
       >
         {/* Input field */}
         <input
@@ -45,15 +45,13 @@ const GeResultPageComponent = () => {
         {/* Search button */}
         <button
           type="submit"
-          className="h-10 bg-rp-buttonNormal hover:bg-rp-buttonHover rounded-lg px-6 py-2 flex items-center justify-center w-full md:w-auto"
+          className="h-[46px] bg-rp-buttonNormal hover:bg-rp-buttonHover rounded-lg px-6 flex items-center justify-center w-full md:w-auto"
         >
-          <span className="text-zinc-200 text-base font-bold">Search</span>
+          <span className="text-zinc-200 text-base font-bold items-center">Search</span>
         </button>
       </form>
 
-      <div>
       <GeResultsComponent />
-      </div>
     </div>
   );
 };

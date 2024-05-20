@@ -60,7 +60,7 @@ const UserAccList = () => {
     <div className="relative w-24">
       <button
         onClick={toggleDropdown}
-        className="flex items-center justify-center gap-2 border-2 border-slate-500 px-4 py-2 rounded bg-dropButton-color"
+        className="flex items-center justify-center gap-2 border-2 border-slate-500 px-4 py-2 rounded bg-rp-buttonNormal hover:bg-rp-buttonHover"
       >
         <ChevronDownIcon className="w-5 h-5 text-white" />
       </button>

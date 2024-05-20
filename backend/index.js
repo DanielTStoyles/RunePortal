@@ -49,10 +49,10 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "public", "index.html"));
 });
 
-// cron.schedule("* * * * *", () => {
-//   console.log("Running processAllPlayersData every minute");
-//   updateAllPlayers();
-// });
+cron.schedule("* * * * *", () => {
+  console.log("Running processAllPlayersData every minute");
+  updateAllPlayers();
+});
 
 const PORT = process.env.PORT || 5174;
 app.listen(PORT, () => {

@@ -50,23 +50,26 @@ const ProfileComponent = () => {
           {" "}
           {/* Wrapper div to move content to the right */}
           <div className="flex justify-start ml-12">
-            <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-5 w-full">
-              <button
+            <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-5 w-full ml-4">
+              {/* <button
                 className="flex justify-center hover:bg-blue-700 text-white font-bold py-1 px-1 rounded-full"
                 onClick={() => setModalOpen(true)}
                 style={{ width: "30px", height: "30px" }}
                 aria-label="Open"
               >
                 +
-              </button>
+              </button> */}
+              <div>
               <PrimaryPlayerSelector />
 
               <AddPlayer
                 isOpen={isModalOpen}
                 onClose={() => setModalOpen(false)}
               />
-              <div className="flex-grow">
-                <div className="flex justify-end space-x-9 mr-64 mt-10">
+                            </div>
+
+              <div>
+                <div className="flex justify-end space-x-7 mt-10 ml-6">
                   {" "}
                   {profileData && (
                     <CombatLevelData playerSkillsData={profileData} />
@@ -81,10 +84,10 @@ const ProfileComponent = () => {
         </div>
         {/* Main Content Area */}
         {/* This container will hold both the Skills and Adventure Log side by side with reduced spacing */}
-        <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-1 justify-start ml-16">
+        <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0  justify-start ml-16">
           {" "}
           {/* Skills Section */}
-          <div className="flex justify-start rounded-lg p-4 ">
+          <div className="flex justify-start rounded-lg p-4">
             <PlayerStatsDisplay playerSkillsData={profileData} />
           </div>
           {/* Adventure Log Section */}

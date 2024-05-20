@@ -26,7 +26,7 @@ const NavBarComponent = ({ pageName }) => {
 
       {user ? (
         <button
-          className="w-[90.20px] h-8 px-4 py-2 bg-runeportal-buttonpurple rounded-lg justify-center items-center gap-2 inline-flex"
+          className="w-[90.20px] h-8 px-4 py-2 bg-runeportal-buttonpurple rounded-lg justify-center items-center gap-2 inline-flex hover:bg-rp-buttonHover"
           onClick={logout}
         >
           <img src={loginDoor} alt="Logout" className="w-[11px] h-4 mr-1" />
@@ -37,7 +37,7 @@ const NavBarComponent = ({ pageName }) => {
       ) : (
         <div className="flex gap-2">
           <button
-            className="w-[90.20px] h-8 px-4 py-2 bg-transparent rounded-lg border-2 border-button-border justify-center items-center gap-2 inline-flex"
+            className="w-[90.20px] h-8 px-4 py-2 bg-transparent rounded-lg border-2 border-button-border justify-center items-center gap-2 inline-flex hover:bg-rp-buttonHover"
             onClick={register}
           >
             <div className="text-zinc-200 text-sm font-bold font-['Arial']">
@@ -45,7 +45,7 @@ const NavBarComponent = ({ pageName }) => {
             </div>
           </button>
           <button
-            className="w-[90.20px] h-8 px-4 py-2 bg-runeportal-buttonpurple rounded-lg justify-center items-center gap-2 inline-flex"
+            className="w-[90.20px] h-8 px-4 py-2 bg-runeportal-buttonpurple rounded-lg justify-center items-center gap-2 inline-flex hover:bg-rp-buttonHover"
             onClick={login}
           >
             <img src={logoutDoor} alt="Login" className="w-[11px] h-4 mr-1" />

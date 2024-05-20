@@ -34,7 +34,7 @@ const SideBar = () => {
     <aside className="sticky float-left top-0 left-0 z-30 w-64 h-screen bg-side-nav border-r-[1px] border-r-[#19161D] ">
       <div className="flex flex-col">
         <div className="flex items-center justify-center mt-10">
-          <button onClick={home}>
+          <button onClick={home} className="p-[16px]">
             <img
               src={finalLogo}
               alt="RunePortal Logo"
@@ -44,11 +44,11 @@ const SideBar = () => {
         </div>
         <div className="h-full px-3 py-2 overflow-y-auto ">
           <div className="flex justify-center items-center mb-8"></div>
-          <ul className="space-y-2 font-medium">
+          <ul className="space-y-2 font-medium ">
             <li onClick={profile}>
               <a
                 href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group focus:bg-skills-border"
               >
                 <svg
                   width="24"
@@ -66,14 +66,16 @@ const SideBar = () => {
                   />
                 </svg>
 
-                <span className="flex-1 ml-3 whitespace-nowrap">Profile</span>
+                <span className="flex-1 ml-3 whitespace-nowrap text-[20px] hover:text-side-txt ">
+                  Profile
+                </span>
               </a>
             </li>
 
             <li onClick={adventureLogPage}>
               <a
                 href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group "
               >
                 <svg
                   width="24"
@@ -92,7 +94,7 @@ const SideBar = () => {
                   />
                 </svg>
 
-                <span className="flex-1 ml-3 whitespace-nowrap">
+                <span className="flex-1 ml-3 whitespace-nowrap text-[20px] hover:text-side-txt">
                   Adventure Log
                 </span>
               </a>
@@ -117,7 +119,7 @@ const SideBar = () => {
                   />
                 </svg>
 
-                <span className="flex-1 ml-3 whitespace-nowrap">
+                <span className="flex-1 ml-3 whitespace-nowrap text-[20px] hover:text-side-txt">
                   Grand Exchange
                 </span>
               </a>

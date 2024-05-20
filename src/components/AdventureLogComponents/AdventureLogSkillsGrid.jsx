@@ -32,12 +32,12 @@ const PlayerStatsDisplay = ({ playerSkillsData }) => {
         </div>
       </div>
 
-      <div className="w-[1280px] rounded-lg bg-gray-800">
+      <div className="w-[1280px] border border-skills-border rounded-lg bg-comp-color">
         <div className="grid grid-cols-8 grid-rows-3">
           {playerSkillsData.skills.slice(0, 24).map((skill, index) => (
             <div
               key={`${skill.name}-${index}`}
-              className="h-[50px] px-6 py-4 bg-zinc-800 rounded border border-neutral-700 flex justify-center items-center gap-2"
+              className="h-[50px] px-6 py-4 bg-comp-color border border-skills-border flex justify-center items-center gap-2"
             >
               <div className="flex-shrink-0">
                 <img

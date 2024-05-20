@@ -69,13 +69,13 @@ const GeResultsComponent = () => {
   }
 
   return (
-    <div className="flex flex-col justify-start items-start w-full h-screen">
-      <div className=" text-white flex flex-row text-2xl font-bold mb-4 w-full text-left mt-16 mb-10 gap-2 ">
+    <div className="flex flex-col justify-start items-start w-full">
+      <div className=" text-white flex flex-row text-2xl font-bold mb-4 w-full text-left mt-16 mb-[40px] ">
         {/* Adjust text alignment and padding as needed */}
         {itemTitle}
         <MembersIcon />
       </div>
-      <div className="flex justify-center items-center gap-4 mb-4 w-full">
+      <div className="flex items-center gap-4 mb-[40px] w-full">
         {/* Four divs containing item information */}
         <div className="px-6 py-4 bg-neutral-800 rounded-lg flex justify-start items-start gap-2.5">
           <div className="text-stone-300 text-xl font-normal font-['Arial']">
@@ -101,22 +101,20 @@ const GeResultsComponent = () => {
             {lowValue} gp
           </div>
         </div>
-        <div className="w-[269px] h-[55px] px-6 py-4 bg-neutral-800 rounded-lg flex-col justify-start items-start gap-2.5 inline-flex">
-          <div className="relative">
-            <div className="left-0 top-0 absolute text-stone-300 text-xl font-normal font-['Arial']">
-              Margin:
-            </div>
-            <div className="left-[92px] top-0 absolute text-zinc-200 text-xl font-normal font-['Arial']">
-              ▲▼
-            </div>
-            <div className="left-[148px] top-0 absolute text-zinc-200 text-xl font-normal font-['Arial'] overflow-hidden whitespace-nowrap overflow-ellipsis">
-              {" "}
-              {priceChange} gp
-            </div>
-          </div>
-        </div>
+        <div className="flex px-6 py-4 bg-neutral-800 rounded-lg items-center gap-2.5">
+  <div className="text-stone-300 text-xl font-normal font-['Arial']">
+    Margin:
+  </div>
+  <div className="text-zinc-200 text-xl font-normal font-['Arial']">
+    ▲▼
+  </div>
+  <div className="text-zinc-200 text-xl font-normal font-['Arial'] overflow-hidden whitespace-nowrap overflow-ellipsis">
+    {priceChange} gp
+  </div>
+</div>
+
       </div>
-      <div className=" w-full md:w-2/3 lg:w-full xl:w-full min-h-[400px] bg-zinc-800 rounded-lg">
+      <div className=" w-4/5 min-h-[400px] bg-zinc-800 rounded-lg p-[40px]">
         {itemData && itemData?.timeSeries?.data ? (
           <GeChart
             high={itemData.high}
@@ -135,3 +133,6 @@ const GeResultsComponent = () => {
 };
 
 export default GeResultsComponent;
+
+
+

@@ -9,6 +9,7 @@ import AuthContext from "../../context/AuthContext";
 const RunePortalLoginForm = () => {
   const { checkSession } = useContext(AuthContext);
   const { register, handleSubmit } = useForm();
+
   const navigate = useNavigate();
 
   const loginMutation = useMutation(async (data) => {
@@ -28,13 +29,17 @@ const RunePortalLoginForm = () => {
     loginMutation.mutate(data);
   };
 
+  const regLink = () => {
+    navigate("/register");
+  };
+
   return (
     <form
-      className="w-full p-4 bg-zinc-900 rounded-lg border border-zinc-800 flex flex-col justify-start items-start gap-6"
+      className="w-full p-4 bg-progress-back rounded-lg border border-zinc-800 flex flex-col justify-start items-start gap-6 p-[40px]"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="text-zinc-200 text-xl md:text-2xl font-normal">
-        Log In
+        Login
       </div>
 
       {/* Email Input */}
@@ -44,7 +49,7 @@ const RunePortalLoginForm = () => {
           name="email"
           type="email"
           {...register("email", { required: true })}
-          className="appearance-none w-full bg-zinc-800 text-zinc-200 placeholder-zinc-500 rounded-lg px-3 py-2 focus:outline-none"
+          className="w-full px-4 py-3 bg-form-bkgdef border-form-borderdef border-[1px] text-form-txtsel placeholder-zinc-500 rounded-md focus:outline-none focus:border-form-brdsel focus:text-form-txtsel hover:border-form-brdhov hover:text-form-txthov"
           placeholder="Email address"
         />
       </div>
@@ -56,7 +61,7 @@ const RunePortalLoginForm = () => {
           name="password"
           type="password"
           {...register("password", { required: true })}
-          className="appearance-none w-full bg-zinc-800 text-zinc-200 placeholder-zinc-500 rounded-lg px-3 py-2 focus:outline-none"
+          className="w-full px-4 py-3 bg-form-bkgdef border-form-borderdef border-[1px] text-form-txtsel placeholder-zinc-500 rounded-md focus:outline-none focus:border-form-brdsel focus:text-form-txtsel hover:border-form-brdhov hover:text-form-txthov"
           placeholder="Password"
         />
       </div>
@@ -64,15 +69,21 @@ const RunePortalLoginForm = () => {
       {/* Log In Button */}
       <button
         type="submit"
-        className="w-full bg-runeportal-buttonpurple text-zinc-200 text-base font-bold rounded-lg px-6 py-2 focus:outline-none"
+        className="w-full bg-rp-buttonNormal text-header-txt text-base font-bold rounded-lg px-6 py-2 focus:outline-none hover:bg-rp-buttonHover"
       >
-        Log In
+        Login
       </button>
 
       {/* Forgot Password Link */}
-      <a href="#" className="text-violet-400 text-base font-normal">
-        Forgot Password or Username?
+      <div>
+      <span href="#" className="text-form-txtsel text-base font-normal">
+        Don't have an Account?
+      </span>
+      <a href="#" className=" text-base font-normal ml-2 text-link-txt" onClick={regLink}>
+Click Here to Register
       </a>
+      </div>
+
     </form>
   );
 };

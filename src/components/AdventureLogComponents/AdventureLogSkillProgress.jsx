@@ -41,27 +41,31 @@ const AdventureLogSkillProgress = ({ playerSkillsData }) => {
 
   return (
     <div className="flex flex-col ">
-      <h1 className="text-white text-xl font-bold mb-4">
+      <h1 className="text-header-txt text-xl font-bold mb-4">
         Next Level Up Progress
       </h1>
       <div className="w-[628px] h-[359px] overflow-y-auto bg-zinc-800 rounded-lg">
-        <div className="grid grid-cols-3 gap-4 items-center bg-progress-back p-2 rounded-lg">
-          <div className="text-white font-bold flex">
+        <div className="grid grid-cols-3 gap-4 items-center bg-progress-back p-2">
+          <div className="text-[#74717A] font-bold flex">
             <img className="w-6 h-6 mr-2" src={overall} alt="overall skill" />
             <p> Skill </p>
           </div>
-          <div className="text-white font-bold text-start">% to Next Level</div>
-          <div className="text-white font-bold text-center">% to Max. Exp.</div>
+          <div className="text-[#74717A] font-bold text-start">
+            % to Next Level
+          </div>
+          <div className="text-[#74717A] font-bold text-center">
+            % to Max. Exp.
+          </div>
         </div>
-        <div className="p-2">
+        <div className="p-[24px]">
           {playerSkills.slice(1).map((skill, index) => (
             <div
               key={index}
-              className="grid grid-cols-3 gap-4 items-center text-white mb-2"
+              className="grid grid-cols-3 gap-4 items-center text-header-txt mb-2"
             >
               <div className="flex items-center">
                 <img
-                  className="w-6 h-6 mr-2"
+                  className="w-4 h-[18px] mr-2"
                   src={skillImages[skill.name]}
                   alt={skill.name}
                 />
@@ -85,7 +89,7 @@ const AdventureLogSkillProgress = ({ playerSkillsData }) => {
                 </span>
               </div>
               <div className="flex items-center justify-center">
-                <div className="w-full rounded-full h-4 dark:bg-bar-back">
+                <div className="w-1/2 rounded-full h-4 dark:bg-bar-back">
                   <div
                     className="bg-bar-color h-4 rounded-full"
                     style={{ width: `${calculatePercentTo99(skill.xp)}%` }}

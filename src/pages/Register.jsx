@@ -22,7 +22,7 @@ const RegisterPage = () => {
           <img src={slogan} alt="Runeportal Slogan" />
         </div>
         <div className="w-full flex flex-col md:flex-row justify-center items-start gap-10 md:gap-16 mt-6">
-          <div className="w-full md:w-1/2 xl:w-1/3 p-6 flex flex-col justify-start items-start gap-6">
+          <div className="p-6 flex flex-col justify-start items-start gap-6">
             <RsnRegisterForm />
           </div>
         </div>
