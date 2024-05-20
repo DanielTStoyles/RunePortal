@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
@@ -9,6 +9,7 @@ import AuthContext from "../../context/AuthContext";
 const RunePortalLoginForm = () => {
   const { checkSession } = useContext(AuthContext);
   const { register, handleSubmit } = useForm();
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const navigate = useNavigate();
 
@@ -19,13 +20,23 @@ const RunePortalLoginForm = () => {
       body: JSON.stringify(data),
     });
 
-    if (response.ok) {
+    if (!response.ok) {
+      throw new Error("Login failed");
+    }
+
+    return response.json();
+  }, {
+    onSuccess: () => {
       navigate("/home");
       checkSession();
+    },
+    onError: () => {
+      setErrorMessage("An error has occurred in the login process");
     }
   });
 
   const onSubmit = (data) => {
+    setErrorMessage(null); // Clear any previous error messages
     loginMutation.mutate(data);
   };
 
@@ -38,6 +49,11 @@ const RunePortalLoginForm = () => {
       className="w-full p-4 bg-progress-back rounded-lg border border-zinc-800 flex flex-col justify-start items-start gap-6 p-[40px]"
       onSubmit={handleSubmit(onSubmit)}
     >
+      {errorMessage && (
+        <div className="w-full p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
+          {errorMessage}
+        </div>
+      )}
       <div className="text-zinc-200 text-xl md:text-2xl font-normal">
         Login
       </div>
@@ -76,14 +92,13 @@ const RunePortalLoginForm = () => {
 
       {/* Forgot Password Link */}
       <div>
-      <span href="#" className="text-form-txtsel text-base font-normal">
-        Don't have an Account?
-      </span>
-      <a href="#" className=" text-base font-normal ml-2 text-link-txt" onClick={regLink}>
-Click Here to Register
-      </a>
+        <span className="text-form-txtsel text-base font-normal">
+          Don't have an Account?
+        </span>
+        <a className="text-base font-normal ml-2 text-link-txt cursor-pointer" onClick={regLink}>
+          Click Here to Register
+        </a>
       </div>
-
     </form>
   );
 };
